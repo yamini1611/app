@@ -6,15 +6,16 @@ import CustomNavbar from './components/User/CustomNavbar';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-         <CustomNavbar />
-        <Routes>
-          <Route path="/register" element={<Register />} />
-          <Route path="/signin" element={<SignIn />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <div className="App">
+      <Register></Register>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/Authentication" element={<Register/>} />
+      </Routes>
+    
+      </BrowserRouter>
+
+    </div>
   );
 }
 
