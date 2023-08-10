@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Register from './Components/Authentication/Register';
 import SignIn from './Components/Authentication/SignIn';
-import CustomNavbar from './Components/User/CustomNavbar';
+import CustomNavbar from './Components/Navbar/CustomNavbar';
+import SeatLayout from './Components/SeatRoom/SeatLayout';
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
       <BrowserRouter>
       <CustomNavbar/>
       <Routes>
-        <Route path="/register" element={<Register/>} />
+        <Route path="/Authentication" element={<Register/>} />
+        <Route path="/SeatLayout" element={< SeatLayout/>} />
+
       </Routes>
     
       </BrowserRouter>

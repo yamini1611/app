@@ -1,13 +1,8 @@
-import Box from '@mui/material/Box';
-import React, { useState } from "react";
-import { AutoComplete } from "primereact/autocomplete";
-import "primereact/resources/themes/lara-light-indigo/theme.css";    
-import "primereact/resources/primereact.min.css"; 
-import { Card } from 'primereact/card';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../Styles/Register.css';
-
+import { useState } from 'react';
+import React from 'react';
 const Register = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
