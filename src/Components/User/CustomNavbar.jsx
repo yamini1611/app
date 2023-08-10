@@ -16,7 +16,7 @@ const CustomNavbar = () => {
                     className="d-inline-block align-top"
                     alt="Logo"
                 />
-                TentKottA
+                TentKottAA
             </BootstrapNavbar.Brand>
             <BootstrapNavbar.Toggle aria-controls="navbar-nav" />
             <BootstrapNavbar.Collapse id="navbar-nav">
