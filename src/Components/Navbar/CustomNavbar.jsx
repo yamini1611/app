@@ -25,6 +25,8 @@ const CustomNavbar = () => {
                     <Nav.Link className="custom-nav-link" href="/movies">Movies</Nav.Link>
                     <Nav.Link className="custom-nav-link" href="/theaters">Theaters</Nav.Link>
                     <Nav.Link className="custom-nav-link" href="/schedule">Schedule</Nav.Link>
+                    <Nav.Link className="custom-nav-link" href="/SeatLayout">SeatLayout</Nav.Link>
+
                 </Nav>
 
                 <Form inline className="custom-search d-none d-md-block">
