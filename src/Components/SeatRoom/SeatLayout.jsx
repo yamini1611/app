@@ -1,26 +1,26 @@
-import React, { useEffect } from 'react'
+// import React, { useEffect } from 'react'
 
-const SeatLayout = () => {
+// const SeatLayout = () => {
 
-  const seats = 100;
+//   const seats = 100;
 
-  useEffect(()=>{
-seats();
-  },[])
-  seats();
+//   useEffect(()=>{
+// seats();
+//   },[])
+//   seats();
 
-  return (
-    <div>
-          {seats.map(seat)=>(
-           <SeatLay></SeatLay>
-          )}
+//   return (
+//     <div>
+//           {seats.map(seat)=>(
+//            <SeatLay></SeatLay>
+//           )}
 
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-const seatLay=()=>{
-  return
-}
+// const seatLay=()=>{
+//   return
+// }
 
-export default SeatLayout
+// export default SeatLayout

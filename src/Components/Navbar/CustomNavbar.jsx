@@ -31,7 +31,7 @@ const CustomNavbar = () => {
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 </Form>
 
-                <Link to="/register" className="custom-register">
+                <Link to="/register" className="custom-register text-decoration-none">
                     Register
                 </Link>
             </BootstrapNavbar.Collapse>
