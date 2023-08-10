@@ -1,75 +1,139 @@
+<<<<<<< HEAD
 import Box from '@mui/material/Box';
 import React, { useState } from "react";
 import { AutoComplete } from "primereact/autocomplete";
 import "primereact/resources/themes/lara-light-indigo/theme.css";    
 import "primereact/resources/primereact.min.css"; 
 import { Card } from 'primereact/card';
+=======
+import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
+import '../styles/Register.css';
+>>>>>>> 50bf2836874d6107b2b4929d83177992b5ddcd1f
 
 const Register = () => {
-    
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [emailValid, setEmailValid] = useState(false);
+  const [passwordMatch, setPasswordMatch] = useState(false);
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailRegex.test(email);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setEmailValid(validateEmail(e.target.value));
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setPasswordMatch(e.target.value === confirmPassword);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    setPasswordMatch(e.target.value === password);
+  };
+
+  const handleRegister = () => {
+    const isFullNameValid = /^[A-Za-z ]{1,30}$/.test(fullName);
+    const isPasswordValid = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(password);
+
+    if (!fullName || !email || !password || !confirmPassword) {
+      setErrorMessage('All fields are required.');
+    } else if (!isFullNameValid) {
+      setErrorMessage('Full name should contain only alphabets and be maximum 30 characters.');
+    } else if (!emailValid) {
+      setErrorMessage('Please enter a valid email address.');
+    } else if (!isPasswordValid) {
+      setErrorMessage('Password should be at least 6 characters with at least one number, letter, and special character.');
+    } else if (!passwordMatch) {
+      setErrorMessage('Passwords do not match.');
+    } else {
+      const userData = {
+        fullName,
+        email,
+        password,
+      };
+
+
+      axios
+        .post('http://localhost:4000/Register', userData)
+        .then((response) => {
+          console.log('Registration successful!', response.data);
+        })
+        .catch((error) => {
+          console.error('Registration failed:', error);
+          setErrorMessage('Registration failed. Please try again.');
+        });
+    }
+  };
+
   return (
-
-    <div>
-<section class="vh-100 bg-image"
->
-  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-          <div class="card">
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
-
-              <form>
-
-                <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example1cg">Your Name</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example3cg">Your Email</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cg">Password</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                </div>
-
-                <div class="form-check d-flex justify-content-center mb-5">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                  <label class="form-check-label" for="form2Example3g">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
-                  </label>
-                </div>
-
-                <div class="d-flex justify-content-center">
-                  <button type="button"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
-                </div>
-
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
-                    class="fw-bold text-body mb-2"><u>Login here</u></a></p>
-
-
-              </form>
-
-            </div>
-          </div>
+    <div className="register-page">
+      <div className="register-container">
+        <h2 className="register-header">Tentkottai</h2>
+        <div className="input-container">
+          <input
+            className={`input-field ${emailValid ? 'valid' : 'invalid'}`}
+            type="text"
+            placeholder="Full Name"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+          />
+          <span className={`validation-symbol ${fullName ? 'green' : 'red'}`}>
+            {fullName ? '\u2713' : '\u2718'}
+          </span>
         </div>
+        <div className="input-container">
+          <input
+            className={`input-field ${emailValid ? 'valid' : 'invalid'}`}
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleEmailChange}
+          />
+          <span className={`validation-symbol ${emailValid ? 'green' : 'red'}`}>
+            {emailValid ? '\u2713' : '\u2718'}
+          </span>
+        </div>
+        <div className="input-container">
+          <input
+            className={`input-field ${passwordMatch ? 'valid' : 'invalid'}`}
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+          <span className={`validation-symbol ${password ? 'green' : 'red'}`}>
+            {password ? '\u2713' : '\u2718'}
+          </span>
+        </div>
+        <div className="input-container">
+          <input
+            className={`input-field ${passwordMatch ? 'valid' : 'invalid'}`}
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+          />
+          <span className={`validation-symbol ${confirmPassword ? 'green' : 'red'}`}>
+          </span>
+        </div>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <button className="register-button" onClick={handleRegister}>
+          Register
+        </button>
+        <p>Already have an Account <span><Link to="signin">SignIn</Link></span></p>
       </div>
     </div>
-  </div>
-</section>
-    </div>    
+  );
+};
 
-  )
-}
-
-export default Register
+export default Register;

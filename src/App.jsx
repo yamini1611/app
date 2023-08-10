@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Register from './components/Authentication/Register';
-import SeatLayout from './components/SeatRoom/SeatLayout';
-import Navbar from './components/Navbar/Navbar';
-
+import SignIn from './components/Authentication/SignIn';
+import CustomNavbar from './components/User/CustomNavbar';
 
 function App() {
-
-
   return (
     <div className="App">
-  
-
+      <Register></Register>
       <BrowserRouter>
-      <Navbar></Navbar>
       <Routes>
         <Route path="/Authentication" element={<Register/>} />
-        <Route path='/seatlayout' element={<SeatLayout/>} />
       </Routes>
     
       </BrowserRouter>
