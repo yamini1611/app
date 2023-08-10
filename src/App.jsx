@@ -1,16 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Register from './components/Authentication/Register';
-import SignIn from './components/Authentication/SignIn';
-import CustomNavbar from './components/User/CustomNavbar';
+import Register from './Components/Authentication/Register';
+import SignIn from './Components/Authentication/SignIn';
+import CustomNavbar from './Components/User/CustomNavbar';
 
 function App() {
   return (
     <div className="App">
-      <Register></Register>
+     
       <BrowserRouter>
+      <CustomNavbar/>
       <Routes>
-        <Route path="/Authentication" element={<Register/>} />
+        <Route path="/register" element={<Register/>} />
       </Routes>
     
       </BrowserRouter>

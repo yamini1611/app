@@ -1,22 +1,22 @@
 import React from 'react';
 import { Navbar as BootstrapNavbar, Nav, Form, FormControl } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../assests/logo.gif';
-import '../styles/CustomNavbar.css';
+import logo from '../Assets/Images/TenKotta.png';
+import '../Styles/CustomNavbar.css';
 import { Link } from 'react-router-dom';
 
 const CustomNavbar = () => {
     return (
-        <BootstrapNavbar className="custom-navbar" bg="primary" variant="dark" expand="lg">
+        <BootstrapNavbar className="custom-navbar" expand="lg">
             <BootstrapNavbar.Brand href="/" className="custom-logo">
                 <img
                     src={logo}
-                    width="30"
-                    height="30"
+                    width="80"
+                    height="80"
                     className="d-inline-block align-top"
                     alt="Logo"
                 />
-                TentKottA
+              
             </BootstrapNavbar.Brand>
             <BootstrapNavbar.Toggle aria-controls="navbar-nav" />
             <BootstrapNavbar.Collapse id="navbar-nav">
