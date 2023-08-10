@@ -1,4 +1,4 @@
-// Register.jsx
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/Register.css';
@@ -53,7 +53,7 @@ const Register = () => {
         password,
       };
 
-      // Make a POST request to your registration API endpoint
+
       axios
         .post('http://localhost:4000/Register', userData)
         .then((response) => {
