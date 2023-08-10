@@ -1,0 +1,68 @@
+.custom-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+  }
+  
+  .custom-logo {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .custom-logo:hover {
+    color: #FFD700;
+  }
+  
+  .custom-logo img {
+    margin-right: 10px;
+  }
+  
+  .custom-search {
+    flex: 0.5;
+    margin: 0 20px;
+  }
+  
+  .custom-register {
+    margin-left: auto;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .custom-register:hover {
+    background-color: #333;
+    color: #FFD700;
+  }
+  
+  .custom-navbar .custom-nav-link {
+    color: white !important;
+    transition: color 0.3s ease;
+    opacity: 0.8;
+  }
+  
+  .custom-navbar .custom-nav-link:hover {
+    color: #FFD700;
+    opacity: 1;
+  }
+  
+  .custom-search .form-control::placeholder {
+    color: rgb(8, 8, 8);
+  }
+  
+  .custom-search .form-control {
+    color: rgb(2, 2, 2);
+    background-color: #ffffff;
+    border: none;
+    border-radius: 20px;
+  }
+  

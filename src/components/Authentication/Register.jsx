@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/Register.css';
@@ -115,13 +115,13 @@ const Register = () => {
             onChange={handleConfirmPasswordChange}
           />
           <span className={`validation-symbol ${confirmPassword ? 'green' : 'red'}`}>
-            {confirmPassword ? '\u2713' : '\u2718'}
           </span>
         </div>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <button className="register-button" onClick={handleRegister}>
           Register
         </button>
+        <p>Already have an Account <span><Link to="signin">SignIn</Link></span></p>
       </div>
     </div>
   );
