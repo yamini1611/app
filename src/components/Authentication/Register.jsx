@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Register.css'
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import React from 'react';
 import GSI from '../Google/GSI';
 import { Divider } from '@mui/material';
+import { UserContext } from '../Google/GSI';
+
+
 const Register = () => {
-  const [fullName, setFullName] = useState('');
+  const [fullName, setFullName] = useState();  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -14,10 +17,16 @@ const Register = () => {
   const [emailValid, setEmailValid] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(false);
 
+
+  //Creating context for the google sign in option
+
+  const userCon = useContext(UserContext);
+
+
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
-  };
+  }
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -53,6 +62,7 @@ const Register = () => {
         fullName,
         email,
         password,
+        isLogged:true
       };
 
 
@@ -68,18 +78,23 @@ const Register = () => {
     }
   };
 
+  useEffect(()=>{
+    console.log(userCon);
+  },[])
+
   return (
     <div className="register-page">
       <div className="register-container">
-        <h2 className="register-header">Tentkottai</h2>
+        <h2 className="register-header">Tentukottaa</h2>
         <div className="input-container">
           <input
             className={`input-field ${emailValid ? 'valid' : 'invalid'}`}
             type="text"
             placeholder="Full Name"
-            value={fullName}
+            value={userCon.name}
             onChange={(e) => setFullName(e.target.value)}
           />
+          {console.log(userCon)}
           <span className={`validation-symbol ${fullName ? 'green' : 'red'}`}>
             {fullName ? '\u2713' : '\u2718'}
           </span>
@@ -89,7 +104,7 @@ const Register = () => {
             className={`input-field ${emailValid ? 'valid' : 'invalid'}`}
             type="email"
             placeholder="Email"
-            value={email}
+            value={userCon.email}
             onChange={handleEmailChange}
           />
           <span className={`validation-symbol ${emailValid ? 'green' : 'red'}`}>
