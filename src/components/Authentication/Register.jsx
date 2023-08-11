@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import '../Styles/Register.css';
+import '../styles/Register.css'
 import { useState } from 'react';
 import React from 'react';
 const Register = () => {

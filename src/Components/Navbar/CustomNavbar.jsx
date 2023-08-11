@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar as BootstrapNavbar, Nav, Form, FormControl } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../Assets/Images/TenKotta.png';
-import '../Styles/CustomNavbar.css';
+import '../styles/CustomNavbar.css';
 import { Link } from 'react-router-dom';
 
 const CustomNavbar = () => {
