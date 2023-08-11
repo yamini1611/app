@@ -3,6 +3,8 @@ import axios from 'axios';
 import '../styles/Register.css'
 import { useState } from 'react';
 import React from 'react';
+import GSI from '../Google/GSI';
+import { Divider } from '@mui/material';
 const Register = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -118,6 +120,10 @@ const Register = () => {
           </span>
         </div>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <Divider className="text-center  col-lg-5 mx-auto  p-3">or</Divider>
+        <div className='pb-3 justify-content-center d-flex'>
+        <GSI></GSI>
+        </div>
         <button className="register-button" onClick={handleRegister}>
           Register
         </button>

@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react'
-
+import React, { useEffect, useState } from 'react';
+import jwt_decode from 'jwt-decode';
 const GSI = () => {
     const [user , setUser] = useState({});
 const handleCallbackResponse  =(response)=>{
- console.log(response.credentials);
+ console.log(response.credential);
+var userObject = jwt_decode(response.credential);
+console.log(userObject);
+setUser(userObject);
+
 }
 
 useEffect(()=>{
-google.account.id.initialize({
+    /* global google */
+google.accounts.id.initialize({
     client_id:"750979981357-niapbt49f70mgcgmt4e8ci6h1hddoeme.apps.googleusercontent.com",
     callback: handleCallbackResponse
 }) ;
 
-google.account.id.renderButton(
+google.accounts.id.renderButton(
     document.getElementById("signInDiv"),
     {
         theme:"outline",size:"medium"
@@ -23,6 +28,7 @@ google.account.id.renderButton(
 },[])
   return (
     <div>
+
         <div id="signInDiv"></div>
     
 
