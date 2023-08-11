@@ -12,9 +12,9 @@ function App() {
       <BrowserRouter>
       <CustomNavbar/>
       <Routes>
-        <Route path="/Authentication" element={<Register/>} />
+        <Route path="/register" element={<Register/>} />
         <Route path="/SeatLayout" element={< SeatLayout/>} />
-
+        <Route path='/signin' element={<SignIn/>}/>
       </Routes>
     
       </BrowserRouter>
