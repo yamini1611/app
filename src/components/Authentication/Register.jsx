@@ -121,7 +121,7 @@ const Register = () => {
         <button className="register-button" onClick={handleRegister}>
           Register
         </button>
-        <p>Already have an Account <span><Link to="signin">SignIn</Link></span></p>
+        <p>Already have an Account <span><Link to="/signin">SignIn</Link></span></p>
       </div>
     </div>
   );

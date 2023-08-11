@@ -34,6 +34,9 @@ const CustomNavbar = () => {
                 <Link to="/register" className="custom-register">
                     Register
                 </Link>
+                <Link to="/signin" className="custom-register">
+                    SignIn
+                </Link>
             </BootstrapNavbar.Collapse>
         </BootstrapNavbar>
     );
