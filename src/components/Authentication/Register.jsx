@@ -78,9 +78,7 @@ const Register = () => {
     }
   };
 
-  useEffect(()=>{
-    console.log(userCon);
-  },[])
+
 
   return (
     <div className="register-page">
@@ -91,7 +89,7 @@ const Register = () => {
             className={`input-field ${emailValid ? 'valid' : 'invalid'}`}
             type="text"
             placeholder="Full Name"
-            value={userCon.name}
+            value={fullName}
             onChange={(e) => setFullName(e.target.value)}
           />
           {console.log(userCon)}
@@ -104,7 +102,7 @@ const Register = () => {
             className={`input-field ${emailValid ? 'valid' : 'invalid'}`}
             type="email"
             placeholder="Email"
-            value={userCon.email}
+            value={email}
             onChange={handleEmailChange}
           />
           <span className={`validation-symbol ${emailValid ? 'green' : 'red'}`}>
@@ -136,13 +134,13 @@ const Register = () => {
         </div>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <Divider className="text-center  col-lg-5 mx-auto  p-3">or</Divider>
-        <div className='pb-3 justify-content-center d-flex'>
+        <div className='pb-3 justify-content-center d-flex' >
         <GSI></GSI>
         </div>
         <button className="register-button" onClick={handleRegister}>
           Register
         </button>
-        <p>Already have an Account <span><Link to="/signin">SignIn</Link></span></p>
+        <p>Already have an Account <span><Link to="/signin">Login</Link></span></p>
       </div>
     </div>
   );

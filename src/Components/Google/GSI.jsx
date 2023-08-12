@@ -1,34 +1,43 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useEffect, useState } from 'react';
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 
 export const UserContext = createContext();
 
-const GSI = ({children}) => {
+const GSI = ({ children }) => {
     const [user, setUser] = useState({});
     const handleCallbackResponse = (response) => {
         console.log(response.credential);
-        var  userObject = jwt_decode(response.credential);
+        var userObject = jwt_decode(response.credential);
         setUser(userObject);
-        
+
     }
-console.log(user);
-    const fetchData = () => {
+    console.log(user);
+    axios.post("http://localhost:4000/Register", {
+        fullName: user.name,
+        email: user.email,
+        image: user.picture
+    }).catch((error)=>{
+       console.log(error)
+    })
+    const fetchData = (user) => {
+
+    
         fetch("http://localhost:4000/Register", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-
+                fullName: user.name,
+                email: user.email,
+                image: user.picture
             })
         })
             .then((response) => {
                 console.log(response.status);
-            })
+            }).catch((error) => { })
     }
-
-
-
 
     useEffect(() => {
         console.log(user);
@@ -41,22 +50,18 @@ console.log(user);
         google.accounts.id.renderButton(
             document.getElementById("signInDiv"),
             {
-                theme: "outline", size: "medium"
+                theme: "outline", size: "large"
             }
+
         );
+        google.accounts.id.prompt()
+        console.log(user.name)
 
-        // google.accounts.id.prompt();
-
-       
-      
     }, [])
     return (
         <div>
-            <UserContext.Provider value={user}>
-                {console.log(user)}
-            {children}
-            <div id="signInDiv"></div>
-            </UserContext.Provider>
+        
+                <div id="signInDiv"></div>
         </div>
     )
 }

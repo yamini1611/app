@@ -11,7 +11,6 @@ function App() {
 
   return (
     <div className="App">
-<GSI>
       <BrowserRouter>
         <CustomNavbar />
         <Routes>
@@ -21,7 +20,6 @@ function App() {
         </Routes>
 
       </BrowserRouter>
-      </GSI>
     </div>
   );
 }

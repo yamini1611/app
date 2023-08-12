@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/SignIn.css';
+import { Divider } from '@mui/material';
+import GSI from '../Google/GSI';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -33,7 +35,7 @@ const SignIn = () => {
   return (
     <div className="signin-page">
       <div className="signin-container">
-        <h2 className="signin-header">Tentkottai Sign In</h2>
+        <h2 className="signin-header">Log In</h2>
         <div className="input-container">
           <input
             className="input-field"
@@ -53,8 +55,13 @@ const SignIn = () => {
           />
         </div>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+        <Divider className="text-center  col-lg-5 mx-auto  p-3">or</Divider>
+        <div className='pb-3 justify-content-center d-flex' >
+        <GSI></GSI>
+        </div>
         <button className="signin-button" onClick={handleSignIn}>
-          Sign In
+          Login
         </button>
         <p>Don't have an account? <Link to="/register">Register</Link></p>
       </div>

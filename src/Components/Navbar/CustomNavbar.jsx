@@ -23,7 +23,7 @@ const CustomNavbar = () => {
                 <Nav className="mr-auto">
                     <Nav.Link className="custom-nav-link" href="/">Home</Nav.Link>
                     <Nav.Link className="custom-nav-link" href="/movies">Movies</Nav.Link>
-                    <Nav.Link className="custom-nav-link" href="/theaters">Theaters</Nav.Link>
+                    <Nav.Link className="custom-nav-link" href="/SeatLayout">Theaters</Nav.Link>
                     <Nav.Link className="custom-nav-link" href="/schedule">Schedule</Nav.Link>
                 </Nav>
 
