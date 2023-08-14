@@ -1,69 +1,116 @@
-import React, { createContext, useCallback, useEffect, useState } from 'react';
-import jwt_decode from 'jwt-decode';
-import axios from 'axios';
 
-export const UserContext = createContext();
 
-const GSI = ({ children }) => {
+import React, { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
+import axios from "axios";
+
+const GSI = (props) => {
     const [user, setUser] = useState({});
+    var loginDetails;
+
+
     const handleCallbackResponse = (response) => {
-        console.log(response.credential);
-        var userObject = jwt_decode(response.credential);
-        setUser(userObject);
+    console.log(response.credential);
+    var userObject = jwt_decode(response.credential);
+    setUser(userObject);
+    createAccount(userObject);
+  };
+  console.log(user);
 
-    }
-    console.log(user);
-    axios.post("http://localhost:4000/Register", {
-        fullName: user.name,
-        email: user.email,
-        image: user.picture
-    }).catch((error)=>{
-       console.log(error)
-    })
-    const fetchData = (user) => {
 
-    
-        fetch("http://localhost:4000/Register", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                fullName: user.name,
-                email: user.email,
-                image: user.picture
-            })
-        })
-            .then((response) => {
-                console.log(response.status);
-            }).catch((error) => { })
-    }
+  const createAccount = (user) => {
+console.log(user)
+    if(props.axios==="post"){
 
-    useEffect(() => {
-        console.log(user);
-        /* global google */
-        google.accounts.id.initialize({
-            client_id: "750979981357-niapbt49f70mgcgmt4e8ci6h1hddoeme.apps.googleusercontent.com",
-            callback: handleCallbackResponse
-        });
+      axios.get(`http://localhost:4000/GoogleSignIn/?email=${user.email}`)
+      .then((response) => {
+        if(response.data.length>0){
+          alert("Account already exists")
+        }else{
+          axios
+          .post("http://localhost:4000/GoogleSignIn", {
+            fullName: user.name,
+            email: user.email,
+            image: user.picture,
+            isLogged: false,
+          })
+          .then(() => {
+            alert("Account Created Successfully!");
+          })
+          .then(() => {
+            setTimeout(() => {
+              window.location.href = "/SeatLayout";
+            }, 0);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        }
 
-        google.accounts.id.renderButton(
-            document.getElementById("signInDiv"),
-            {
-                theme: "outline", size: "large"
-            }
+      })
 
-        );
-        google.accounts.id.prompt()
-        console.log(user.name)
-
-    }, [])
-    return (
-        <div>
         
-                <div id="signInDiv"></div>
-        </div>
-    )
-}
+    }else if (props.type==="login"){
+    
+        console.log(user.email)
+          axios.get(`http://localhost:4000/GoogleSignIn/?email=${user.email}`)
+          .then((response) => {
+            console.log(`http://localhost:4000/GoogleSignIn/?email=${user.email}`)
+            console.log(response.data[0])
+            loginDetails = response.data[0];
+            console.log("This is the login details"+loginDetails);
+          })
+          .then(() => {
+              axios.put(`http://localhost:4000/GoogleSignIn/${loginDetails.id}`, {
+                fullName: loginDetails.fullName,
+                email: loginDetails.email,
+                isLogged: true,
+                password: loginDetails.password,
+              })
+          })
+        .then(() => {
+          alert("Account logged in Successfully!");
+        })
+        .then(() => {
+          setTimeout(() => {
+            window.location.href = "/SeatLayout";
+          }, 0);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+    
+  };
 
-export default GSI
+
+
+
+useEffect(() => {
+    console.log(props.axios);
+    /* global google */
+    google.accounts.id.initialize({
+      client_id:
+        "750979981357-niapbt49f70mgcgmt4e8ci6h1hddoeme.apps.googleusercontent.com",
+      callback: handleCallbackResponse,
+    });
+
+    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+      theme: "outline",
+      size: "large",
+    });
+    google.accounts.id.prompt();
+    console.log(user.name);
+  }, []);
+
+  
+
+  return (
+    <div>
+      <div id="signInDiv"></div>
+      
+    </div>
+  );
+};
+
+export default GSI;

@@ -6,6 +6,11 @@
     background-color:#443d83fd
     }
   
+    #font{
+      font-weight: 700;
+      font-family: 'Work Sans', sans-serif;
+      font-size: larger;
+        }
   .custom-logo {
     display: flex;
     align-items: center;

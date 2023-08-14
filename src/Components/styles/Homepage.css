@@ -1,0 +1,15 @@
+#name{
+    text-align: center;
+    font-weight: 700;
+    font-family: 'Work Sans', sans-serif;
+}
+#title{
+    font-size: x-large;
+    font-weight: 700;
+    font-family: 'Work Sans', sans-serif;
+}
+
+#movie-card:hover{
+    transform: scale(1.03);
+}
+

@@ -13,6 +13,7 @@
     "bootstrap": "^5.3.1",
     "formik": "^2.4.3",
     "google": "^2.1.0",
+    "json-server": "^0.17.3",
     "jwt-decode": "^3.1.2",
     "primereact": "^9.6.1",
     "react": "^18.2.0",
