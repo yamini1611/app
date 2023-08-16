@@ -17,7 +17,7 @@ function Seater(props) {
   const [seatArr, setSeatArr] = useState([]);
   const [checked, setChecked] = useState(false);
   const [seatsClicked, setSeatsClicked] = useState();
-  const [count, setCount]  = useState(0);
+  const [count, setCount] = useState(0);
 
 
 
@@ -58,12 +58,12 @@ function Seater(props) {
         value="1"
         onClick={() => {
 
-          if (count <= props.noOfSeats) {
+          if (count < props.noOfSeats) {
             handleSeatClicked(props.seatID);
             setSeatArr(props.seatID);
             console.log(count)
             setChecked(!checked);
-            setCount((prev)=>(prev = prev + 1));
+            setCount((prev) => prev + 1);
             console.log(count + " After increase")
           }
         }}
