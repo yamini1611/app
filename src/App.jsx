@@ -14,6 +14,7 @@ import ChooseTickets from './Components/SeatRoom/ChooseTickets';
 import Movie from './Components/Homepage/Movie';
 import { Tamildisplay ,Malayalamdisplay ,Telugudisplay} from './Components/Homepage/Movie';
 import ThetreList from './Components/Thetres/ThetreList';
+import showThetres from './Components/Thetres/showThetres';
 function App() {
 
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/Theater" element={<Theater />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path='/ThetreList' element={<ThetreList/>}/>
+          <Route path='/show' element={<showThetres/>}/>
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
 
