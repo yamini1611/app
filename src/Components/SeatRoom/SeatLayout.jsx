@@ -62,18 +62,24 @@ function Seater(props) {
         value="1"
         onClick={() => {
 
-          if (count <= props.noOfSeats) {
+          if (count < props.noOfSeats) {
             handleSeatClicked(props.seatID);
             setSeatArr(props.seatID);
-            console.log(count)
+            console.log(count+" This is inside the main if block")
             setChecked(!checked);
-            // if(checked){
-              dispatch(increment());
-            // }else{
-              // dispatch(decrement());
-
-            // } 
+            
+              if(!checked){
+                dispatch(increment());
+                console.log("This is if");
+              }else{
+                dispatch(decrement());
+                console.log("This is else");  
+              } 
+         
+          
             console.log(count + " After increase")
+          }else{
+            dispatch(decrement());
           }
         }}
       >
