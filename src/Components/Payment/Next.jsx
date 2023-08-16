@@ -11,7 +11,7 @@ const Next = () => {
     return (
         <>
 
-            <div class="container p-0 ps-5 me-5 offset-3">
+            <div class="container p-0 ps-5 me-5 offset-3 mb-5">
                 <div className="" style={{}}>
                     <p className="btn bg-black text-white mt-5" onClick={handleClick}>Back</p>
                 </div>
