@@ -132,7 +132,7 @@ const CustomNavbar = () => {
           className="custom-register text-decoration-none ms-3"
           id="login-btn"
         >
-          Login
+          Login  
         </Link>
         <Link
           to="/logout"
@@ -140,7 +140,7 @@ const CustomNavbar = () => {
           className="custom-register text-decoration-none"
           id="logout-btn"
         >
-          Logout
+          Logout  <i class="fa-solid fa-right-from-bracket"></i>
         </Link>
       </BootstrapNavbar.Collapse>
     </BootstrapNavbar>
