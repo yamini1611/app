@@ -5,6 +5,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
+import SelectedTheaters from "../Thetres/SelectedTheatres";
 const Movie = () => {
     const [hindi, setHindi] = useState([]);
     const [Tamil, setTamil] = useState([]);
@@ -189,6 +190,7 @@ const Movie = () => {
                 {renderMovieCards(filteredMovieCards)}
             </div>
             <ToastContainer position="top-right" autoClose={3000} />
+            
         </div>
     );
 };
@@ -351,8 +353,9 @@ export const Tamildisplay = () => {
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Tamil.Certificate}</h2>
                                     </div>
                                     <div className="col-6 mt-2 " >
-                                  <Link to="/ThetreList">      <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
+                                  <Link to="/show">   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -571,7 +574,7 @@ const getrating = async () =>
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Malayalam.Certificate}</h2>
                                     </div>
                                     <div className="col-6 mt-2 " >
-                                    <Link to="/ThetreList"><button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
+                                    <Link to="/show"><button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
                                 </div>
                             </div>
@@ -790,8 +793,9 @@ export const Telugudisplay = () => {
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Telugu.Certificate}</h2>
                                     </div>
                                     <div className="col-6 mt-2 " >
-                                    <Link to="/ThetreList">   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
+                                    <Link to="/show">   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
+                                 
                                 </div>
                             </div>
                         </div>
