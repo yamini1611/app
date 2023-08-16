@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import ChooseTickets from './Components/SeatRoom/ChooseTickets';
 import Movie from './Components/Homepage/Movie';
 import { Tamildisplay ,Malayalamdisplay ,Telugudisplay} from './Components/Homepage/Movie';
+import ThetreList from './Components/Thetres/ThetreList';
 function App() {
 
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/ChooseTickets" element={< ChooseTickets />} />
           <Route path="/Theater" element={<Theater />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path='/ThetreList' element={<ThetreList/>}/>
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
 
