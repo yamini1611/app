@@ -1,16 +1,18 @@
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import '../styles/Register.css'
-import { useState } from 'react';
-import React from 'react';
-import GSI from '../Google/GSI';
-import { Divider } from '@mui/material';
+
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "../styles/Register.css";
+import { useEffect, useState } from "react";
+import React from "react";
+import GSI from "../Google/GSI";
+import { Divider } from "@mui/material";
+
 const Register = () => {
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [fullName, setFullName] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [emailValid, setEmailValid] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(false);
 
@@ -36,34 +38,50 @@ const Register = () => {
 
   const handleRegister = () => {
     const isFullNameValid = /^[A-Za-z ]{1,30}$/.test(fullName);
-    const isPasswordValid = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(password);
+    const isPasswordValid =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(
+        password
+      );
 
     if (!fullName || !email || !password || !confirmPassword) {
-      setErrorMessage('All fields are required.');
+      setErrorMessage("All fields are required.");
     } else if (!isFullNameValid) {
-      setErrorMessage('Full name should contain only alphabets and be maximum 30 characters.');
+      setErrorMessage(
+        "Full name should contain only alphabets and be maximum 30 characters."
+      );
     } else if (!emailValid) {
-      setErrorMessage('Please enter a valid email address.');
+      setErrorMessage("Please enter a valid email address.");
     } else if (!isPasswordValid) {
-      setErrorMessage('Password should be at least 6 characters with at least one number, letter, and special character.');
+      setErrorMessage(
+        "Password should be at least 6 characters with at least one number, letter, and special character."
+      );
     } else if (!passwordMatch) {
-      setErrorMessage('Passwords do not match.');
+      setErrorMessage("Passwords do not match.");
     } else {
       const userData = {
         fullName,
         email,
         password,
+        isLogged: false,
       };
 
-
       axios
-        .post('http://localhost:4000/Register', userData)
+        .get(`http://localhost:4000/Register/?email=${email}`)
         .then((response) => {
-          console.log('Registration successful!', response.data);
-        })
-        .catch((error) => {
-          console.error('Registration failed:', error);
-          setErrorMessage('Registration failed. Please try again.');
+          if (response.data.length > 0) {
+            alert("Account already exists");
+            window.location.href = "/Register";
+          } else {
+            axios
+              .post("http://localhost:4000/Register", userData)
+              .then((response) => {
+                console.log("Registration successful!", response.data);
+              })
+              .catch((error) => {
+                console.error("Registration failed:", error);
+                setErrorMessage("Registration failed. Please try again.");
+              });
+          }
         });
     }
   };
@@ -71,63 +89,69 @@ const Register = () => {
   return (
     <div className="register-page">
       <div className="register-container">
-        <h2 className="register-header">Tentkottai</h2>
+        <h2 className="register-header">Tentukottaa</h2>
         <div className="input-container">
           <input
-            className={`input-field ${emailValid ? 'valid' : 'invalid'}`}
+            className={`input-field ${emailValid ? "valid" : "invalid"}`}
             type="text"
             placeholder="Full Name"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
           />
-          <span className={`validation-symbol ${fullName ? 'green' : 'red'}`}>
-            {fullName ? '\u2713' : '\u2718'}
+          <span className={`validation-symbol ${fullName ? "green" : "red"}`}>
+            {fullName ? "\u2713" : "\u2718"}
           </span>
         </div>
         <div className="input-container">
           <input
-            className={`input-field ${emailValid ? 'valid' : 'invalid'}`}
+            className={`input-field ${emailValid ? "valid" : "invalid"}`}
             type="email"
             placeholder="Email"
             value={email}
             onChange={handleEmailChange}
           />
-          <span className={`validation-symbol ${emailValid ? 'green' : 'red'}`}>
-            {emailValid ? '\u2713' : '\u2718'}
+          <span className={`validation-symbol ${emailValid ? "green" : "red"}`}>
+            {emailValid ? "\u2713" : "\u2718"}
           </span>
         </div>
         <div className="input-container">
           <input
-            className={`input-field ${passwordMatch ? 'valid' : 'invalid'}`}
+            className={`input-field ${passwordMatch ? "valid" : "invalid"}`}
             type="password"
             placeholder="Password"
             value={password}
             onChange={handlePasswordChange}
           />
-          <span className={`validation-symbol ${password ? 'green' : 'red'}`}>
-            {password ? '\u2713' : '\u2718'}
+          <span className={`validation-symbol ${password ? "green" : "red"}`}>
+            {password ? "\u2713" : "\u2718"}
           </span>
         </div>
         <div className="input-container">
           <input
-            className={`input-field ${passwordMatch ? 'valid' : 'invalid'}`}
+            className={`input-field ${passwordMatch ? "valid" : "invalid"}`}
             type="password"
             placeholder="Confirm Password"
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           />
-          <span className={`validation-symbol ${confirmPassword ? 'green' : 'red'}`}>
-          </span>
+          <span
+            className={`validation-symbol ${confirmPassword ? "green" : "red"}`}
+          ></span>
         </div>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <Divider className="text-center  col-lg-5 mx-auto  p-3">or</Divider>
-        <div className='pb-3 justify-content-center d-flex'>
-        <GSI></GSI>
+        <div className="pb-3 justify-content-center d-flex">
+          <GSI type="signin" axios="post"></GSI>
         </div>
         <button className="register-button" onClick={handleRegister}>
           Register
         </button>
-        <p>Already have an Account <span><Link to="/signin">SignIn</Link></span></p>
+        <p>
+          Already have an Account{" "}
+          <span>
+            <Link to="/signin">Login</Link>
+          </span>
+        </p>
       </div>
     </div>
   );

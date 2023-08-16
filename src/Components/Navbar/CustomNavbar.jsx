@@ -1,45 +1,149 @@
-import React from 'react';
-import { Navbar as BootstrapNavbar, Nav, Form, FormControl } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../Assets/Images/TenKotta.png';
-import '../styles/CustomNavbar.css';
-import { Link } from 'react-router-dom';
+
+import React, { useState } from "react";
+import {
+  Navbar as BootstrapNavbar,
+  Nav,
+  Form,
+  FormControl,
+} from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import logo from "../Assets/Images/TenKotta.png";
+import "../styles/CustomNavbar.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const CustomNavbar = () => {
-    return (
-        <BootstrapNavbar className="custom-navbar" expand="lg">
-            <BootstrapNavbar.Brand href="/" className="custom-logo">
-                <img
-                    src={logo}
-                    width="80"
-                    height="80"
-                    className="d-inline-block align-top"
-                    alt="Logo"
-                />
-              
-            </BootstrapNavbar.Brand>
-            <BootstrapNavbar.Toggle aria-controls="navbar-nav" />
-            <BootstrapNavbar.Collapse id="navbar-nav">
-                <Nav className="mr-auto">
-                    <Nav.Link className="custom-nav-link" href="/">Home</Nav.Link>
-                    <Nav.Link className="custom-nav-link" href="/movies">Movies</Nav.Link>
-                    <Nav.Link className="custom-nav-link" href="/theaters">Theaters</Nav.Link>
-                    <Nav.Link className="custom-nav-link" href="/schedule">Schedule</Nav.Link>
-                </Nav>
+  var logOutDetails;
+  const handleSignOut = () => {
+        axios
+        .get(`http://localhost:4000/GoogleSignIn/?isLogged=true`)
+        .then((response) => {
+          if (response.data.length > 0) {
+            console.log("IF PART======")
+            document.getElementById("register-btn").hidden = true;
+            document.getElementById("login-btn").hidden = true;
+            document.getElementById("logout-btn").hidden = false;
+          } else {
+            
+            axios.get(`http://localhost:4000/Register/?isLogged=true`)
+        .then((response) => {
+          if (response.data.length > 0) {
+            console.log("ELSE PART")
+            document.getElementById("register-btn").hidden=true;
+            document.getElementById("login-btn").hidden=true;
+            document.getElementById("logout-btn").hidden = false;
+          } else {
+            document.getElementById("register-btn").hidden=false;
+            document.getElementById("login-btn").hidden=false;
+            document.getElementById("logout-btn").hidden = true;
+          }
+        });
+          }
+        });
+    
+  
 
-                <Form inline className="custom-search d-none d-md-block">
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                </Form>
+  };
+  handleSignOut();
 
-                <Link to="/register" className="custom-register">
-                    Register
-                </Link>
-                <Link to="/signin" className="custom-register">
-                    SignIn
-                </Link>
-            </BootstrapNavbar.Collapse>
-        </BootstrapNavbar>
-    );
+  const handleLogOut = () => {
+
+    axios.get(`http://localhost:4000/Register/?isLogged=true`)
+      .then((response) => {
+        logOutDetails = response.data[0];
+          if(response.data.length>0){
+            axios.put(`http://localhost:4000/Register/${logOutDetails.id}`, {
+              fullName: logOutDetails.fullName,
+              email: logOutDetails.email,
+              isLogged: false,
+              password: logOutDetails.password,
+            }).then(()=>{
+              alert("Logged Out Successfully!");
+            }).then(()=>{
+              setTimeout(() => {
+                  window.location.href = "/Theater";
+                }, 0);
+            })
+          }else{
+            axios.get(`http://localhost:4000/GoogleSignIn/?isLogged=true`)
+            .then((response) => {
+              logOutDetails = response.data[0];
+              axios.put(`http://localhost:4000/GoogleSignIn/${logOutDetails.id}`, {
+                fullName: logOutDetails.fullName,
+                email: logOutDetails.email,
+                isLogged: false,
+                image: logOutDetails.image,
+              }).then(()=>{
+                alert("Logged Out Successfully!");
+              }).then(()=>{
+                setTimeout(() => {
+                    window.location.href = "/Theater";
+                  }, 0);
+              })
+            })
+          }
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+  };
+  return (
+    <BootstrapNavbar className="custom-navbar" expand="lg" id='font'>
+      <BootstrapNavbar.Brand href="/" className="custom-logo">
+        <img
+          src={logo}
+          width="80"
+          height="80"
+          className="d-inline-block align-top"
+          alt="Logo"
+        />
+      </BootstrapNavbar.Brand>
+      <BootstrapNavbar.Toggle aria-controls="navbar-nav" />
+      <BootstrapNavbar.Collapse id="navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link className="custom-nav-link" href="/">
+            Home
+          </Nav.Link>
+          <Nav.Link className="custom-nav-link" href="/movies">
+            Movies
+          </Nav.Link>
+          <Nav.Link className="custom-nav-link" href="/Theater">
+            Theaters
+          </Nav.Link>
+          <Nav.Link className="custom-nav-link" href="/schedule">
+            Schedule
+          </Nav.Link>
+        </Nav>
+
+        <Form inline className="custom-search d-none d-md-block">
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+        </Form>
+
+        <Link
+          to="/register"
+          className="custom-register text-decoration-none"
+          id="register-btn"
+        >
+          Register
+        </Link>
+        <Link
+          to="/signin"
+          className="custom-register text-decoration-none"
+          id="login-btn"
+        >
+          Login
+        </Link>
+        <Link
+          to="/logout"
+          onClick={() => handleLogOut()}
+          className="custom-register text-decoration-none"
+          id="logout-btn"
+        >
+          Logout
+        </Link>
+      </BootstrapNavbar.Collapse>
+    </BootstrapNavbar>
+  );
 };
 
 export default CustomNavbar;

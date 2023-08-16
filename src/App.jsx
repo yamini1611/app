@@ -1,24 +1,37 @@
+
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Register from './Components/Authentication/Register';
 import SignIn from './Components/Authentication/SignIn';
 import CustomNavbar from './Components/Navbar/CustomNavbar';
-import SeatLayout from './Components/SeatRoom/SeatLayout';
-
+import UserContext from './Components/Google/GSI';
+import GSI from './Components/Google/GSI';
+import MovieList from './Components/Homepage/Homepage';
+import Theater from './Components/SeatRoom/Theater';
+import Moviedisplay from './Components/Homepage/Homedisplay';
+import { ToastContainer } from 'react-toastify';
+import Movie from './Components/Homepage/Movie';
+import { Tamildisplay ,Malayalamdisplay ,Telugudisplay} from './Components/Homepage/Movie';
 function App() {
+
   return (
     <div className="App">
-     
       <BrowserRouter>
-      <CustomNavbar/>
-      <Routes>
-        <Route path="/register" element={<Register/>} />
-        <Route path="/SeatLayout" element={< SeatLayout/>} />
-        <Route path='/signin' element={<SignIn/>}/>
-      </Routes>
-    
-      </BrowserRouter>
+        <CustomNavbar />
+        <Routes>
+          <Route path="/" element={<MovieList />} />
+          <Route path="/movies" element={<Movie/>} />
+          <Route path="/Tamilmovies/:id" element={<Tamildisplay/>} />
+          <Route path="/MalayalamMovies/:id" element={<Malayalamdisplay/>} />
+          <Route path="/TeluguMovies/:id" element={<Telugudisplay/>} />
+          <Route path="/movie/:id" element={<Moviedisplay />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/Theater" element={<Theater />} />
+          <Route path="/signin" element={<SignIn />} />
+        </Routes>
+        <ToastContainer position="top-right" autoClose={3000} />
 
+      </BrowserRouter>
     </div>
   );
 }
