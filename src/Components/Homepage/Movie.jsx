@@ -11,8 +11,9 @@ const Movie = () => {
     const [Telugu, setTelugu] = useState([]);
     const [Malayalam, setMalayalam] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState("");
-    const [selectedLanguage, setSelectedLanguage] = useState(""); // State for language filter
+    const [selectedLanguage, setSelectedLanguage] = useState(""); 
     const [reviews, setReviews] = useState([]);
+
 
     useEffect(() => {
         fetchDetails();
@@ -62,103 +63,122 @@ const Movie = () => {
             return filteredByLocation;
         }
     }
-    
+
 
     const handleLocationClick = (location) => {
         setSelectedLocation(location);
+       
     };
 
     const handleLanguageClick = (language) => {
         setSelectedLanguage(language);
     };
-const getMovieLink = (language, location, movieId) => {
-    switch (language) {
-        case "Hindi":
-            return `/movie/${movieId}`;
-        case "Tamil":
-            return `/Tamilmovies/${movieId}`;
-        case "Telugu":
-            return `/TeluguMovies/${movieId}`;
-        case "Malayalam":
-            return `/MalayalamMovies/${movieId}`;
-        default:
-            return `/movie/${movieId}`;
+    const getMovieLink = (language, location, movieId) => {
+    if(location)
+    {
+        switch (language) {
+            case "Hindi":
+                return `/movie/${movieId}`;
+            case "Tamil":
+                return `/Tamilmovies/${movieId}`;
+            case "Telugu":
+                return `/TeluguMovies/${movieId}`;
+            case "Malayalam":
+                return `/MalayalamMovies/${movieId}`;
+            default:
+                return `/movie/${movieId}`;
+        }
     }
-};
-const renderMovieCards = (movies) => {
-    
-    const filteredMoviesByLanguage = selectedLanguage
-        ? movies.filter(movie => movie.language === selectedLanguage)
-        : movies;
+     
+    };
 
-    return filteredMoviesByLanguage.map((movie) => (
-        <div key={movie.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
-            <Link
-                to={getMovieLink(movie.language, selectedLocation, movie.id)}
-                className="card-link"
-                style={{ textDecoration: "none", color: "black" }}
-            >
-                <Card className="movie-card mb-2">
-                    <CardImg src={movie.image} id="movie-card"></CardImg>
-                </Card>
-                <strong>
-                    <h5 id="name">{movie.Name}</h5>
-                </strong>
-            </Link>
-        </div>
-    ));
-};
+    const renderMovieCards = (movies) => {
 
-    
+        const filteredMoviesByLanguage = selectedLanguage
+            ? movies.filter(movie => movie.language === selectedLanguage)
+            : movies;
+
+        return filteredMoviesByLanguage.map((movie) => (
+            <div key={movie.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
+                <Link
+                    to={getMovieLink(movie.language, selectedLocation, movie.id)}
+                    className="card-link"
+                    style={{ textDecoration: "none", color: "black" }}
+                >
+                    <Card className="movie-card mb-2">
+                        <CardImg src={movie.image} id="movie-card"></CardImg>
+                    </Card>
+                    <strong>
+                        <h5 id="name">{movie.Name}</h5>
+                    </strong>
+                </Link>
+            </div>
+        ));
+    };
+
+
     const filteredMovieCards = filteredMovies(selectedLanguage, selectedLocation);
 
 
     return (
         <div className="container">
             <div>
-                {/* Location filter buttons */}
-                <button
-                    className={`btn ${
-                        selectedLocation === "Chennai"
-                            ? "btn-primary"
-                            : "btn-light"
-                    }`}
-                    onClick={() => handleLocationClick("Chennai")}
-                >
-                    Chennai
-                </button>
-                <button
-                    className={`btn ${
-                        selectedLocation === "Mumbai"
-                            ? "btn-primary"
-                            : "btn-light"
-                    }`}
-                    onClick={() => handleLocationClick("Mumbai")}
-                >
-                    Mumbai
-                </button>
-                <button
-                    className={`btn ${
-                        selectedLocation === "Hyderabad"
-                            ? "btn-primary"
-                            : "btn-light"
-                    }`}
-                    onClick={() => handleLocationClick("Hyderabad")}
-                >
-                    Hyderabad
-                </button>
-                <button
-                    className={`btn ${
-                        selectedLocation === "Cochin"
-                            ? "btn-primary"
-                            : "btn-light"
-                    }`}
-                    onClick={() => handleLocationClick("Cochin")}
-                >
-                    Cochin
-                </button>
+                <div className="row">
+                    <div className="col-2 mt-2   ">
+                        <span id='span' >Choose  Location </span>
+
+                    </div>
+                    <div className="col-6 mt-2" style={{ fontFamily: "Work Sans, sans-serif" }}>
+                        {/* Location filter buttons */}
+                        <button
+                        id='btn'
+                            style={{ borderRadius: 0 }}
+                            className={`btn ${selectedLocation === "Chennai"
+                                    ? "btn-info"
+                                    : "btn-dark"
+                                }`}
+                            onClick={() => handleLocationClick("Chennai")}
+                        >
+                            Chennai
+                        </button>
+                        <button
+                        id='btn'
+                            style={{ borderRadius: 0 }}
+                            className={`btn ${selectedLocation === "Mumbai"
+                                    ? "btn-info"
+                                    : "btn-dark"
+                                }`}
+                            onClick={() => handleLocationClick("Mumbai")}
+                        >
+                            Mumbai
+                        </button>
+                        <button
+                        id='btn'
+                            style={{ borderRadius: 0 }}
+                            className={`btn ${selectedLocation === "Hyderabad"
+                                    ? "btn-info"
+                                    : "btn-dark"
+                                }`}
+                            onClick={() => handleLocationClick("Hyderabad")}
+                        >
+                            Hyderabad
+                        </button>
+                        <button
+                        id='btn'
+                            style={{ borderRadius: 0 }}
+                            className={`btn ${selectedLocation === "Cochin"
+                                    ? "btn-info"
+                                    : "btn-dark"
+                                }`}
+                            onClick={() => handleLocationClick("Cochin" ,)}
+                        >
+                            Cochin
+                        </button>
+                    </div>
+                </div>
+
             </div>
-         
+
             {/* Render filtered movie cards */}
             <strong>
                 <h2 id="title" className="mt-2">
@@ -176,10 +196,9 @@ const renderMovieCards = (movies) => {
 export default Movie;
 
 
-export const Tamildisplay = () =>
-{
+export const Tamildisplay = () => {
     const [Tamil, settamil] = useState([]);
-    
+
     const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([]);
     const { id } = useParams();
@@ -187,56 +206,64 @@ export const Tamildisplay = () =>
     const handleRatingClick = (value) => {
         setRating(value);
     };
-    useEffect(() =>
-    {
+    useEffect(() => {
         fetch(`http://localhost:4000/TamilMovies/${id}`)
-        .then((response) =>response.json())
-        .then((data) =>settamil(data))
-        .catch((error) => console.error("Error fetching data:", error));
-    })
-    axios
-    .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
-    .then((response) => {
-        setReviews(response.data);
-    })
-    .catch((error) => {
-        console.error("Error fetching reviews:", error);
-    });
+            .then((response) => response.json())
+            .then((data) => settamil(data))
+            .catch((error) => console.error("Error fetching data:", error));
+    },[])
 
-const handleRateSubmit = () => {
-    const review = document.querySelector('.input-form').value;
+    useEffect(() => {
+        getrating();
+    }, [])
 
-    const data = {
-        movieId: id,
-        rating: rating,
-        review: review
-    };
-
-    axios.post("http://localhost:4000/ratingreviews", data)
+    const getrating = async () =>
+    {
+       await axios
+        .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
         .then((response) => {
-            toast.success("Review submitted:", response.data);
+            setReviews(response.data);
         })
         .catch((error) => {
-            console.error("Error submitting review:", error);
+            console.error("Error fetching reviews:", error);
         });
-    document.querySelector(".input-form").value = "";
-    setRating(0);
-};
-const renderRatingStars = (value) => {
-    const starArray = [];
-    for (let i = 1; i <= 5; i++) {
-        starArray.push(
-            <i
-                key={i}
-                className={`fas fa-star ${i <= value ? "gold" : "gray"}`}
-            ></i>
-        );
+
     }
-    return starArray;
-};
+   
+    const handleRateSubmit = async () => {
+        const review = document.querySelector('.input-form').value;
+
+        const data = {
+            movieId: id,
+            rating: rating,
+            review: review
+        };
+
+         await axios.post("http://localhost:4000/ratingreviews", data)
+            .then((response) => {
+                toast.success("Review submitted:", response.data);
+            })
+            .catch((error) => {
+                console.error("Error submitting review:", error);
+            });
+        document.querySelector(".input-form").value = "";
+        setRating(0);
+    };
+    const renderRatingStars = (value) => {
+        const starArray = [];
+        for (let i = 1; i <= 5; i++) {
+            starArray.push(
+                <i
+                    key={i}
+                    className={`fas fa-star ${i <= value ? "gold" : "gray"}`}
+                ></i>
+            );
+        }
+        return starArray;
+    };
     return (
         <div>
-            <div className=" pt-2" id='bg' style={{paddingBottom:50}}>
+            <div className=" pt-2" id='bg' style={{ paddingBottom: 50 }}>
                 <div className="container" id='con' >
 
                     <div className="row mt-3 " >
@@ -248,7 +275,7 @@ const renderRatingStars = (value) => {
 
                         </div>
 
-                        <div className="col-sm-6 col-md-4 col-lg-3 mb-2">
+                        <div className="col-sm-6 col-md-4 col-lg-5 mb-2">
                             <strong><h2 className="mt-5">{Tamil.Name}</h2></strong>
                             <div className="row">
                                 <div className="col-1">
@@ -300,7 +327,7 @@ const renderRatingStars = (value) => {
                                         <h2 style={{ fontSize: 15 }}>{Tamil.Quality}</h2>
 
                                     </div>
-                                    <div className="col">
+                                    <div className="col-5">
 
                                         <label style={{ fontSize: 16 }} for="language">Select a Language:</label>
                                         <select className="form-select" id="language" name="language"    >
@@ -324,7 +351,7 @@ const renderRatingStars = (value) => {
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Tamil.Certificate}</h2>
                                     </div>
                                     <div className="col-6 mt-2 " >
-                                        <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button>
+                                  <Link to="/ThetreList">      <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
                                 </div>
                             </div>
@@ -336,7 +363,7 @@ const renderRatingStars = (value) => {
             <div>
                 <div id='body' className="container mt-5">
                     <h2 className="mt-2" style={{ fontWeight: "bolder", fontSize: 26 }}>About the movie</h2>
-                    <h3 style={{ fontSize: 18 }}>{Tamil.About}</h3>
+                    <h3 style={{ fontSize: 16 }}>{Tamil.About}</h3>
                     <hr></hr>
                     <h2 style={{ fontWeight: "bolder", fontSize: 26 }}>CAST  & CREW</h2>
                     <div className="avatar-container">
@@ -362,21 +389,21 @@ const renderRatingStars = (value) => {
                     <div className="mt-4">
                         <h2 style={{ fontSize: 26, fontWeight: "bolder" }}>TOP REVIEWS</h2>
                         <div className="row">
-                          
+
                             {reviews.map((review) => (
-                                  <div className="col">
-                <Card key={review.id} className="mb-3" style={{ padding: 25, maxWidth: "400px" }}>
-                    <div>
-                        <h5>Rating: {renderRatingStars(review.rating)}</h5>
-                        <h5>Review: {review.review}</h5>
-                    </div>
-                </Card>
-                </div>
-            ))}
-                         
-                      
+                                <div className="col">
+                                    <Card key={review.id} className="mb-3" style={{ padding: 25, maxWidth: "400px" }}>
+                                        <div>
+                                            <h5>Rating: {renderRatingStars(review.rating)}</h5>
+                                            <h5>Review: {review.review}</h5>
+                                        </div>
+                                    </Card>
+                                </div>
+                            ))}
+
+
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -390,9 +417,8 @@ const renderRatingStars = (value) => {
     )
 }
 
-export const Malayalamdisplay = () =>
-{
- 
+export const Malayalamdisplay = () => {
+
     const [Malayalam, setMalayalam] = useState([]);
     const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([]);
@@ -401,14 +427,19 @@ export const Malayalamdisplay = () =>
     const handleRatingClick = (value) => {
         setRating(value);
     };
-    useEffect(() =>
-    {
+    useEffect(() => {
         fetch(`http://localhost:4000/MalayalamMovies/${id}`)
-        .then((response) =>response.json())
-        .then((data) =>setMalayalam(data))
-        .catch((error) => console.error("Error fetching data:", error));
-    })
-    axios
+            .then((response) => response.json())
+            .then((data) => setMalayalam(data))
+            .catch((error) => console.error("Error fetching data:", error));
+    },[])
+
+    useEffect(() => {
+        getrating();
+    }, [])
+const getrating = async () =>
+{
+  await  axios
     .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
     .then((response) => {
         setReviews(response.data);
@@ -416,41 +447,43 @@ export const Malayalamdisplay = () =>
     .catch((error) => {
         console.error("Error fetching reviews:", error);
     });
+}
+    
 
-const handleRateSubmit = () => {
-    const review = document.querySelector('.input-form').value;
+    const handleRateSubmit = async  () => {
+        const review = document.querySelector('.input-form').value;
 
-    const data = {
-        movieId: id,
-        rating: rating,
-        review: review
+        const data = {
+            movieId: id,
+            rating: rating,
+            review: review
+        };
+
+      await  axios.post("http://localhost:4000/ratingreviews", data)
+            .then((response) => {
+                toast.success("Review submitted:", response.data);
+            })
+            .catch((error) => {
+                console.error("Error submitting review:", error);
+            });
+        document.querySelector(".input-form").value = "";
+        setRating(0);
     };
-
-    axios.post("http://localhost:4000/ratingreviews", data)
-        .then((response) => {
-            toast.success("Review submitted:", response.data);
-        })
-        .catch((error) => {
-            console.error("Error submitting review:", error);
-        });
-    document.querySelector(".input-form").value = "";
-    setRating(0);
-};
-const renderRatingStars = (value) => {
-    const starArray = [];
-    for (let i = 1; i <= 5; i++) {
-        starArray.push(
-            <i
-                key={i}
-                className={`fas fa-star ${i <= value ? "gold" : "gray"}`}
-            ></i>
-        );
-    }
-    return starArray;
-};
+    const renderRatingStars = (value) => {
+        const starArray = [];
+        for (let i = 1; i <= 5; i++) {
+            starArray.push(
+                <i
+                    key={i}
+                    className={`fas fa-star ${i <= value ? "gold" : "gray"}`}
+                ></i>
+            );
+        }
+        return starArray;
+    };
     return (
         <div>
-            <div className=" pt-2" id='bg' style={{paddingBottom:50}}>
+            <div className=" pt-2" id='bg' style={{ paddingBottom: 50 }}>
                 <div className="container" id='con' >
 
                     <div className="row mt-3 " >
@@ -462,7 +495,7 @@ const renderRatingStars = (value) => {
 
                         </div>
 
-                        <div className="col-sm-6 col-md-4 col-lg-3 mb-2">
+                        <div className="col-sm-6 col-md-4 col-lg-5 mb-2">
                             <strong><h2 className="mt-5">{Malayalam.Name}</h2></strong>
                             <div className="row">
                                 <div className="col-1">
@@ -473,7 +506,7 @@ const renderRatingStars = (value) => {
 
                                 </div>
 
-                                <h2 style={{ fontSize: 21 }}>Add your rating & review  <button className="btn btn-light mt-2" data-bs-toggle="modal" data-bs-target="#rating">Rate Now</button></h2>
+                                <h2 style={{ fontSize: 21 }}>Add your rating & review    <button className="btn btn-light mt-2" data-bs-toggle="modal" data-bs-target="#rating">Rate Now</button></h2>
                                 <div className="modal fade" id="rating" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div className="modal-dialog modal-dialog-centered">
                                         <div className="modal-content">
@@ -514,7 +547,7 @@ const renderRatingStars = (value) => {
                                         <h2 style={{ fontSize: 15 }}>{Malayalam.Quality}</h2>
 
                                     </div>
-                                    <div className="col">
+                                    <div className="col-5">
 
                                         <label style={{ fontSize: 16 }} for="language">Select a Language:</label>
                                         <select className="form-select" id="language" name="language"    >
@@ -538,7 +571,7 @@ const renderRatingStars = (value) => {
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Malayalam.Certificate}</h2>
                                     </div>
                                     <div className="col-6 mt-2 " >
-                                        <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button>
+                                    <Link to="/ThetreList">   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
                                 </div>
                             </div>
@@ -550,7 +583,7 @@ const renderRatingStars = (value) => {
             <div>
                 <div id='body' className="container mt-5">
                     <h2 className="mt-2" style={{ fontWeight: "bolder", fontSize: 26 }}>About the movie</h2>
-                    <h3 style={{ fontSize: 18 }}>{Malayalam.About}</h3>
+                    <h3 style={{ fontSize: 16 }}>{Malayalam.About}</h3>
                     <hr></hr>
                     <h2 style={{ fontWeight: "bolder", fontSize: 26 }}>CAST  & CREW</h2>
                     <div className="avatar-container">
@@ -576,21 +609,21 @@ const renderRatingStars = (value) => {
                     <div className="mt-4">
                         <h2 style={{ fontSize: 26, fontWeight: "bolder" }}>TOP REVIEWS</h2>
                         <div className="row">
-                          
+
                             {reviews.map((review) => (
-                                  <div className="col">
-                <Card key={review.id} className="mb-3" style={{ padding: 25, maxWidth: "400px" }}>
-                    <div>
-                        <h5>Rating: {renderRatingStars(review.rating)}</h5>
-                        <h5>Review: {review.review}</h5>
-                    </div>
-                </Card>
-                </div>
-            ))}
-                         
-                      
+                                <div className="col">
+                                    <Card key={review.id} className="mb-3" style={{ padding: 25, maxWidth: "400px" }}>
+                                        <div>
+                                            <h5>Rating: {renderRatingStars(review.rating)}</h5>
+                                            <h5>Review: {review.review}</h5>
+                                        </div>
+                                    </Card>
+                                </div>
+                            ))}
+
+
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -603,9 +636,8 @@ const renderRatingStars = (value) => {
 
     )
 }
-export const Telugudisplay = () =>
-{
- 
+export const Telugudisplay = () => {
+
     const [Telugu, setTelugu] = useState([]);
     const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([]);
@@ -614,56 +646,63 @@ export const Telugudisplay = () =>
     const handleRatingClick = (value) => {
         setRating(value);
     };
+    useEffect(() => {
+        fetch(`http://localhost:4000/TeluguMovies/${id}`)
+            .then((response) => response.json())
+            .then((data) => setTelugu(data))
+            .catch((error) => console.error("Error fetching data:", error));
+    },[])
+    
     useEffect(() =>
     {
-        fetch(`http://localhost:4000/TeluguMovies/${id}`)
-        .then((response) =>response.json())
-        .then((data) =>setTelugu(data))
-        .catch((error) => console.error("Error fetching data:", error));
-    })
-    axios
-    .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
-    .then((response) => {
-        setReviews(response.data);
-    })
-    .catch((error) => {
-        console.error("Error fetching reviews:", error);
-    });
-
-const handleRateSubmit = () => {
-    const review = document.querySelector('.input-form').value;
-
-    const data = {
-        movieId: id,
-        rating: rating,
-        review: review
-    };
-
-    axios.post("http://localhost:4000/ratingreviews", data)
+        getrating();
+    },[])
+    const getrating = async () =>
+    {
+      await  axios.get(`http://localhost:4000/ratingreviews?movieId=${id}`)
         .then((response) => {
-            toast.success("Review submitted:", response.data);
+            setReviews(response.data);
         })
         .catch((error) => {
-            console.error("Error submitting review:", error);
+            console.error("Error fetching reviews:", error);
         });
-    document.querySelector(".input-form").value = "";
-    setRating(0);
-};
-const renderRatingStars = (value) => {
-    const starArray = [];
-    for (let i = 1; i <= 5; i++) {
-        starArray.push(
-            <i
-                key={i}
-                className={`fas fa-star ${i <= value ? "gold" : "gray"}`}
-            ></i>
-        );
+
     }
-    return starArray;
-};
+    
+    const handleRateSubmit = async() => {
+        const review = document.querySelector('.input-form').value;
+
+        const data = {
+            movieId: id,
+            rating: rating,
+            review: review
+        };
+
+       await axios.post("http://localhost:4000/ratingreviews", data)
+            .then((response) => {
+                toast.success("Review submitted:", response.data);
+            })
+            .catch((error) => {
+                console.error("Error submitting review:", error);
+            });
+        document.querySelector(".input-form").value = "";
+        setRating(0);
+    };
+    const renderRatingStars = (value) => {
+        const starArray = [];
+        for (let i = 1; i <= 5; i++) {
+            starArray.push(
+                <i
+                    key={i}
+                    className={`fas fa-star ${i <= value ? "gold" : "gray"}`}
+                ></i>
+            );
+        }
+        return starArray;
+    };
     return (
         <div>
-            <div className=" pt-2" id='bg' style={{paddingBottom:50}}>
+            <div className=" pt-2" id='bg' style={{ paddingBottom: 50 }}>
                 <div className="container" id='con' >
 
                     <div className="row mt-3 " >
@@ -675,7 +714,7 @@ const renderRatingStars = (value) => {
 
                         </div>
 
-                        <div className="col-sm-6 col-md-4 col-lg-3 mb-2">
+                        <div className="col-sm-6 col-md-4 col-lg-5 mb-2">
                             <strong><h2 className="mt-5">{Telugu.Name}</h2></strong>
                             <div className="row">
                                 <div className="col-1">
@@ -727,7 +766,7 @@ const renderRatingStars = (value) => {
                                         <h2 style={{ fontSize: 15 }}>{Telugu.Quality}</h2>
 
                                     </div>
-                                    <div className="col">
+                                    <div className="col-5">
 
                                         <label style={{ fontSize: 16 }} for="language">Select a Language:</label>
                                         <select className="form-select" id="language" name="language"    >
@@ -751,7 +790,7 @@ const renderRatingStars = (value) => {
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Telugu.Certificate}</h2>
                                     </div>
                                     <div className="col-6 mt-2 " >
-                                        <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button>
+                                    <Link to="/ThetreList">   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button> </Link> 
                                     </div>
                                 </div>
                             </div>
@@ -763,7 +802,7 @@ const renderRatingStars = (value) => {
             <div>
                 <div id='body' className="container mt-5">
                     <h2 className="mt-2" style={{ fontWeight: "bolder", fontSize: 26 }}>About the movie</h2>
-                    <h3 style={{ fontSize: 18 }}>{Telugu.About}</h3>
+                    <h3 style={{ fontSize: 16 }}>{Telugu.About}</h3>
                     <hr></hr>
                     <h2 style={{ fontWeight: "bolder", fontSize: 26 }}>CAST  & CREW</h2>
                     <div className="avatar-container">
@@ -790,21 +829,21 @@ const renderRatingStars = (value) => {
                     <div className="mt-4">
                         <h2 style={{ fontSize: 26, fontWeight: "bolder" }}>TOP REVIEWS</h2>
                         <div className="row">
-                          
+
                             {reviews.map((review) => (
-                                  <div className="col">
-                <Card key={review.id} className="mb-3" style={{ padding: 25, maxWidth: "400px" }}>
-                    <div>
-                        <h5>Rating: {renderRatingStars(review.rating)}</h5>
-                        <h5>Review: {review.review}</h5>
-                    </div>
-                </Card>
-                </div>
-            ))}
-                         
-                      
+                                <div className="col">
+                                    <Card key={review.id} className="mb-3" style={{ padding: 25, maxWidth: "400px" }}>
+                                        <div>
+                                            <h5>Rating: {renderRatingStars(review.rating)}</h5>
+                                            <h5>Review: {review.review}</h5>
+                                        </div>
+                                    </Card>
+                                </div>
+                            ))}
+
+
                         </div>
-                        
+
                     </div>
                 </div>
 

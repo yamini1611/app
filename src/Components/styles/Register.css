@@ -30,7 +30,7 @@
   }
   
   .register-button {
-    background-color: #ec0909;
+    background-color: #09d1ec;
     color: #fff;
     padding: 12px;
     width: 100%;
@@ -39,7 +39,7 @@
     cursor: pointer;
     transition: background-color 0.2s;
   }
-  
+
   .register-button:hover {
     background-color: black;
   }

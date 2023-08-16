@@ -15,6 +15,8 @@ import Movie from './Components/Homepage/Movie';
 import Next from './Components/Payment/Next';
 import PaymentSummary from './Components/Payment/PaymentSummary';
 import { Tamildisplay, Malayalamdisplay, Telugudisplay } from './Components/Homepage/Movie';
+import { Tamildisplay ,Malayalamdisplay ,Telugudisplay} from './Components/Homepage/Movie';
+import ThetreList from './Components/Thetres/ThetreList';
 function App() {
   return (
     <div className="App">

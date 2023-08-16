@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import Divider from "@mui/material/Divider";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import "../../Components/styles/seats.css";
@@ -10,17 +10,25 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
 
+export const seatContext = createContext();
+
 function Seater(props) {
-  let count = 0;
-  console.log(props.no)
+
+  const [seatArr, setSeatArr] = useState([]);
   const [checked, setChecked] = useState(false);
-  const [seatsClicked, setSeatsClicked] = useState([]);
+  const [seatsClicked, setSeatsClicked] = useState();
+  const [count, setCount]  = useState(0);
+
+
 
   const handleSeatClicked = (id) => {
+
+
+
     axios.get(`http://localhost:4000/SeatsAllocated`).then((response) => {
-      console.log(response.data[0].seatID);
+
       if (response.data[0].seatID.includes(id)) {
-        console.log(true);
+
         axios.put(`http://localhost:4000/SeatsAllocated/1`, {
           //If the seat is already booked, then remove it from the array
           seatID: [].concat(
@@ -36,27 +44,27 @@ function Seater(props) {
     });
   };
 
+
   return (
     <>
+
       <ToggleButton
-        className={`m-1 p-1 seatcheckbox${
-          props.coldivide % 7 === 0 ? " me-5" : ""
-        }`}
+        className={`m-1 p-1 seatcheckbox${props.coldivide % 7 === 0 ? " me-5" : ""
+          }`}
         id={`toggle-check-${props.seatID}`}
         type="checkbox"
         variant="outline-primary"
         checked={checked}
         value="1"
         onClick={() => {
+
           if (count <= props.noOfSeats) {
             handleSeatClicked(props.seatID);
-            console.log(props.noOfSeats);
+            setSeatArr(props.seatID);
+            console.log(count)
             setChecked(!checked);
-            count++; // Toggle the checked state
-          } else {
-            console.log(count);
-            console.log(props.noOfSeats);
-            console.log("You can't select more than 4 seats");
+            setCount((prev)=>(prev = prev + 1));
+            console.log(count + " After increase")
           }
         }}
       >
@@ -68,7 +76,6 @@ function Seater(props) {
 
 const SeatLayout = (props) => {
   const totalRows = props.rows;
-
   const seatsPerRow = 20;
   const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 
@@ -84,7 +91,7 @@ const SeatLayout = (props) => {
           seatID={props.category + seatIndex + alphabet[rowIndex]}
           num={seatIndex}
           coldivide={seatIndex}
-          no={props.noOfSeats}
+          noOfSeats={props.noOfSeats}
         />
       );
     }
@@ -92,9 +99,8 @@ const SeatLayout = (props) => {
     seatRows.push(
       <div
         key={rowIndex}
-        className={`d-flex justify-content-center ${
-          rowIndex % 3 === 0 ? "mb-3" : ""
-        }`}
+        className={`d-flex justify-content-center ${rowIndex % 3 === 0 ? "mb-3" : ""
+          }`}
       >
         <span className="pt-2 pe-2">{alphabet[rowIndex]} </span>
         {seatsInRow}
