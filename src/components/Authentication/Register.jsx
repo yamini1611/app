@@ -1,4 +1,8 @@
 
+
+
+
+
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/Register.css";
@@ -18,7 +22,8 @@ const Register = () => {
 
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return emailRegex.test(email);
+    return emailRegex.test(email)
+;
   };
 
   const handleEmailChange = (e) => {

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   Navbar as BootstrapNavbar,
@@ -107,7 +106,7 @@ const CustomNavbar = () => {
           <Nav.Link className="custom-nav-link" href="/movies">
             Movies
           </Nav.Link>
-          <Nav.Link className="custom-nav-link" href="/Theater">
+          <Nav.Link className="custom-nav-link" href="/ChooseTickets">
             Theaters
           </Nav.Link>
           <Nav.Link className="custom-nav-link" href="/schedule">

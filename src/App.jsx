@@ -10,6 +10,7 @@ import MovieList from './Components/Homepage/Homepage';
 import Theater from './Components/SeatRoom/Theater';
 import Moviedisplay from './Components/Homepage/Homedisplay';
 import { ToastContainer } from 'react-toastify';
+import ChooseTickets from './Components/SeatRoom/ChooseTickets';
 import Movie from './Components/Homepage/Movie';
 import { Tamildisplay ,Malayalamdisplay ,Telugudisplay} from './Components/Homepage/Movie';
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/TeluguMovies/:id" element={<Telugudisplay/>} />
           <Route path="/movie/:id" element={<Moviedisplay />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/ChooseTickets" element={< ChooseTickets />} />
           <Route path="/Theater" element={<Theater />} />
           <Route path="/signin" element={<SignIn />} />
         </Routes>
