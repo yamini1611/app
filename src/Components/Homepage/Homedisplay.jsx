@@ -25,16 +25,23 @@ const Moviedisplay = () => {
 
     }, [id]);
 
-    axios
-        .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
-        .then((response) => {
-            setReviews(response.data);
-        })
-        .catch((error) => {
-            console.error("Error fetching reviews:", error);
-        });
+    useEffect(() => {
+        getrating();
+    }, [])
 
-    const handleRateSubmit = () => {
+    const getrating = async () => {
+        await axios
+            .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
+            .then((response) => {
+                setReviews(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching reviews:", error);
+            });
+    }
+
+
+    const handleRateSubmit = async () => {
         const review = document.querySelector('.input-form').value;
 
         const data = {
@@ -43,7 +50,7 @@ const Moviedisplay = () => {
             review: review
         };
 
-        axios.post("http://localhost:4000/ratingreviews", data)
+        await axios.post("http://localhost:4000/ratingreviews", data)
             .then((response) => {
                 toast.success("Review submitted:", response.data);
             })
@@ -80,7 +87,7 @@ const Moviedisplay = () => {
 
                         </div>
 
-                        <div className="col-sm-6 col-md-4 col-lg-3 mb-2">
+                        <div className="col-sm-6 col-md-4 col-lg-5 mb-2">
                             <strong><h2 className="mt-5">{display.Name}</h2></strong>
                             <div className="row">
                                 <div className="col-1">
@@ -132,7 +139,7 @@ const Moviedisplay = () => {
                                         <h2 style={{ fontSize: 15 }}>{display.Quality}</h2>
 
                                     </div>
-                                    <div className="col">
+                                    <div className="col-5">
 
                                         <label style={{ fontSize: 16 }} for="language">Select a Language:</label>
                                         <select className="form-select" id="language" name="language"    >
@@ -167,7 +174,7 @@ const Moviedisplay = () => {
             <div>
                 <div id='body' className="container mt-5">
                     <h2 className="mt-2" style={{ fontWeight: "bolder", fontSize: 26 }}>About the movie</h2>
-                    <h3 style={{ fontSize: 18 }}>{display.About}</h3>
+                    <h3 style={{ fontSize: 16 }}>{display.About}</h3>
                     <hr></hr>
                     <h2 style={{ fontWeight: "bolder", fontSize: 26 }}>CAST  & CREW</h2>
                     <div className="avatar-container">

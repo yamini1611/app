@@ -6,7 +6,7 @@ import {
   FormControl,
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import logo from "../Assets/Images/TenKotta.png";
+import logo from "../Assets/Images/logo1.gif";
 import "../styles/CustomNavbar.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -91,8 +91,8 @@ const CustomNavbar = () => {
       <BootstrapNavbar.Brand href="/" className="custom-logo">
         <img
           src={logo}
-          width="80"
-          height="80"
+          width="70"
+          height="70"
           className="d-inline-block align-top"
           alt="Logo"
         />
@@ -120,14 +120,14 @@ const CustomNavbar = () => {
 
         <Link
           to="/register"
-          className="custom-register text-decoration-none"
+          className="custom-register text-decoration-none "
           id="register-btn"
         >
-          Register
+          Register  <i class="fa-solid fa-user-plus"></i>
         </Link>
         <Link
           to="/signin"
-          className="custom-register text-decoration-none"
+          className="custom-register text-decoration-none ms-3"
           id="login-btn"
         >
           Login
