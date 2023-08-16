@@ -112,6 +112,9 @@ const CustomNavbar = () => {
           <Nav.Link className="custom-nav-link" href="/schedule">
             Schedule
           </Nav.Link>
+          <Nav.Link className="custom-nav-link" href="/ChooseTickets">
+            SeatRoom
+          </Nav.Link>
           {/* edited by hari */}
           <Nav.Link className="custom-nav-link" href="/PaymentSummary">Payment</Nav.Link>
         </Nav>
