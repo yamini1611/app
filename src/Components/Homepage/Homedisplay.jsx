@@ -212,13 +212,12 @@ const Moviedisplay = () => {
                     <h2 style={{ fontWeight: "bolder", fontSize: 26 }}>CAST  & CREW</h2>
                     <div className="avatar-container">
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/young-man-avatar-character-vector-illustration-design_24877-18517.jpg?w=740" alt="" />
+                            <img src={display.maleavatar} alt="" />
                             <strong><span>{display.MaleLead}</span></strong>
                             <span>Lead Actor</span>
                         </div>
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/beautiful-girl-with-long-black-hair-sweater_6138-239.jpg?size=626&ext=jpg&ga=GA1.2.912556834.1692088483&semt=ais" alt="" />
-                            <strong><span>{display.FemaleLead}</span></strong>
+                        <img src={display.femaleleadavatar} alt="" />                            <strong><span>{display.FemaleLead}</span></strong>
                             <span>Lead Actress</span>
 
                         </div>
