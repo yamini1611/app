@@ -106,7 +106,7 @@ const CustomNavbar = () => {
           <Nav.Link className="custom-nav-link" href="/movies">
             Movies
           </Nav.Link>
-          <Nav.Link className="custom-nav-link" href="/ChooseTickets">
+          <Nav.Link className="custom-nav-link" href="/ThetreList">
             Theaters
           </Nav.Link>
           <Nav.Link className="custom-nav-link" href="/schedule">
@@ -114,7 +114,7 @@ const CustomNavbar = () => {
           </Nav.Link>
         </Nav>
 
-        <Form inline className="custom-search d-none d-md-block">
+        <Form inline className="custom-search d-none d-lg-block">
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
         </Form>
 

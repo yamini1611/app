@@ -351,7 +351,7 @@ export const Tamildisplay = () => {
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Tamil.Certificate}</h2>
                                     </div>
                                     <div className="col-6 mt-2 " >
-                                        <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button>
+                                  <Link to="/ThetreList">      <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
                                 </div>
                             </div>
