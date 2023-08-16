@@ -32,6 +32,8 @@ const ThetreList = () => {
         <select className="select-box" id="locationSelect" value={selectedLocation} onChange={e => setSelectedLocation(e.target.value)}>
           <option value="chennai">Chennai</option>
           <option value="mumbai">Mumbai</option>
+          <option value="mumbai">Hydrabad</option>
+          <option value="mumbai">Cochin</option>
         </select>
       </div>
       <div className="theatre-cards">
