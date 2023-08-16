@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/ThetreList.css';
+import { Link } from 'react-router-dom';
 
 const ThetreList = () => {
   const [selectedLocation, setSelectedLocation] = useState('chennai');
@@ -42,7 +43,7 @@ const ThetreList = () => {
             <h3>{theater.Name}</h3>
             <p><strong>Location:</strong> {theater.location}</p>
             <p><strong>Movies Running:</strong> {theater.MoviesRunning1}</p>
-            <button className="book-now-button">Book Now</button>
+           <Link to='/ChooseTickets'> <button className="book-now-button">Book Now</button></Link>
           </div>
         ))}
       </div>

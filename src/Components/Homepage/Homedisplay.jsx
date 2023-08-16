@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Card, CardImg } from "react-bootstrap";
 import '../styles/Homepage.css';
 import axios from "axios";
@@ -156,7 +156,7 @@ const Moviedisplay = () => {
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{display.Certificate}</h2>
                                     </div>
                                     <div className="col-6 mt-2 " >
-                                        <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button>
+                                        <Link to="/ThetreList">  <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
                                 </div>
                             </div>
