@@ -14,33 +14,33 @@ import axios from "axios";
 const CustomNavbar = () => {
   var logOutDetails;
   const handleSignOut = () => {
-        axios
-        .get(`http://localhost:4000/GoogleSignIn/?isLogged=true`)
-        .then((response) => {
-          if (response.data.length > 0) {
-            console.log("IF PART======")
-            document.getElementById("register-btn").hidden = true;
-            document.getElementById("login-btn").hidden = true;
-            document.getElementById("logout-btn").hidden = false;
-          } else {
-            
-            axios.get(`http://localhost:4000/Register/?isLogged=true`)
-        .then((response) => {
-          if (response.data.length > 0) {
-            console.log("ELSE PART")
-            document.getElementById("register-btn").hidden=true;
-            document.getElementById("login-btn").hidden=true;
-            document.getElementById("logout-btn").hidden = false;
-          } else {
-            document.getElementById("register-btn").hidden=false;
-            document.getElementById("login-btn").hidden=false;
-            document.getElementById("logout-btn").hidden = true;
-          }
-        });
-          }
-        });
-    
-  
+    axios
+      .get(`http://localhost:4000/GoogleSignIn/?isLogged=true`)
+      .then((response) => {
+        if (response.data.length > 0) {
+          console.log("IF PART======")
+          document.getElementById("register-btn").hidden = true;
+          document.getElementById("login-btn").hidden = true;
+          document.getElementById("logout-btn").hidden = false;
+        } else {
+
+          axios.get(`http://localhost:4000/Register/?isLogged=true`)
+            .then((response) => {
+              if (response.data.length > 0) {
+                console.log("ELSE PART")
+                document.getElementById("register-btn").hidden = true;
+                document.getElementById("login-btn").hidden = true;
+                document.getElementById("logout-btn").hidden = false;
+              } else {
+                document.getElementById("register-btn").hidden = false;
+                document.getElementById("login-btn").hidden = false;
+                document.getElementById("logout-btn").hidden = true;
+              }
+            });
+        }
+      });
+
+
 
   };
   handleSignOut();
@@ -50,21 +50,21 @@ const CustomNavbar = () => {
     axios.get(`http://localhost:4000/Register/?isLogged=true`)
       .then((response) => {
         logOutDetails = response.data[0];
-          if(response.data.length>0){
-            axios.put(`http://localhost:4000/Register/${logOutDetails.id}`, {
-              fullName: logOutDetails.fullName,
-              email: logOutDetails.email,
-              isLogged: false,
-              password: logOutDetails.password,
-            }).then(()=>{
-              alert("Logged Out Successfully!");
-            }).then(()=>{
-              setTimeout(() => {
-                  window.location.href = "/Theater";
-                }, 0);
-            })
-          }else{
-            axios.get(`http://localhost:4000/GoogleSignIn/?isLogged=true`)
+        if (response.data.length > 0) {
+          axios.put(`http://localhost:4000/Register/${logOutDetails.id}`, {
+            fullName: logOutDetails.fullName,
+            email: logOutDetails.email,
+            isLogged: false,
+            password: logOutDetails.password,
+          }).then(() => {
+            alert("Logged Out Successfully!");
+          }).then(() => {
+            setTimeout(() => {
+              window.location.href = "/Theater";
+            }, 0);
+          })
+        } else {
+          axios.get(`http://localhost:4000/GoogleSignIn/?isLogged=true`)
             .then((response) => {
               logOutDetails = response.data[0];
               axios.put(`http://localhost:4000/GoogleSignIn/${logOutDetails.id}`, {
@@ -72,17 +72,17 @@ const CustomNavbar = () => {
                 email: logOutDetails.email,
                 isLogged: false,
                 image: logOutDetails.image,
-              }).then(()=>{
+              }).then(() => {
                 alert("Logged Out Successfully!");
-              }).then(()=>{
+              }).then(() => {
                 setTimeout(() => {
-                    window.location.href = "/Theater";
-                  }, 0);
+                  window.location.href = "/Theater";
+                }, 0);
               })
             })
-          }
+        }
       })
-      .catch((error)=>{
+      .catch((error) => {
         console.log(error)
       })
   };
@@ -112,6 +112,8 @@ const CustomNavbar = () => {
           <Nav.Link className="custom-nav-link" href="/schedule">
             Schedule
           </Nav.Link>
+          {/* edited by hari */}
+          <Nav.Link className="custom-nav-link" href="/PaymentSummary">Payment</Nav.Link>
         </Nav>
 
         <Form inline className="custom-search d-none d-lg-block">
