@@ -16,6 +16,7 @@ import Next from './Components/Payment/Next';
 import PaymentSummary from './Components/Payment/PaymentSummary';
 import { Tamildisplay, Malayalamdisplay, Telugudisplay } from './Components/Homepage/Movie';
 import ThetreList from './Components/Thetres/ThetreList';
+import Footer from './Components/Footer/Footer';
 function App() {
   return (
     <div className="App">
@@ -36,6 +37,7 @@ function App() {
           <Route path="/Next" element={<Next />} />
           <Route path="/PaymentSummary" element={<PaymentSummary />} />
         </Routes>
+        <Footer />
         <ToastContainer position="top-right" autoClose={3000} />
       </BrowserRouter>
     </div>
