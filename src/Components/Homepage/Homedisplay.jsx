@@ -197,7 +197,7 @@ const Moviedisplay = () => {
                                         <div>
                                             <h5>Theatre Name: {theatre.Name}</h5>
                                             <h5>Location: {theatre.location}</h5>
-                                            <Link to='/ChooseTickets'>   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button> </Link> 
+                                            <Link to='/show'>   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button> </Link> 
                                         </div>
                                     </Card>
                                 </div>
@@ -222,7 +222,7 @@ const Moviedisplay = () => {
 
                         </div>
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/businessman-bearded-work-leadership_18591-5278.jpg?size=626&ext=jpg&ga=GA1.2.912556834.1692088483&semt=ais" alt="" />
+                            <img src={display.Directoravatar} alt="" />
                             <strong><span>{display.Director}</span></strong>
                             <span>Director</span>
                         </div>
