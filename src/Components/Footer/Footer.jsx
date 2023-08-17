@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
-
         <>
             <div className=" text-white bottom-fixed" style={{ fontSize: '13px', backgroundColor: '#090633fd' }}>
                 <section class="sect1 pb-3">

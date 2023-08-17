@@ -12,7 +12,6 @@ import { ToastContainer } from "react-toastify";
 import ChooseTickets from "./Components/SeatRoom/ChooseTickets";
 import Movie from "./Components/Homepage/Movie";
 import Next from "./Components/Payment/Next";
-import PaymentSummary from "./Components/Payment/PaymentSummary";
 import {
   Tamildisplay,
   Malayalamdisplay,
@@ -40,10 +39,9 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/ThetreList" element={<ThetreList />} />
           <Route path="/show" element={<SelectedTheaters />} />
-          <Route path="/forgot-password" element={<PasswordReset/>}/>
+          <Route path="/forgot-password" element={<PasswordReset />} />
           {/* // */}
           <Route path="/Next" element={<Next />} />
-          <Route path="/PaymentSummary" element={<PaymentSummary />} />
         </Routes>
         <Footer />
         <ToastContainer position="top-right" autoClose={3000} />

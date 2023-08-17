@@ -16,7 +16,7 @@ const SelectedTheaters = ({ selectedLocation, selectedMovie }) => {
         console.log('Theater data:', response.data);
 
         // Filter theaters based on selected location and movie
-        const filteredTheaters = response.data.filter(theater => 
+        const filteredTheaters = response.data.filter(theater =>
           theater.location.toLowerCase() === lowerCaseSelectedLocation && theater.MoviesRunning1.includes(selectedMovie)
         );
 
