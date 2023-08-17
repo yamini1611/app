@@ -123,27 +123,26 @@
   transition: background-color 0.3s;
 }
 
-/* ...existing styles... */
-/* ...existing styles... */
-
 .show-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: row;
-  align-items: center; /* Center align show times vertically */
-  gap: 5px; /* Add a small gap between show times */
+  align-items: center; 
+  gap: 5px; 
 }
 
 .show-list li {
   font-size: 14px;
   margin: 0;
-  padding: 5px 10px; /* Add padding to show timings */
-  background-color: #f5f5f5; /* Add background color to show timings */
-  border: 1px solid #ccc; /* Add border to show timings */
-  border-radius: 5px; /* Add border radius to show timings */
+  padding: 10px 20px; 
+  background-color: #f5f5f5; 
+  border: 1px solid #ccc; 
+  border-radius: 5px;
   cursor: pointer;
+  text-decoration: none; 
+  color: black; 
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -151,7 +150,6 @@
   background-color: #007bff;
   color: white;
 }
-
 
 
 

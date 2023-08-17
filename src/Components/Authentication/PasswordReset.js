@@ -14,7 +14,7 @@ const PasswordReset = () => {
         .get(`http://localhost:4000/Register/?email=${email}`)
         .then((response) => {
           if (response.data.length > 0) {
-            // Implement password reset logic here, such as sending a password reset link to the user's email.
+           
             setMessage(`Password reset link sent to ${email}.`);
           } else {
             setMessage('No account found with this email.');
