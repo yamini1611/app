@@ -371,18 +371,18 @@ export const Tamildisplay = () => {
                     <h2 style={{ fontWeight: "bolder", fontSize: 26 }}>CAST  & CREW</h2>
                     <div className="avatar-container">
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/young-man-avatar-character-vector-illustration-design_24877-18517.jpg?w=740" alt="" />
+                        <img  src={Tamil.maleavatar} alt="" />
                             <strong><span>{Tamil.MaleLead}</span></strong>
                             <span>Lead Actor</span>
                         </div>
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/beautiful-girl-with-long-black-hair-sweater_6138-239.jpg?size=626&ext=jpg&ga=GA1.2.912556834.1692088483&semt=ais" alt="" />
+                        <img  src={Tamil.femaleleadavatar} alt="" />
                             <strong><span>{Tamil.FemaleLead}</span></strong>
                             <span>Lead Actress</span>
 
                         </div>
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/businessman-bearded-work-leadership_18591-5278.jpg?size=626&ext=jpg&ga=GA1.2.912556834.1692088483&semt=ais" alt="" />
+                        <img  src={Tamil.Directoravatar} alt="" />
                             <strong><span>{Tamil.Director}</span></strong>
                             <span>Director</span>
                         </div>
@@ -591,18 +591,18 @@ const getrating = async () =>
                     <h2 style={{ fontWeight: "bolder", fontSize: 26 }}>CAST  & CREW</h2>
                     <div className="avatar-container">
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/young-man-avatar-character-vector-illustration-design_24877-18517.jpg?w=740" alt="" />
+                            <img  src={Malayalam.maleavatar} alt="" />
                             <strong><span>{Malayalam.MaleLead}</span></strong>
                             <span>Lead Actor</span>
                         </div>
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/beautiful-girl-with-long-black-hair-sweater_6138-239.jpg?size=626&ext=jpg&ga=GA1.2.912556834.1692088483&semt=ais" alt="" />
+                        <img  src={Malayalam.femaleleadavatar} alt="" />
                             <strong><span>{Malayalam.FemaleLead}</span></strong>
                             <span>Lead Actress</span>
 
                         </div>
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/businessman-bearded-work-leadership_18591-5278.jpg?size=626&ext=jpg&ga=GA1.2.912556834.1692088483&semt=ais" alt="" />
+                        <img  src={Malayalam.Directoravatar} alt="" />
                             <strong><span>{Malayalam.Director}</span></strong>
                             <span>Director</span>
                         </div>
@@ -811,19 +811,19 @@ export const Telugudisplay = () => {
                     <h2 style={{ fontWeight: "bolder", fontSize: 26 }}>CAST  & CREW</h2>
                     <div className="avatar-container">
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/young-man-avatar-character-vector-illustration-design_24877-18517.jpg?w=740" alt="" />
+                        <img  src={Telugu.maleavatar} alt="" />
                             <strong><span>{Telugu.MaleLead}</span></strong>
                             <span>Lead Actor</span>
 
                         </div>
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/beautiful-girl-with-long-black-hair-sweater_6138-239.jpg?size=626&ext=jpg&ga=GA1.2.912556834.1692088483&semt=ais" alt="" />
+                        <img  src={Telugu.femaleleadavatar} alt="" />
                             <strong><span>{Telugu.FemaleLead}</span></strong>
                             <span>Lead Actress</span>
 
                         </div>
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/businessman-bearded-work-leadership_18591-5278.jpg?size=626&ext=jpg&ga=GA1.2.912556834.1692088483&semt=ais" alt="" />
+                        <img  src={Telugu.Directoravatar} alt="" />
                             <strong><span>{Telugu.Director}</span></strong>
                             <span>Director</span>
                         </div>

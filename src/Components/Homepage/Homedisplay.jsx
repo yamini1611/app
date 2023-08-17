@@ -222,7 +222,7 @@ const Moviedisplay = () => {
 
                         </div>
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/businessman-bearded-work-leadership_18591-5278.jpg?size=626&ext=jpg&ga=GA1.2.912556834.1692088483&semt=ais" alt="" />
+                            <img src={display.Directoravatar} alt="" />
                             <strong><span>{display.Director}</span></strong>
                             <span>Director</span>
                         </div>
