@@ -21,6 +21,7 @@ import {
 import ThetreList from "./Components/Thetres/ThetreList";
 import Footer from "./Components/Footer/Footer";
 import SelectedTheaters from "./Components/Thetres/SelectedTheatres";
+import PasswordReset from "./Components/Authentication/PasswordReset";
 function App() {
   return (
     <div className="App">
@@ -39,6 +40,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/ThetreList" element={<ThetreList />} />
           <Route path="/show" element={<SelectedTheaters />} />
+          <Route path="/forgot-password" element={<PasswordReset/>}/>
           {/* // */}
           <Route path="/Next" element={<Next />} />
           <Route path="/PaymentSummary" element={<PaymentSummary />} />
