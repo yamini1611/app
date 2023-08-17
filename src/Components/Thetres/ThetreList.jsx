@@ -47,7 +47,7 @@ const TheatreList = () => {
       </div>
       <div className="theatre-cards">
         {filteredTheaters.map((theater, index) => (
-          <div key={index} className="card">
+          <div key={index} className="card" id='card'>
             <h3 className="theatre-name">{theater.Name}</h3>
             <p>
               <strong>Location:</strong> {theater.location}

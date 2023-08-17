@@ -135,7 +135,7 @@ const CustomNavbar = () => {
           className="custom-register text-decoration-none ms-3"
           id="login-btn"
         >
-          Login  
+          Login  <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </Link>
         <Link
           to="/logout"
