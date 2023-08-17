@@ -9,6 +9,8 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 //core
 import "primereact/resources/primereact.min.css";
+import { useDispatch,useSelector } from "react-redux";
+import { increment,decrement } from "../ReduxToolKit/counterSlice";
 
 export const seatContext = createContext();
 
@@ -17,7 +19,9 @@ function Seater(props) {
   const [seatArr, setSeatArr] = useState([]);
   const [checked, setChecked] = useState(false);
   const [seatsClicked, setSeatsClicked] = useState();
-  const [count, setCount]  = useState(0);
+  const count = useSelector((state)=>state.counter)
+  const dispatch = useDispatch();
+  
 
 
 
@@ -58,13 +62,24 @@ function Seater(props) {
         value="1"
         onClick={() => {
 
-          if (count <= props.noOfSeats) {
+          if (count < props.noOfSeats) {
             handleSeatClicked(props.seatID);
             setSeatArr(props.seatID);
-            console.log(count)
+            console.log(count+" This is inside the main if block")
             setChecked(!checked);
-            setCount((prev)=>(prev = prev + 1));
+            
+              if(!checked){
+                dispatch(increment());
+                console.log("This is if");
+              }else{
+                dispatch(decrement());
+                console.log("This is else");  
+              } 
+         
+          
             console.log(count + " After increase")
+          }else{
+            dispatch(decrement());
           }
         }}
       >

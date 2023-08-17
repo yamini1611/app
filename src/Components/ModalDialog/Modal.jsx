@@ -52,7 +52,7 @@ export default function ResponsiveDialog(props) {
         
         className="col-lg-1 m-0 p-0 text-white"
         onClick={() => setVisible(true)}
-      text> <i class="fa-solid fa-pencil"></i></Button>
+      text> </Button>
         </Card>
 )}
         
