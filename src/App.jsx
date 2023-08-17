@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import ChooseTickets from "./Components/SeatRoom/ChooseTickets";
 import Movie from "./Components/Homepage/Movie";
 import Next from "./Components/Payment/Next";
+import Trailer from "./Components/Homepage/Trailer";
 import {
   Tamildisplay,
   Malayalamdisplay,
@@ -21,6 +22,7 @@ import ThetreList from "./Components/Thetres/ThetreList";
 import Footer from "./Components/Footer/Footer";
 import SelectedTheaters from "./Components/Thetres/SelectedTheatres";
 import PasswordReset from "./Components/Authentication/PasswordReset";
+import { TamilTrailer ,MalayalamTrailer ,TeluguTrailer} from "./Components/Homepage/Trailer";
 function App() {
   return (
     <div className="App">
@@ -29,6 +31,10 @@ function App() {
         <Routes>
           <Route path="/" element={<MovieList />} />
           <Route path="/movies" element={<Movie />} />
+          <Route path="/Trailer/:id" element={<Trailer />} />
+          <Route path="/Trailer/:id" element={<TamilTrailer />} />
+          <Route path="/Trailer/:id" element={<MalayalamTrailer />} />
+          <Route path="/Trailer/:id" element={<TeluguTrailer />} />
           <Route path="/Tamilmovies/:id" element={<Tamildisplay />} />
           <Route path="/MalayalamMovies/:id" element={<Malayalamdisplay />} />
           <Route path="/TeluguMovies/:id" element={<Telugudisplay />} />
