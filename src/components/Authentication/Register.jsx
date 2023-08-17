@@ -91,8 +91,7 @@ const Register = () => {
             axios
               .post("http://localhost:4000/Register", userData)
               .then((response) => {
-                console.log("Registration successful!", response.data);
-                // Show toast message
+                console.log("Registration successful!", response.data)
                 toast.success('Registration successful!', {
                   position: toast.POSITION.TOP_CENTER
                 });

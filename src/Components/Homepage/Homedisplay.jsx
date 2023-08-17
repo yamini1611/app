@@ -197,7 +197,7 @@ const Moviedisplay = () => {
                                         <div>
                                             <h5>Theatre Name: {theatre.Name}</h5>
                                             <h5>Location: {theatre.location}</h5>
-                                            <Link to='/ChooseTickets'>   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button> </Link> 
+                                            <Link to='/show'>   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button> </Link> 
                                         </div>
                                     </Card>
                                 </div>

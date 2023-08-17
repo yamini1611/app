@@ -59,9 +59,9 @@ const TheatreList = () => {
               <p>
                 <strong>Show Times:</strong>
               </p>
-              <Link to="/ChooseTickets">
+              <Link to="/ChooseTickets" className="text-decoration-none">
              
-                <ul className="show-list">
+                <ul className="show-list no-underline">
                   <li>{theater.show1}</li>
                   <li>{theater.show2}</li>
                   <li>{theater.show3}</li>
