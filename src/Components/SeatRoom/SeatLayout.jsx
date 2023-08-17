@@ -62,7 +62,7 @@ function Seater(props) {
         value="1"
         onClick={() => {
 
-          if (count < props.noOfSeats) {
+          if (count <= props.noOfSeats) {
             handleSeatClicked(props.seatID);
             setSeatArr(props.seatID);
             console.log(count)
