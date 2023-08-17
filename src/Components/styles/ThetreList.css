@@ -1,61 +1,158 @@
-/* ThetreList.css */
-#thetre-list .theatre-list-container {
-    text-align: center;
-    padding: 20px;
-    background-color: #f2f2f2;
-    font-family: Arial, sans-serif;
-  }
-  
-  #thetre-list .label-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  #thetre-list .label {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  #thetre-list .select-box {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  #thetre-list .card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 220px;
-  }
-  
-  #thetre-list .card h3 {
-    margin: 0;
-  }
-  
-  #thetre-list .card p {
-    margin: 5px 0;
-  }
-  
-  #thetre-list .book-now-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 3px 8px; 
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  #thetre-list .book-now-button:hover {
-    background-color: #0056b3;
-  }
-  
+.theatre-list-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+}
+
+.heading {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.label-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.select-box {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+}
+
+.theatre-name {
+  color: #007bff;
+}
+
+.show-times {
+  margin-top: 10px;
+}
+
+.show-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.show-list li {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  margin-right: 10px;
+}
+
+.book-now-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.book-now-button:hover {
+  background-color: #0056b3;
+}
+/* ...existing styles... */
+
+.show-times {
+  margin-top: 10px;
+}
+
+.show-times-container {
+  display: none;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.show-times-container.expanded {
+  display: flex;
+}
+
+.show-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.show-list li {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.book-now-link {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* ...existing styles... */
+/* ...existing styles... */
+
+.show-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Center align show times vertically */
+  gap: 5px; /* Add a small gap between show times */
+}
+
+.show-list li {
+  font-size: 14px;
+  margin: 0;
+  padding: 5px 10px; /* Add padding to show timings */
+  background-color: #f5f5f5; /* Add background color to show timings */
+  border: 1px solid #ccc; /* Add border to show timings */
+  border-radius: 5px; /* Add border radius to show timings */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.show-list li:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* ...existing styles... */
+
+
