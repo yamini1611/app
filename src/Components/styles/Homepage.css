@@ -16,16 +16,16 @@
 
 #con{
     font-weight: 900;
-   
     font-family: 'Work Sans', sans-serif;
-    color: rgb(86, 1, 1);
+    color: rgb(255, 255, 255);
+   
 }
 
-#bg{
-    background-color: rgba(0, 0, 0, 0.953);
-    
+#vc{
+  background-color: rgba(0, 0, 0, 0.493);
+  padding: 10px;
+  border-radius: 15px;
 }
-
 #body{
 
     font-family: 'Work Sans', sans-serif;

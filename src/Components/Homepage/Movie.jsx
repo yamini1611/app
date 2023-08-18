@@ -279,7 +279,7 @@ export const Tamildisplay = () => {
             <div className=" pt-2" id='bg' style={divStyle}>
                 <div className="container" id='con' >
 
-                    <div className="row mt-3 " >
+                    <div className="row mt-3 " id='vc'>
 
                         <div key={Tamil.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
                             <Card className="movie-card mb-2" >
@@ -500,7 +500,7 @@ const divStyle = {
             <div className=" pt-2" id='bg' style={divStyle}>
                 <div className="container" id='con' >
 
-                    <div className="row mt-3 " >
+                    <div className="row mt-3 " id='vc'>
 
                         <div key={Malayalam.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
                             <Card className="movie-card mb-2" >
@@ -721,7 +721,7 @@ export const Telugudisplay = () => {
             <div className=" pt-2" id='bg' style={divStyle} >
                 <div className="container" id='con' >
 
-                    <div className="row mt-3 " >
+                    <div className="row mt-3 " id='vc'>
 
                         <div key={Telugu.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
                             <Card className="movie-card mb-2" >

@@ -18,7 +18,7 @@ const Trailer = () => {
         {display.Trailer && (
          <iframe
          title="Movie Trailer"
-         width={1519}
+         width={1341}
          height={710}
          src={`${display.Trailer}?autoplay=1&mute=1&fs=1&rel=0`}
          allowFullScreen

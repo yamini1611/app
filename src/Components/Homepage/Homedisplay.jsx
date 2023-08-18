@@ -98,16 +98,17 @@ const Moviedisplay = () => {
     const divStyle = {
         width: "100%",
         height: "500px", // Set the desired height
-        backgroundSize: "cover",
-        padding:"50px",
-        backgroundPosition:"fixed",
-        backgroundImage: `url(${display.cover})`, 
-      };
+        backgroundSize: "100%",
+        padding: "50px",
+        backgroundPosition: "fixed",
+        backgroundImage: `url(${display.cover})`,
+    };
     return (
         <div>
             <div className="pt-2" id='bg' style={divStyle}>
-                <div className="container" id='con'>
-                    <div className="row mt-3 ">
+
+                <div className="container-fluid" id='con'>
+                    <div className="row mt-3 " id='vc'>
                         <div key={display.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
                             <Card className="movie-card mb-2">
                                 <CardImg src={display.image} id="movie-card" />
@@ -163,8 +164,8 @@ const Moviedisplay = () => {
                                     <h2 style={{ fontSize: 15 }}>{display.Quality}</h2>
                                 </div>
                                 <div className="col-5">
-                                      <h5>Language : {display.language}</h5>
-                                    </div>
+                                    <h5>Language : {display.language}</h5>
+                                </div>
                             </div>
                             <div className="row">
                                 <div className="col-4">
@@ -199,7 +200,7 @@ const Moviedisplay = () => {
                                         <div>
                                             <h5>Theatre Name: {theatre.Name}</h5>
                                             <h5>Location: {theatre.location}</h5>
-                                            <Link to='/show'>   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button> </Link> 
+                                            <Link to='/show'>   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button> </Link>
                                         </div>
                                     </Card>
                                 </div>
@@ -219,8 +220,8 @@ const Moviedisplay = () => {
                             <span>Lead Actor</span>
                         </div>
                         <div className="avatar">
-                        <img src={display.femaleleadavatar} alt="" />                          
-                          <strong><span>{display.FemaleLead}</span></strong>
+                            <img src={display.femaleleadavatar} alt="" />
+                            <strong><span>{display.FemaleLead}</span></strong>
                             <span>Lead Actress</span>
 
                         </div>
@@ -249,6 +250,7 @@ const Moviedisplay = () => {
                     </div>
                 </div>
             </div>
+          
             <ToastContainer position="top-right" autoClose={3000} />
         </div>
     )
