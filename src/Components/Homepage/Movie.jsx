@@ -6,6 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
 import SelectedTheaters from "../Thetres/SelectedTheatres";
+
+
 const Movie = () => {
     const [hindi, setHindi] = useState([]);
     const [Tamil, setTamil] = useState([]);
@@ -263,12 +265,21 @@ export const Tamildisplay = () => {
         }
         return starArray;
     };
+
+    const divStyle = {
+        width: "100%",
+        height: "500px", // Set the desired height
+        backgroundSize: "cover",
+        padding:"50px",
+        backgroundPosition:"fixed",
+        backgroundImage: `url(${Tamil.cover})`, 
+      };
     return (
         <div>
-            <div className=" pt-2" id='bg' style={{ paddingBottom: 50 }}>
+            <div className=" pt-2" id='bg' style={divStyle}>
                 <div className="container" id='con' >
 
-                    <div className="row mt-3 " >
+                    <div className="row mt-3 " id='vc'>
 
                         <div key={Tamil.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
                             <Card className="movie-card mb-2" >
@@ -330,15 +341,7 @@ export const Tamildisplay = () => {
 
                                     </div>
                                     <div className="col-5">
-
-                                        <label style={{ fontSize: 16 }} for="language">Select a Language:</label>
-                                        <select className="form-select" id="language" name="language"    >
-                                            <option value="hindi">Hindi</option>
-                                            <option value="tamil">Tamil</option>
-                                            <option value="telugu">Telugu</option>
-                                            <option value="malayalam">Malayalam</option>
-                                            <option value="kannada">Kannada</option>
-                                        </select>
+                                      <h5>Language : {Tamil.language}</h5>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -355,7 +358,8 @@ export const Tamildisplay = () => {
                                     <div className="col-6 mt-2 " >
                                   <Link to="/show">   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
-                                    
+                                    <Link to={`/Trailer/${Tamil.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
+
                                 </div>
                             </div>
                         </div>
@@ -451,7 +455,14 @@ const getrating = async () =>
         console.error("Error fetching reviews:", error);
     });
 }
-    
+const divStyle = {
+    width: "100%",
+    height: "500px", // Set the desired height
+    backgroundSize: "cover",
+    padding:"50px",
+    backgroundPosition:"fixed",
+    backgroundImage: `url(${Malayalam.cover})`, 
+  };
 
     const handleRateSubmit = async  () => {
         const review = document.querySelector('.input-form').value;
@@ -486,10 +497,10 @@ const getrating = async () =>
     };
     return (
         <div>
-            <div className=" pt-2" id='bg' style={{ paddingBottom: 50 }}>
+            <div className=" pt-2" id='bg' style={divStyle}>
                 <div className="container" id='con' >
 
-                    <div className="row mt-3 " >
+                    <div className="row mt-3 " id='vc'>
 
                         <div key={Malayalam.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
                             <Card className="movie-card mb-2" >
@@ -550,19 +561,11 @@ const getrating = async () =>
                                         <h2 style={{ fontSize: 15 }}>{Malayalam.Quality}</h2>
 
                                     </div>
-                                    <div className="col-5">
-
-                                        <label style={{ fontSize: 16 }} for="language">Select a Language:</label>
-                                        <select className="form-select" id="language" name="language"    >
-                                            <option value="hindi">Hindi</option>
-                                            <option value="tamil">Tamil</option>
-                                            <option value="telugu">Telugu</option>
-                                            <option value="malayalam">Malayalam</option>
-                                            <option value="kannada">Kannada</option>
-                                        </select>
+                                    <div className="col-6">
+                                      <h5>Language : {Malayalam.language}</h5>
                                     </div>
                                 </div>
-                                <div className="row">
+                                <div className="row ">
                                     <div className="col-4">
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Malayalam.duration}</h2>
 
@@ -576,6 +579,9 @@ const getrating = async () =>
                                     <div className="col-6 mt-2 " >
                                     <Link to="/show"><button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
+                                    <Link to={`/Trailer/${Malayalam.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
+
+                              
                                 </div>
                             </div>
                         </div>
@@ -671,7 +677,14 @@ export const Telugudisplay = () => {
         });
 
     }
-    
+    const divStyle = {
+        width: "100%",
+        height: "500px", // Set the desired height
+        backgroundSize: "cover",
+        padding:"50px",
+        backgroundPosition:"fixed",
+        backgroundImage: `url(${Telugu.cover})`, 
+      };
     const handleRateSubmit = async() => {
         const review = document.querySelector('.input-form').value;
 
@@ -705,10 +718,10 @@ export const Telugudisplay = () => {
     };
     return (
         <div>
-            <div className=" pt-2" id='bg' style={{ paddingBottom: 50 }}>
+            <div className=" pt-2" id='bg' style={divStyle} >
                 <div className="container" id='con' >
 
-                    <div className="row mt-3 " >
+                    <div className="row mt-3 " id='vc'>
 
                         <div key={Telugu.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
                             <Card className="movie-card mb-2" >
@@ -770,15 +783,7 @@ export const Telugudisplay = () => {
 
                                     </div>
                                     <div className="col-5">
-
-                                        <label style={{ fontSize: 16 }} for="language">Select a Language:</label>
-                                        <select className="form-select" id="language" name="language"    >
-                                            <option value="hindi">Hindi</option>
-                                            <option value="tamil">Tamil</option>
-                                            <option value="telugu">Telugu</option>
-                                            <option value="malayalam">Malayalam</option>
-                                            <option value="kannada">Kannada</option>
-                                        </select>
+                                      <h5>Language : {Telugu.language}</h5>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -795,7 +800,9 @@ export const Telugudisplay = () => {
                                     <div className="col-6 mt-2 " >
                                     <Link to="/show">   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
-                                 
+                                    <div className="col-5">
+                                    <Link to={`/Trailer/${Telugu.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>

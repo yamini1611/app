@@ -26,7 +26,7 @@ const SelectedTheaters = () => {
 
         console.log('Filtered theaters:', filteredTheaters);
 
-        setTheaters(filteredTheaters);
+        setTheaterData(filteredTheaters);
       })
       .catch((error) => {
         console.error("Error fetching theater data:", error);
