@@ -106,6 +106,6 @@ const SelectedTheaters = () => {
     </div>
   );
 };
-  
+
 
 export default SelectedTheaters;

@@ -167,7 +167,7 @@ const Next = () => {
                                     transactionInfo: {
                                         totalPriceStatus: 'FINAL',
                                         totalPriceLabel: 'Total',
-                                        totalPrice: '1',
+                                        totalPrice: '100',
                                         currencyCode: 'INR',
                                         countryCode: 'IN',
 
