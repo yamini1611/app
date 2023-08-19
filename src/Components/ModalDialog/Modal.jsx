@@ -20,7 +20,7 @@ export default function ResponsiveDialog(props) {
         <Button
           key={i}
           label={`${i}`}
-          className="mx-1 col-lg-1"
+          className="mx-1 col-lg-0"
           text
           raised
           aria-label="Filter"
@@ -45,7 +45,7 @@ export default function ResponsiveDialog(props) {
    
     
 ):(
-    <Card className="shadow-none bg-black p-0">
+    <Card className="shadow-none bg-black rounded-0 p-0 border-radius-none">
         <Button
         label={`${selectedSeats} Tickets `}
         icon="fa-solid fa-pencil"
