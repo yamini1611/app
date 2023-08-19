@@ -30,32 +30,19 @@ const TheatreList = () => {
     <div id="theatre-list" className="theatre-list-container">
       <h1 className="heading">Theatres</h1>
       <div className="label-container">
-        <label className="label" htmlFor="locationSelect">
-          Location:
-        </label>
-        <select
-          className="select-box"
-          id="locationSelect"
-          value={selectedLocation}
-          onChange={(e) => setSelectedLocation(e.target.value)}
-        >
-          <option value="chennai">Chennai</option>
-          <option value="mumbai">Mumbai</option>
-          <option value="hyderabad">Hyderabad</option>
-          <option value="cochin">Cochin</option>
-        </select>
+        {/* Location selection dropdown */}
       </div>
       <div className="theatre-cards">
         {filteredTheaters.map((theater, index) => (
           <div key={index} className="card" id='card'>
             <h3 className="theatre-name">{theater.Name}</h3>
-       
+            <img src={theater.cover} alt={`${theater.Name} Cover`} className="cover-image" />
             <p>
-              <strong>Now Showing:</strong> <span className="movie-name">{theater.MoviesRunning1}</span>
+              <span className="movie-name">{theater.MoviesRunning1}</span>
             </p>
             <div className="show-times">
               <p>
-                <strong>Show Times:</strong>
+                <strong>Show Timings:</strong>
               </p>
               <Link to="/ChooseTickets" className="text-decoration-none">
              

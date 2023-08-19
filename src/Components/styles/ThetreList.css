@@ -47,6 +47,11 @@
   justify-content: space-between;
   min-height: 240px;
   transition: box-shadow 0.3s;
+  align-items: center; /* Center the content vertically */
+  text-align: center; /* Center the text content */
+  padding: 20px; /* Increase padding for spacing around the image */
+  box-sizing: border-box; /* Include padding in width calculation */
+  position: relative; /* Required for positioning the cover image */
 }
 
 #card:hover {
@@ -55,12 +60,14 @@
 .movie-name{
   color: darkred;
   font-weight: bolder;
+  font-size: x-large;
 }
 .theatre-name {
   color: #090633fd;
   font-size: 20px;
   margin-bottom: 5px;
   font-weight: bolder;
+  padding: 20px;
 }
 
 .show-times {
@@ -85,7 +92,7 @@
   color: darkgreen;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  margin-right: 40px; /* Increase the margin-right for spacing */
+  margin-right: 60px; /* Increase the margin-right for spacing */
 }
 
 .show-list li:hover {
@@ -93,4 +100,12 @@
   transform: scale(1.05);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.cover-image {
+  max-width: 40%;
+  height: auto;
+  border-radius: 10px;
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+
 
