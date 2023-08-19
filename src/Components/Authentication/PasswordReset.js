@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import axios from 'axios';
 import emailjs from '@emailjs/browser';
 import NewPassword from './NewPassword';
+import '../styles/PasswordReset.css'
 
 const PasswordReset = () => {
   const form = useRef();
@@ -64,7 +65,7 @@ const PasswordReset = () => {
           <form ref={form} onSubmit={sendEmail} className="mb-3">
             <div className="mb-3">
               <label htmlFor="emailInput" className="form-label">Enter your registered email:</label>
-              <input type="email" className="form-control" id="emailInput" name="message" />
+              <input type="email" className="form-control text-black" id="emailInput" name="message" />
             </div>
             <button type="submit" className="btn btn-primary">Send OTP</button>
           </form>

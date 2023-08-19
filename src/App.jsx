@@ -29,7 +29,6 @@ import { Hindidisplay } from "./Components/Homepage/Movie";
 import { ChooseTelugumovie } from "./Components/Thetres/ChoosenMovie";
 import { ChooseMalayalmmovie } from "./Components/Thetres/ChoosenMovie";
 import BookingSummary from "./Components/BookingSummary/BookingSummary";
-import { TamilTrailer, MalayalamTrailer, TeluguTrailer } from "./Components/Homepage/Trailer";
 function App() {
   return (
     <div className="App">
