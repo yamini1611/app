@@ -12,6 +12,8 @@ import { ToastContainer } from "react-toastify";
 import ChooseTickets from "./Components/SeatRoom/ChooseTickets";
 import Movie from "./Components/Homepage/Movie";
 import Next from "./Components/Payment/Next";
+import Footer from "./Components/Footer/Footer";
+import Ticket from "./Components/Payment/Ticket";
 import Trailer from "./Components/Homepage/Trailer";
 import {
   Tamildisplay,
@@ -19,10 +21,9 @@ import {
   Telugudisplay,
 } from "./Components/Homepage/Movie";
 import ThetreList from "./Components/Thetres/ThetreList";
-import Footer from "./Components/Footer/Footer";
 import SelectedTheaters from "./Components/Thetres/SelectedTheatres";
 import PasswordReset from "./Components/Authentication/PasswordReset";
-import { TamilTrailer ,MalayalamTrailer ,TeluguTrailer} from "./Components/Homepage/Trailer";
+import { TamilTrailer, MalayalamTrailer, TeluguTrailer } from "./Components/Homepage/Trailer";
 function App() {
   return (
     <div className="App">
@@ -48,8 +49,10 @@ function App() {
           <Route path="/forgot-password" element={<PasswordReset />} />
           {/* // */}
           <Route path="/Next" element={<Next />} />
+          <Route path="/Ticket" element={<Ticket/>} />
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
+        <Footer />
       </BrowserRouter>
     </div>
   );

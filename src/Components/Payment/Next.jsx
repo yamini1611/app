@@ -98,7 +98,7 @@ const Next = () => {
     }
     return (
         <>
-
+            <Link to="/Ticket">Qr-reader</Link>
             <div class="container p-0 mb-5">
                 <div className="" style={{}}>
                     <p className="btn bg-black text-white mt-5" onClick={handleClick}>Back</p>
