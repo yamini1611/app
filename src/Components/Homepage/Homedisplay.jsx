@@ -6,7 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Moviedisplay = () => {
+ const Moviedisplay = () => {
     const { id } = useParams();
     const [display, setDisplay] = useState([]);
     const [rating, setRating] = useState(0);
@@ -97,7 +97,7 @@ const Moviedisplay = () => {
 
     const divStyle = {
         width: "100%",
-        height: "500px", // Set the desired height
+        height: "600px", // Set the desired height
         backgroundSize: "100%",
         padding: "50px",
         backgroundPosition: "fixed",
@@ -114,7 +114,7 @@ const Moviedisplay = () => {
                                 <CardImg src={display.image} id="movie-card" />
                             </Card>
                         </div>
-                        <div className="col-sm-6 col-md-4 col-lg-5 mb-2">
+                        <div className="col-12 col-md-6 col-lg-8 mb-2">
                             <strong><h2 className="mt-5">{display.Name}</h2></strong>
                             <div className="row">
                                 <div className="col-1">
@@ -200,7 +200,7 @@ const Moviedisplay = () => {
                                         <div>
                                             <h5>Theatre Name: {theatre.Name}</h5>
                                             <h5>Location: {theatre.location}</h5>
-                                            <Link to='/show'>   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button> </Link>
+                                            <Link to={`/ChoosenHindimovie/${display.id}`} >   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button> </Link>
                                         </div>
                                     </Card>
                                 </div>
