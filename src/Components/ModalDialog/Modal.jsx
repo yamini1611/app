@@ -70,3 +70,9 @@ export default function ResponsiveDialog(props) {
     </div>
   );
 }
+
+
+
+const termsAndConditions=()=>{
+  
+}
