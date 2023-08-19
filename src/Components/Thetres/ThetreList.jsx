@@ -28,10 +28,10 @@ const TheatreList = () => {
 
   return (
     <div id="theatre-list" className="theatre-list-container">
-      <h1 className="heading">Theatre List</h1>
+      <h1 className="heading">Theatres</h1>
       <div className="label-container">
         <label className="label" htmlFor="locationSelect">
-          Select Location:
+          Location:
         </label>
         <select
           className="select-box"
@@ -49,11 +49,9 @@ const TheatreList = () => {
         {filteredTheaters.map((theater, index) => (
           <div key={index} className="card" id='card'>
             <h3 className="theatre-name">{theater.Name}</h3>
+       
             <p>
-              <strong>Location:</strong> {theater.location}
-            </p>
-            <p>
-              <strong>Movies Running:</strong> {theater.MoviesRunning1}
+              <strong>Now Showing:</strong> <span className="movie-name">{theater.MoviesRunning1}</span>
             </p>
             <div className="show-times">
               <p>
