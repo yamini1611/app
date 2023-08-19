@@ -57,7 +57,7 @@ const PasswordReset = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container text-black mt-5">
       <div className="row justify-content-center">
         <div className="col-lg-6">
           <h2 className="text-center">Forget Password</h2>
