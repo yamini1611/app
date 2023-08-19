@@ -38,9 +38,10 @@ export const TamilTrailer = () =>
     const { id } = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:4000/TamilMovies/${id}`)
+            fetch(`http://localhost:4000/TamilMovies/${id}`)
             .then((response) => response.json())
             .then((data) => settamil(data))
+           
             .catch((error) => console.error("Error fetching data:", error));
     },[])
     return (
@@ -76,12 +77,12 @@ export const MalayalamTrailer =() =>
     return(
         <div>
         <div style={{backgroundColor: "#050320fd"}}>
-          {Malayalam.Trailer && (
+          {Malayalam.MalayalamTrailer && (
            <iframe
            title="Movie Trailer"
            width={1519}
            height={710}
-           src={`${Malayalam.Trailer}?autoplay=1&mute=1&fs=1&rel=0`}
+           src={`${Malayalam.MalayalamTrailer}?autoplay=1&mute=1&fs=1&rel=0`}
            allowFullScreen
          ></iframe>
           )}
@@ -104,12 +105,12 @@ export const TeluguTrailer = () =>
     return(
         <div>
         <div style={{backgroundColor: "#050320fd"}}>
-          {Telugu.Trailer && (
+          {Telugu.TeluguTrailer && (
            <iframe
            title="Movie Trailer"
            width={1519}
            height={710}
-           src={`${Telugu.Trailer}?autoplay=1&mute=1&fs=1&rel=0`}
+           src={`${Telugu.TeluguTrailer}?autoplay=1&mute=1&fs=1&rel=0`}
            allowFullScreen
          ></iframe>
           )}
