@@ -1,8 +1,9 @@
 .theatre-list-container {
   text-align: center;
   padding: 20px;
-  background-color: #f2f2f2;
-  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  font-family: 'Work Sans', sans-serif;
+
 }
 
 .heading {
@@ -14,142 +15,100 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .label {
   font-weight: bold;
   margin-right: 10px;
+  color: #555;
 }
 
 .select-box {
-  padding: 5px;
-  border: 1px solid #ccc;
+  padding: 8px;
+  border: 1px solid #ddd;
   border-radius: 5px;
+  background-color: #fff;
+  transition: border-color 0.3s;
+}
+
+.select-box:hover {
+  border-color: #007bff;
 }
 
 #card {
   border: 1px solid #ccc;
   padding: 15px;
-  margin: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  background-color: #ffffff;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 220px;
+  min-height: 240px;
+  transition: box-shadow 0.3s;
+  align-items: center; /* Center the content vertically */
+  text-align: center; /* Center the text content */
+  padding: 20px; /* Increase padding for spacing around the image */
+  box-sizing: border-box; /* Include padding in width calculation */
+  position: relative; 
 }
 
+#card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.movie-name{
+  color: darkred;
+  font-weight: bolder;
+  font-size: x-large;
+}
 .theatre-name {
-  color: #007bff;
+  color: #090633fd;
+  font-size: 20px;
+  margin-bottom: 5px;
+  font-weight: bolder;
+  padding: 20px;
 }
 
 .show-times {
-  margin-top: 10px;
-}
-
-.show-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.show-list li {
-  font-size: 14px;
-  margin: 0;
-  padding: 0;
-  margin-right: 10px;
-}
-
-.book-now-button {
-  margin-top: 10px;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.book-now-button:hover {
-  background-color: #0056b3;
-}
-
-.show-times {
-  margin-top: 10px;
-}
-
-.show-times-container {
-  display: none;
-  flex-direction: column;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin-top: 10px;
-}
-
-.show-times-container.expanded {
-  display: flex;
-}
-
-.show-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.show-list li {
-  font-size: 14px;
-  margin-bottom: 4px;
-}
-
-.book-now-link {
-  margin-top: 10px;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
+  margin: 0 auto;
   text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .show-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 10px 0; /* Added margin between each show timing */
   display: flex;
-  flex-direction: row;
-  align-items: center; 
-  gap: 5px; 
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .show-list li {
   font-size: 14px;
-  margin: 0;
-  padding: 10px 20px; 
-  background-color: #f5f5f5; 
-  border: 1px solid #ccc; 
+  padding: 8px 16px;
   border-radius: 5px;
+  background-color: #e3e8ecc9;
+  color: darkgreen;
   cursor: pointer;
-  text-decoration: none; 
-  color: black; 
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-right: 60px; /* Increase the margin-right for spacing */
 }
 
 .show-list li:hover {
-  background-color: #007bff;
-  color: white;
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.cover-image {
+  max-width: 60%;
+  height: auto;
+  border-radius: 10px;
+  margin: 0 auto; /* Center the image horizontally */
 }
 
-
+#iddiv{
+  font-family: 'Work Sans', sans-serif;
+}
 

@@ -105,9 +105,9 @@ const Register = () => {
     }
   };
   return (
-    <div className="register-page">
+    <div className="register-page " >
       <div className="register-container">
-        <h2 className="register-header">Tentukottaa</h2>
+        <h2 className="register-header text-center " style={{ fontFamily:"Work Sans, sans-serif"}}>Tentukottaa</h2>
         <div className="input-container">
           <input
             className={`input-field ${emailValid ? "valid" : "invalid"}`}

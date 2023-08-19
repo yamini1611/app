@@ -1,5 +1,5 @@
 
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import Divider from "@mui/material/Divider";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import "../../Components/styles/seats.css";
@@ -9,85 +9,106 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 //core
 import "primereact/resources/primereact.min.css";
-import { useDispatch,useSelector } from "react-redux";
-import { increment,decrement } from "../ReduxToolKit/counterSlice";
-import { addTicket } from "../ReduxToolKit/counterSlice";
-
+import { useDispatch, useSelector } from "react-redux";
+import { increment, decrement, reset } from "../ReduxToolKit/counterSlice";
+import { arrayReducer } from "../ReduxToolKit/counterSlice";
 export const seatContext = createContext();
 
 function Seater(props) {
 
-  const [seatArr, setSeatArr] = useState([]);
   const [checked, setChecked] = useState(false);
-  const [seatsClicked, setSeatsClicked] = useState();
-  const count = useSelector((state)=>state.counter);
-  const ticketsArr = useSelector((state)=>state.counter)
+  const [selectedSeat, setSelectedSeat] = useState(0);
+  const count = useSelector((state) => state.counter);
+  const array = useSelector((state) => state.array);
+  const addItem = (item) => ({ type: "add", payload: item });
+  const popItem = (item) => ({ type: "pop", payload: item });
+  const resetItem = (item) => ({ type: 'reset', payload: item });
   const dispatch = useDispatch();
-  
-
 
 
   const handleSeatClicked = (id) => {
+    dispatch(addItem(id))
 
-    dispatch(addTicket(id))
-console.log(ticketsArr)
+  }
 
-    axios.get(`http://localhost:4000/SeatsAllocated`).then((response) => {
 
-      if (response.data[0].seatID.includes(id)) {
 
-        axios.put(`http://localhost:4000/SeatsAllocated/1`, {
-          //If the seat is already booked, then remove it from the array
-          seatID: [].concat(
-            response.data[0].seatID.filter((seat) => seat !== id)
-          ),
-        });
-      } else {
-        axios.put(`http://localhost:4000/SeatsAllocated/1`, {
-          //If the seat is not booked then append it to the seat list
-          seatID: [].concat(response.data[0].seatID, id),
-        });
-      }
-    });
-  };
+
+  // const handleSeatClicked = (id) => {
+  //   axios.get(`http://localhost:4000/SeatsAllocated`).then((response) => {
+
+  //     if (response.data[0].seatID.includes(id)) {
+
+  //       axios.put(`http://localhost:4000/SeatsAllocated/1`, {
+  //         //If the seat is already booked, then remove it from the array
+  //         seatID: [].concat(
+  //           response.data[0].seatID.filter((seat) => seat !== id)
+  //         ),
+  //       });
+  //     } else {
+  //       axios.put(`http://localhost:4000/SeatsAllocated/1`, {
+  //         //If the seat is not booked then append it to the seat list
+  //         seatID: [].concat(response.data[0].seatID, id),
+  //       });
+  //     }
+  //   });
+  // };
 
 
   return (
     <>
+      {console.log(count)}
+      {count < props.noOfSeats || array.find((item) => item === props.seatID)
+        ?
+        (<ToggleButton
+          className={`m-1 p-1 seatcheckbox${props.coldivide % 7 === 0 ? " me-5" : ""
+            }`}
+          id={`toggle-check-${props.seatID}`}
+          type="checkbox"
+          variant="outline-primary"
 
-      <ToggleButton
-        className={`m-1 p-1 seatcheckbox${props.coldivide % 7 === 0 ? " me-5" : ""
-          }`}
-        id={`toggle-check-${props.seatID}`}
-        type="checkbox"
-        variant="outline-primary"
-        checked={checked}
-        value="1"
-        onClick={() => {
-
-          if (count < props.noOfSeats) {
-            handleSeatClicked(props.seatID);
-            setSeatArr(props.seatID);
-            console.log(count+" This is inside the main if block")
+          checked={checked}
+          value="1"
+          onClick={() => {
+            console.log('Clicked')
             setChecked(!checked);
-            
-              if(!checked){
+            if (count < props.noOfSeats) {
+
+
+              // setChecked(!checked);
+
+              if (!checked) {
                 dispatch(increment());
-                console.log("This is if");
-              }else{
+                handleSeatClicked(props.seatID);
+
+              } else {
                 dispatch(decrement());
-                console.log("This is else");  
-              } 
-         
-          
-            console.log(count + " After increase")
-          }else{
-            dispatch(decrement());
-          }
-        }}
-      >
-        {props.num}
-      </ToggleButton>
+                dispatch(popItem(props.seatID))
+              }
+
+
+            } else {
+              dispatch(decrement());
+            }
+          }}
+        >
+          {props.num}
+        </ToggleButton>) : (<ToggleButton
+          className={`m-1 p-1 seatcheckbox${props.coldivide % 7 === 0 ? " me-5" : ""
+            }`}
+          id={`toggle-check-${props.seatID}`}
+          type="checkbox"
+          variant="outline-primary"
+          value="1"
+        // onClick={() => {
+        //   dispatch(reset());
+        //   dispatch(resetItem(props.seatID))
+        // }}
+        >
+          {props.num}
+        </ToggleButton>)
+      }
+
     </>
   );
 }
