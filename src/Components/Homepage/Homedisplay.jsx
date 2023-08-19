@@ -95,13 +95,20 @@ const Moviedisplay = () => {
         }
     };
 
-
-
+    const divStyle = {
+        width: "100%",
+        height: "500px", // Set the desired height
+        backgroundSize: "100%",
+        padding: "50px",
+        backgroundPosition: "fixed",
+        backgroundImage: `url(${display.cover})`,
+    };
     return (
         <div>
-            <div className="pt-2" id='bg' style={{ paddingBottom: 50 }}>
-                <div className="container" id='con'>
-                    <div className="row mt-3 ">
+            <div className="pt-2" id='bg' style={divStyle}>
+
+                <div className="container-fluid" id='con'>
+                    <div className="row mt-3 " id='vc'>
                         <div key={display.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
                             <Card className="movie-card mb-2">
                                 <CardImg src={display.image} id="movie-card" />
@@ -157,15 +164,7 @@ const Moviedisplay = () => {
                                     <h2 style={{ fontSize: 15 }}>{display.Quality}</h2>
                                 </div>
                                 <div className="col-5">
-
-                                    <label style={{ fontSize: 16 }} for="language">Select a Language:</label>
-                                    <select className="form-select" id="language" name="language"    >
-                                        <option value="hindi">Hindi</option>
-                                        <option value="tamil">Tamil</option>
-                                        <option value="telugu">Telugu</option>
-                                        <option value="malayalam">Malayalam</option>
-                                        <option value="kannada">Kannada</option>
-                                    </select>
+                                    <h5>Language : {display.language}</h5>
                                 </div>
                             </div>
                             <div className="row">
@@ -181,6 +180,10 @@ const Moviedisplay = () => {
                                 <div className="col-6 mt-2 ">
                                     <button className="btn btn" style={{ backgroundColor: "red", color: "white" }} onClick={handleBookNowClick}>Show Theatres</button>
                                 </div>
+                                <div className="col-6  ">
+                                    <Link to={`/Trailer/${display.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -197,7 +200,7 @@ const Moviedisplay = () => {
                                         <div>
                                             <h5>Theatre Name: {theatre.Name}</h5>
                                             <h5>Location: {theatre.location}</h5>
-                                            <Link to='/show'>   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button> </Link> 
+                                            <Link to='/show'>   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button> </Link>
                                         </div>
                                     </Card>
                                 </div>
@@ -217,12 +220,13 @@ const Moviedisplay = () => {
                             <span>Lead Actor</span>
                         </div>
                         <div className="avatar">
-                        <img src={display.femaleleadavatar} alt="" />                            <strong><span>{display.FemaleLead}</span></strong>
+                            <img src={display.femaleleadavatar} alt="" />
+                            <strong><span>{display.FemaleLead}</span></strong>
                             <span>Lead Actress</span>
 
                         </div>
                         <div className="avatar">
-                            <img src="https://img.freepik.com/premium-vector/businessman-bearded-work-leadership_18591-5278.jpg?size=626&ext=jpg&ga=GA1.2.912556834.1692088483&semt=ais" alt="" />
+                            <img src={display.Directoravatar} alt="" />
                             <strong><span>{display.Director}</span></strong>
                             <span>Director</span>
                         </div>
@@ -246,6 +250,7 @@ const Moviedisplay = () => {
                     </div>
                 </div>
             </div>
+          
             <ToastContainer position="top-right" autoClose={3000} />
         </div>
     )

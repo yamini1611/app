@@ -11,6 +11,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { useDispatch,useSelector } from "react-redux";
 import { increment,decrement } from "../ReduxToolKit/counterSlice";
+import { addTicket } from "../ReduxToolKit/counterSlice";
 
 export const seatContext = createContext();
 
@@ -19,7 +20,8 @@ function Seater(props) {
   const [seatArr, setSeatArr] = useState([]);
   const [checked, setChecked] = useState(false);
   const [seatsClicked, setSeatsClicked] = useState();
-  const count = useSelector((state)=>state.counter)
+  const count = useSelector((state)=>state.counter);
+  const ticketsArr = useSelector((state)=>state.counter)
   const dispatch = useDispatch();
   
 
@@ -27,7 +29,8 @@ function Seater(props) {
 
   const handleSeatClicked = (id) => {
 
-
+    dispatch(addTicket(id))
+console.log(ticketsArr)
 
     axios.get(`http://localhost:4000/SeatsAllocated`).then((response) => {
 

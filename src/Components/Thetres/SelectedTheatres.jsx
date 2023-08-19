@@ -9,10 +9,24 @@ const SelectedTheaters = () => {
   const [theaterData, setTheaterData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4000/ThetreList")
-      .then((response) => {
-        setTheaterData(response.data);
+    // Fetch theater list from the API
+    axios.get('http://localhost:4000/ThetreList')
+      .then(response => {
+        // Convert selectedLocation to lowercase for case-insensitive comparison
+        const lowerCaseSelectedLocation = selectedLocation.toLowerCase();
+
+        console.log('Selected location:', selectedLocation);
+        console.log('Selected movie:', selectedMovie);
+        console.log('Theater data:', response.data);
+
+        // Filter theaters based on selected location and movie
+        const filteredTheaters = response.data.filter(theater =>
+          theater.location.toLowerCase() === lowerCaseSelectedLocation && theater.MoviesRunning1.includes(selectedMovie)
+        );
+
+        console.log('Filtered theaters:', filteredTheaters);
+
+        setTheaterData(filteredTheaters);
       })
       .catch((error) => {
         console.error("Error fetching theater data:", error);
@@ -92,5 +106,6 @@ const SelectedTheaters = () => {
     </div>
   );
 };
+
 
 export default SelectedTheaters;

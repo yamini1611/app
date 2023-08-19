@@ -116,7 +116,7 @@ const CustomNavbar = () => {
             SeatRoom
           </Nav.Link>
           {/* edited by hari */}
-          <Nav.Link className="custom-nav-link" href="/PaymentSummary">Payment</Nav.Link>
+          <Nav.Link className="custom-nav-link" href="/Next">Payment</Nav.Link>
         </Nav>
 
         <Form inline className="custom-search d-none d-lg-block">
@@ -136,6 +136,7 @@ const CustomNavbar = () => {
           id="login-btn"
         >
           Login  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    
         </Link>
         <Link
           to="/logout"
