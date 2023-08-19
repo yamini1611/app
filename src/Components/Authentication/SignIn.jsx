@@ -51,9 +51,9 @@ const SignIn = () => {
   };
 
   return (
-    <div className="signin-page">
+    <div className="signin-page" style={{ fontFamily:"Work Sans, sans-serif"}}>
       <div className="signin-container">
-        <h2 className="signin-header">Log In</h2>
+        <h2 className="signin-header text-center">Log In</h2>
         <div className="input-container">
           <input
             className="input-field"

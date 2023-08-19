@@ -3,6 +3,7 @@ import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "../styles/ThetreList.css";
 
 
 const ChooseTamilmovie =() =>
@@ -40,12 +41,14 @@ const ChooseTamilmovie =() =>
 
       
 return(
-    <div>
+    <div id='iddiv'>
    <div id="theatre-list" className="theatre-list-container">
-      <h1 className="heading">{Tamil.Name}</h1>
+      <h1 className="heading" >{Tamil.Name}</h1>
       
       {filteredTheaters.length === 0 ? (
-      <p>No theaters found.</p>
+        <div>
+      <p>No theater found.</p>
+      <img src="https://assets-in.bmscdn.com/coupon/journey/coupon-weird.png" alt=""></img></div>
     ) : (
       <div className="theatre-cards">
         {filteredTheaters.map((theater, index) => (
@@ -118,12 +121,14 @@ export const ChooseHindiMovie =() =>
 
       
 return(
-    <div>
+    <div id='iddiv'>
    <div id="theatre-list" className="theatre-list-container">
       <h1 className="heading">{Hindi.Name}</h1>
       
       {filteredTheaters.length === 0 ? (
-      <p>No theaters found.</p>
+  <div>
+  <p>No theater found.</p>
+  <img src="https://assets-in.bmscdn.com/coupon/journey/coupon-weird.png" alt=""></img></div>
     ) : (
       <div className="theatre-cards">
         {filteredTheaters.map((theater, index) => (
@@ -194,12 +199,14 @@ export const ChooseTelugumovie =() =>
 
       
 return(
-    <div>
+    <div id='iddiv'>
    <div id="theatre-list" className="theatre-list-container">
       <h1 className="heading">{Telugu.Name}</h1>
       
       {filteredTheaters.length === 0 ? (
-      <p>No theaters found.</p>
+     <div>
+     <p>No theater found.</p>
+     <img src="https://assets-in.bmscdn.com/coupon/journey/coupon-weird.png" alt=""></img></div>
     ) : (
       <div className="theatre-cards">
         {filteredTheaters.map((theater, index) => (
@@ -269,13 +276,14 @@ export const ChooseMalayalmmovie =() =>
 
       
 return(
-    <div>
+    <div id='iddiv' >
    <div id="theatre-list" className="theatre-list-container">
       <h1 className="heading">{Malayalam.Name}</h1>
       
       {filteredTheaters.length === 0 ? (
-      <p>No theaters found.</p>
-    ) : (
+ <div>
+ <p>No theater found.</p>
+ <img src="https://assets-in.bmscdn.com/coupon/journey/coupon-weird.png" alt=""></img></div>    ) : (
       <div className="theatre-cards">
         {filteredTheaters.map((theater, index) => (
           <div key={index} className="card" id='card'>

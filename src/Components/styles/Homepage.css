@@ -70,3 +70,14 @@
     
     font-family: 'Work Sans', sans-serif;
   }
+
+  #bg{
+    background-repeat: no-repeat;
+  }
+
+  #bh{
+    font-family: 'Work Sans', sans-serif;
+   font-size: 20px;
+   text-align: center;
+   padding: 15px;
+  }

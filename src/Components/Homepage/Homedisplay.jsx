@@ -6,7 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
- const Moviedisplay = () => {
+const Moviedisplay = () => {
     const { id } = useParams();
     const [display, setDisplay] = useState([]);
     const [rating, setRating] = useState(0);
@@ -168,20 +168,21 @@ import "react-toastify/dist/ReactToastify.css";
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-4">
+                                <div className="col-2">
                                     <h2 className="mt-3" style={{ fontSize: 20 }}>{display.duration}</h2>
                                 </div>
-                                <div className="col-8">
+                                <div className="col-3">
                                     <h2 className="mt-3" style={{ fontSize: 20 }}>{display.genre}</h2>
                                 </div>
-                                <div className="col-2">
+                                <div className="col-3">
                                     <h2 className="mt-3" style={{ fontSize: 20 }}>{display.Certificate}</h2>
-                                </div>
-                                <div className="col-6 mt-2 ">
+                                </div></div>
+                            <div className="row mt-4">
+                                <div className="col-3">
                                     <button className="btn btn" style={{ backgroundColor: "red", color: "white" }} onClick={handleBookNowClick}>Show Theatres</button>
                                 </div>
-                                <div className="col-6  ">
-                                    <Link to={`/Trailer/${display.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
+                                <div className="col-3">
+                                    <Link to={`/Trailer/${display.id}`}  ><button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
                                 </div>
 
                             </div>
@@ -213,19 +214,19 @@ import "react-toastify/dist/ReactToastify.css";
                     <h3 style={{ fontSize: 16 }}>{display.About}</h3>
                     <hr />
                     <h2 style={{ fontWeight: "bolder", fontSize: 26 }}>CAST  & CREW</h2>
-                    <div className="avatar-container">
-                        <div className="avatar">
+                    <div className="avatar-container row">
+                        <div className="avatar col-3">
                             <img src={display.maleavatar} alt="" />
                             <strong><span>{display.MaleLead}</span></strong>
                             <span>Lead Actor</span>
                         </div>
-                        <div className="avatar">
+                        <div className="avatar col-3">
                             <img src={display.femaleleadavatar} alt="" />
                             <strong><span>{display.FemaleLead}</span></strong>
                             <span>Lead Actress</span>
 
                         </div>
-                        <div className="avatar">
+                        <div className="avatar col-3">
                             <img src={display.Directoravatar} alt="" />
                             <strong><span>{display.Director}</span></strong>
                             <span>Director</span>
@@ -250,9 +251,9 @@ import "react-toastify/dist/ReactToastify.css";
                     </div>
                 </div>
             </div>
-          
+
             <ToastContainer position="top-right" autoClose={3000} />
-        </div>
+        </div >
     )
 }
 
