@@ -2,7 +2,8 @@
   text-align: center;
   padding: 20px;
   background-color: #f9f9f9;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Work Sans', sans-serif;
+
 }
 
 .heading {
@@ -38,7 +39,7 @@
 #card {
   border: 1px solid #ccc;
   padding: 15px;
-  margin: 10px;
+  margin: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: #fff;
@@ -51,7 +52,7 @@
   text-align: center; /* Center the text content */
   padding: 20px; /* Increase padding for spacing around the image */
   box-sizing: border-box; /* Include padding in width calculation */
-  position: relative; /* Required for positioning the cover image */
+  position: relative; 
 }
 
 #card:hover {
@@ -101,11 +102,13 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .cover-image {
-  max-width: 40%;
+  max-width: 60%;
   height: auto;
   border-radius: 10px;
   margin: 0 auto; /* Center the image horizontally */
 }
 
-
+#iddiv{
+  font-family: 'Work Sans', sans-serif;
+}
 

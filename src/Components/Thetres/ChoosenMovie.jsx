@@ -3,6 +3,7 @@ import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "../styles/ThetreList.css";
 
 
 const ChooseTamilmovie =() =>
@@ -40,7 +41,7 @@ const ChooseTamilmovie =() =>
 
       
 return(
-    <div>
+    <div id='iddiv'>
    <div id="theatre-list" className="theatre-list-container">
       <h1 className="heading">{Tamil.Name}</h1>
       
@@ -118,7 +119,7 @@ export const ChooseHindiMovie =() =>
 
       
 return(
-    <div>
+    <div id='iddiv'>
    <div id="theatre-list" className="theatre-list-container">
       <h1 className="heading">{Hindi.Name}</h1>
       
@@ -194,7 +195,7 @@ export const ChooseTelugumovie =() =>
 
       
 return(
-    <div>
+    <div id='iddiv'>
    <div id="theatre-list" className="theatre-list-container">
       <h1 className="heading">{Telugu.Name}</h1>
       
@@ -269,7 +270,7 @@ export const ChooseMalayalmmovie =() =>
 
       
 return(
-    <div>
+    <div id='iddiv' >
    <div id="theatre-list" className="theatre-list-container">
       <h1 className="heading">{Malayalam.Name}</h1>
       

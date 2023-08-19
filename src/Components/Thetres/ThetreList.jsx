@@ -35,9 +35,13 @@ const TheatreList = () => {
       <div className="theatre-cards">
         {filteredTheaters.map((theater, index) => (
           <div key={index} className="card" id='card'>
-            <h3 className="theatre-name">{theater.Name}</h3>
+            <div className="row">
+              <div className="col-7">
+              <h3 className="theatre-name">{theater.Name}</h3>
             <img src={theater.cover} alt={`${theater.Name} Cover`} className="cover-image" />
-            <p>
+              </div>
+              <div className="col">
+              <p>
               <span className="movie-name">{theater.MoviesRunning1}</span>
             </p>
             <div className="show-times">
@@ -55,6 +59,11 @@ const TheatreList = () => {
                 </ul>
               </Link>
             </div>
+              </div>
+              </div>
+              
+            
+            
           </div>
         ))}
       </div>
