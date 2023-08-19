@@ -7,24 +7,28 @@ const counterSlice = createSlice({
     initialState:0,
     reducers:{
         increment : (state)=>state + 1,
-        decrement : (state)=>state - 1
-        
-    },
-    extraReducers:{
-
+        decrement : (state)=>state - 1,
+      
     }
 })
 
-export const ticketsSlice = createSlice({
-    name:"Tickets",
-    initialState:[],
-    reducers:{
-        addTicket:(state)=>state.push(state)
-    }
-})
+  
 
-export const {increment , decrement} = counterSlice.actions;
-export const {addTicket} = ticketsSlice.actions;
+export const arrayReducer =(state=[],action)=>{
+        switch(action.type){
+            case 'add':
+                return [...state,action.payload];
+            case 'pop':
+                return [...state,state.filter((item)=>item !== action.payload)];
+            default:
+                return state;
+        }
+}
+
+
+
+export const {increment , decrement , addTicket} = counterSlice.actions;
+
 
 
 export default counterSlice.reducer;
