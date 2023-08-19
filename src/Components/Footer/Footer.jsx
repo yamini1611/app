@@ -1,51 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 const Footer = () => {
+    const [Hindhi, SetHindhi] = useState([]);
+    const [Tamil, SetTamil] = useState([]);
+    const [Telegu, SetTelegu] = useState([]);
+    const [Malayalam, SetMalayalam] = useState([]);
+    //Hindi movies
+    useEffect(() => {
+        fetch('http://localhost:4000/HindiMovies')
+            .then((response) => response.json())
+            .then((data) => SetHindhi(data))
+            .catch((error) => console.error("Error fetching data:", error));
+    }, [])
+    //Tamil movies
+    useEffect(() => {
+        fetch('http://localhost:4000/TamilMovies')
+            .then((response) => response.json())
+            .then((data) => SetTamil(data))
+            .catch((error) => console.error("Error fetching data:", error));
+    }, [])
+    //Telegu Movies
+    useEffect(() => {
+        fetch('http://localhost:4000/TeluguMovies')
+            .then((response) => response.json())
+            .then((data) => SetTelegu(data))
+            .catch((error) => console.error("Error fetching data:", error));
+    }, [])
+    //Malayalam Movies
+    useEffect(() => {
+        fetch('http://localhost:4000/MalayalamMovies')
+            .then((response) => response.json())
+            .then((data) => SetMalayalam(data))
+            .catch((error) => console.error("Error fetching data:", error));
+    }, [])
     return (
-
         <>
-            <div className=" text-white bottom-fixed" style={{ fontSize: '13px', backgroundColor: '#090633fd' }}>
+            <div className=" text-white bottom-fixed" style={{ fontSize: '13px', backgroundColor: "#090633fd" }}>
                 <section class="sect1 pb-3">
                     {/* <!--large screen view part1--> */}
                     <div class="container-fluid d-none d-md-block">
                         <div class="row pt-3">
                             <div class="col-lg-1"></div>
-                            <div class="col-md-2 col-lg-2 text-start">
-                                <h6 style={{ fontSize: '13px' }}>UPCOMMING MOVIES IN AHMEDABAD</h6>
-                                <ul class="text-start">
-                                    <li>Jailer(Malayalam)</li>
-                                    <li>Peddha Kapu:Part 1</li>
-                                    <li>Ghoomer</li>
-                                    <li>Juniour(2023)</li>
+                            <div className="col-md-2 col-lg-2 text-start">
+                                <h6 style={{ fontSize: '13px' }}>UPCOMING HINDHI MOVIES</h6>
+                                <ul className="text-start">
+                                    {Hindhi.map((movie) => (
+                                        <li key={movie.id}>{movie.Name}</li>
+                                    ))}
                                 </ul>
                             </div>
-                            <div class="col-md-2 col-lg-2 text-start">
-                                <h6 style={{ fontSize: '13px' }}>MOVIES BY GENDER</h6>
-                                <ul class="text-start">
-                                    <li>Drama Movies</li>
-                                    <li>Action Movies</li>
-                                    <li>Comedy Movies</li>
-                                    <li>Sci-Fi Movies</li>
+                            <div className="col-md-2 col-lg-2 text-start">
+                                <h6 style={{ fontSize: '13px' }}>UPCOMING TAMIL MOVIES</h6>
+                                <ul className="text-start">
+                                    {Tamil.map((movie) => (
+                                        <li key={movie.id}>{movie.Name}</li>
+                                    ))}
                                 </ul>
                             </div>
-                            <div class="col-md-2 col-lg-2 text-start">
-                                <h6 style={{ fontSize: '13px' }}>HELP</h6>
-                                <ul class="text-start">
-                                    <li>About us</li>
-                                    <li>Current Openings</li>
-                                    <li>Contact Us</li>
-                                    <li>Press Release</li>
-                                    <li>FAQs</li>
+                            <div className="col-md-2 col-lg-2 text-start">
+                                <h6 style={{ fontSize: '13px' }}>UPCOMING TELEGU MOVIES</h6>
+                                <ul className="text-start">
+                                    {Telegu.map((movie) => (
+                                        <li key={movie.id}>{movie.Name}</li>
+                                    ))}
                                 </ul>
                             </div>
-                            <div class="col-md-2 col-lg-2 text-start">
-                                <h6 class style={{ fontSize: '13px' }}>MOVIES IN TOP CITIES</h6>
-                                <ul class="text-start">
-                                    <li>Movies in Mumbai</li>
-                                    <li>Movies in Bengaluru</li>
-                                    <li>Movies in Hyderabad</li>
-                                    <li>Movies in Pune</li>
-                                    <li>Movies in Ahmedabad</li>
+                            <div className="col-md-2 col-lg-2 text-start">
+                                <h6 style={{ fontSize: '13px' }}>UPCOMING MALAYALAM MOVIES</h6>
+                                <ul className="text-start">
+                                    {Malayalam.map((movie) => (
+                                        <li key={movie.id}>{movie.Name}</li>
+                                    ))}
                                 </ul>
                             </div>
                             <div class="col-md-4 col-lg-2 text-start">
@@ -67,17 +92,16 @@ const Footer = () => {
                                 <h2 class="accordion-header" id="flush-headingOne">
                                     <button style={{ fontSize: '13px' }} class="accordion-button collapsed bg-transparent text-white" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                        Popular Movies
+                                        UPCOMMING HINDI MOVIES
                                     </button>
                                 </h2>
                                 <div id="flush-collapseOne" class="accordion-collapse collapse text-white" aria-labelledby="flush-headingOne"
                                     data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        <ul class="text-start">
-                                            <li>Jailer(Malayalam)</li>
-                                            <li>Peddha Kapu:Part 1</li>
-                                            <li>Ghoomer</li>
-                                            <li>Juniour(2023)</li>
+                                    <div className="col-md-2 col-lg-2 text-start">
+                                        <ul className="text-start">
+                                            {Hindhi.map((movie) => (
+                                                <li key={movie.id}>{movie.Name}</li>
+                                            ))}
                                         </ul>
                                     </div>
                                 </div>
@@ -86,18 +110,16 @@ const Footer = () => {
                                 <h2 class="accordion-header" id="flush-headingTwo">
                                     <button style={{ fontSize: '13px' }} class="accordion-button collapsed bg-transparent text-white" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                        MOVIES IN TOP CITIES
+                                        UPCOMMING TAMIL MOVIES
                                     </button>
                                 </h2>
                                 <div id="flush-collapseTwo" class="accordion-collapse collapse text-white" aria-labelledby="flush-headingTwo"
                                     data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        <ul class="text-start">
-                                            <li>Movies in Mumbai</li>
-                                            <li>Movies in Bengaluru</li>
-                                            <li>Movies in Hyderabad</li>
-                                            <li>Movies in Pune</li>
-                                            <li>Movies in Ahmedabad</li>
+                                    <div className="col-md-2 col-lg-2 text-start">
+                                        <ul className="text-start">
+                                            {Tamil.map((movie) => (
+                                                <li key={movie.id}>{movie.Name}</li>
+                                            ))}
                                         </ul>
                                     </div>
                                 </div>
@@ -106,18 +128,16 @@ const Footer = () => {
                                 <h2 class="accordion-header" id="flush-headingThree">
                                     <button style={{ fontSize: '13px' }} class="accordion-button collapsed bg-transparent text-white" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                        HELP
+                                        UPCOMMING TELEGU MOVIES
                                     </button>
                                 </h2>
                                 <div id="flush-collapseThree" class="accordion-collapse collapse text-white" aria-labelledby="flush-headingThree"
                                     data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        <ul class="text-start">
-                                            <li>About us</li>
-                                            <li>Current Openings</li>
-                                            <li>Contact Us</li>
-                                            <li>Press Release</li>
-                                            <li>FAQs</li>
+                                    <div className="col-md-2 col-lg-2 text-start">
+                                        <ul className="text-start">
+                                            {Telegu.map((movie) => (
+                                                <li key={movie.id}>{movie.Name}</li>
+                                            ))}
                                         </ul>
                                     </div>
                                 </div>
@@ -126,18 +146,16 @@ const Footer = () => {
                                 <h2 class="accordion-header" id="flush-headingFour">
                                     <button style={{ fontSize: '13px' }} class="accordion-button collapsed bg-transparent text-white" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                                        COUNTRIES
+                                    UPCOMMING MALAYALAM MOVIES
                                     </button>
                                 </h2>
                                 <div id="flush-collapseFour" class="accordion-collapse collapse text-white" aria-labelledby="flush-headingFour"
                                     data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        <ul>
-                                            <li>Indonesia</li>
-                                            <li>Singapore</li>
-                                            <li>UAE</li>
-                                            <li>West Indies</li>
-                                            <li>Srilanka</li>
+                                    <div className="col-md-2 col-lg-2 text-start">
+                                        <ul className="text-start">
+                                            {Malayalam.map((movie) => (
+                                                <li key={movie.id}>{movie.Name}</li>
+                                            ))}
                                         </ul>
                                     </div>
                                 </div>

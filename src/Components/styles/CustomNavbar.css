@@ -45,8 +45,8 @@
 }
 
 .custom-register:hover {
-  background-color: #1db4e2;
-  color: #181817;
+  
+  color: #f01212;
 }
 
 .custom-navbar .custom-nav-link {
@@ -68,7 +68,7 @@
 }
 
 .custom-nav-link:hover {
-  background-color: #1db4e2;
-  color: #181817 !important;
+
+  color: rgb(231, 8, 8) !important;
   border-radius: 35px;
 }

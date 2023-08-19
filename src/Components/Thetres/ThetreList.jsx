@@ -47,7 +47,7 @@ const TheatreList = () => {
       </div>
       <div className="theatre-cards">
         {filteredTheaters.map((theater, index) => (
-          <div key={index} className="card">
+          <div key={index} className="card" id='card'>
             <h3 className="theatre-name">{theater.Name}</h3>
             <p>
               <strong>Location:</strong> {theater.location}
@@ -59,9 +59,9 @@ const TheatreList = () => {
               <p>
                 <strong>Show Times:</strong>
               </p>
-              <Link to="/ChooseTickets">
+              <Link to="/ChooseTickets" className="text-decoration-none">
              
-                <ul className="show-list">
+                <ul className="show-list no-underline">
                   <li>{theater.show1}</li>
                   <li>{theater.show2}</li>
                   <li>{theater.show3}</li>
