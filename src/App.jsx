@@ -13,9 +13,8 @@ import ChooseTickets from "./Components/SeatRoom/ChooseTickets";
 import Movie from "./Components/Homepage/Movie";
 import Next from "./Components/Payment/Next";
 import Trailer from "./Components/Homepage/Trailer";
-import {
-  Tamildisplay,
-  Malayalamdisplay,
+import { Tamildisplay,
+Malayalamdisplay,
   Telugudisplay,
 } from "./Components/Homepage/Movie";
 import ThetreList from "./Components/Thetres/ThetreList";
@@ -23,6 +22,11 @@ import Footer from "./Components/Footer/Footer";
 import SelectedTheaters from "./Components/Thetres/SelectedTheatres";
 import PasswordReset from "./Components/Authentication/PasswordReset";
 import { TamilTrailer ,MalayalamTrailer ,TeluguTrailer} from "./Components/Homepage/Trailer";
+import ChooseTamilmovie from "./Components/Thetres/ChoosenMovie";
+import { ChooseHindiMovie } from "./Components/Thetres/ChoosenMovie";
+import { Hindidisplay } from "./Components/Homepage/Movie";
+import { ChooseTelugumovie } from "./Components/Thetres/ChoosenMovie";
+import { ChooseMalayalmmovie } from "./Components/Thetres/ChoosenMovie";
 function App() {
   return (
     <div className="App">
@@ -38,7 +42,12 @@ function App() {
           <Route path="/Tamilmovies/:id" element={<Tamildisplay />} />
           <Route path="/MalayalamMovies/:id" element={<Malayalamdisplay />} />
           <Route path="/TeluguMovies/:id" element={<Telugudisplay />} />
+          <Route  path="/HindiMovies/:id" element={<Hindidisplay />}/>
           <Route path="/movie/:id" element={<Moviedisplay />} />
+          <Route path="/Choosenmovie/:id" element={<ChooseTamilmovie />} />
+          <Route path="/ChoosenHindimovie/:id" element={<ChooseHindiMovie />} />
+          <Route path="/ChoosenTelugumovie/:id" element={<ChooseTelugumovie />} />
+          <Route path="/ChoosenMalayalammovie/:id" element={<ChooseMalayalmmovie />} />
           <Route path="/register" element={<Register />} />
           <Route path="/ChooseTickets" element={< ChooseTickets />} />
           <Route path="/Theater" element={<Theater />} />
