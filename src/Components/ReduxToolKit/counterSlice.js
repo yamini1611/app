@@ -3,31 +3,34 @@
 import { combineReducers, createSlice } from "@reduxjs/toolkit";
 
 const counterSlice = createSlice({
-    name:"counter",
-    initialState:0,
-    reducers:{
-        increment : (state)=>state + 1,
-        decrement : (state)=>state - 1,
-      
+    name: "counter",
+    initialState: 0,
+    reducers: {
+        increment: (state) => state + 1,
+        decrement: (state) => state - 1,
+        reset: (state) => state = 0
+
     }
 })
 
-  
 
-export const arrayReducer =(state=[],action)=>{
-        switch(action.type){
-            case 'add':
-                return [...state,action.payload];
-            case 'pop':
-                return [...state,state.filter((item)=>item !== action.payload)];
-            default:
-                return state;
-        }
+
+export const arrayReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'add':
+            return [...state, action.payload];
+        case 'pop':
+            return [...state.filter((item) => item !== action.payload)];
+        case 'reset':
+            return [action.payload];
+        default:
+            return state;
+    }
 }
 
 
 
-export const {increment , decrement , addTicket} = counterSlice.actions;
+export const { increment, decrement, reset } = counterSlice.actions;
 
 
 

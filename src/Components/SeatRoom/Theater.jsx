@@ -4,6 +4,9 @@ import SeatLayout from "./SeatLayout";
 import { Divider } from "@mui/material";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
+import { arrayReducer } from "../ReduxToolKit/counterSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const Theater = (props) => {
   console.log("Inside theater")
@@ -14,6 +17,7 @@ const Theater = (props) => {
   const [columns, setColumns] = useState(2);
   const [seats, setSeats] = useState(3);
   const [seatsInEachRow, setseatsInEachRow] = useState([]);
+  const array = useSelector((state) => state.array);
 
   const fetchingTickets=()=>{
     axios.get(`http://localhost:4000/SeatsAllocated`)
@@ -25,6 +29,8 @@ const Theater = (props) => {
 fetchingTickets();
 
   },[])
+
+
 
   return (
     <div>
