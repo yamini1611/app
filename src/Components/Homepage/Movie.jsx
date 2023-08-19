@@ -14,7 +14,7 @@ const Movie = () => {
     const [Telugu, setTelugu] = useState([]);
     const [Malayalam, setMalayalam] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState("");
-    const [selectedLanguage, setSelectedLanguage] = useState(""); 
+    const [selectedLanguage, setSelectedLanguage] = useState("");
     const [reviews, setReviews] = useState([]);
 
 
@@ -70,29 +70,28 @@ const Movie = () => {
 
     const handleLocationClick = (location) => {
         setSelectedLocation(location);
-       
+
     };
 
     const handleLanguageClick = (language) => {
         setSelectedLanguage(language);
     };
     const getMovieLink = (language, location, movieId) => {
-    if(location)
-    {
-        switch (language) {
-            case "Hindi":
-                return `/movie/${movieId}`;
-            case "Tamil":
-                return `/Tamilmovies/${movieId}`;
-            case "Telugu":
-                return `/TeluguMovies/${movieId}`;
-            case "Malayalam":
-                return `/MalayalamMovies/${movieId}`;
-            default:
-                return `/movie/${movieId}`;
+        if (location) {
+            switch (language) {
+                case "Hindi":
+                    return `/movie/${movieId}`;
+                case "Tamil":
+                    return `/Tamilmovies/${movieId}`;
+                case "Telugu":
+                    return `/TeluguMovies/${movieId}`;
+                case "Malayalam":
+                    return `/MalayalamMovies/${movieId}`;
+                default:
+                    return `/movie/${movieId}`;
+            }
         }
-    }
-     
+
     };
 
     const renderMovieCards = (movies) => {
@@ -128,56 +127,74 @@ const Movie = () => {
             <div>
                 <div className="row">
                     <div className="col-2 mt-2   ">
-                        <span id='span' >Choose  Location </span>
+                        <button id='span' data-bs-toggle="modal" className='btn btn-outline-dark justify-content-end '  data-bs-target="#location" >Choose  Location </button>
+                        <div class="modal fade" id="location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg " style={{ fontFamily: "Work Sans, sans-serif" }}>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel" style={{ fontWeight: 700 }}>Choose Location</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <div className="col-12 mt-2" style={{ fontFamily: "Work Sans, sans-serif" }}>
+                                            {/* Location filter buttons */}
+                                            <button
+            
+                                                style={{ borderRadius: 0 }}
+                                                className={`btn ${selectedLocation === "Chennai"
+                                                    ? "btn-info"
+                                                    : "btn-outline-dark"
+                                                    }`}
+                                                onClick={() => handleLocationClick("Chennai")}
+                                                data-bs-dismiss="modal"
+                                            >
+                                                <img src='https://o.remove.bg/downloads/16c26d54-e025-40de-88a4-e002c342dbdf/chen-removebg-preview.png' alt=""></img> Chennai
+                                            </button>
+                                            <button
 
+                                                style={{ borderRadius: 0 }}
+                                                className={`btn ms-2 ${selectedLocation === "Mumbai"
+                                                    ? "btn-info"
+                                                    : "btn-outline-dark"
+                                                    }`}
+                                                onClick={() => handleLocationClick("Mumbai")}
+                                                data-bs-dismiss="modal"
+                                            >  <img src='https://o.remove.bg/downloads/0280258c-979f-4bdd-821b-9178c1f68e00/mumbai-removebg-preview.png' alt="" ></img>
+
+                                                Mumbai
+                                            </button>
+                                            <button
+
+                                                style={{ borderRadius: 0 }}
+                                                className={`btn ms-2 ${selectedLocation === "Hyderabad"
+                                                    ? "btn-info"
+                                                    : "btn-outline-dark"
+                                                    }`}
+                                                onClick={() => handleLocationClick("Hyderabad")}
+                                                data-bs-dismiss="modal"
+                                            >
+                                                <img src='https://o.remove.bg/downloads/bdb54da2-3dae-4509-9962-e2f67c74e530/hyd-removebg-preview.png' alt=''  ></img> Hyderabad
+                                            </button>
+                                            <button
+
+                                                style={{ borderRadius: 0 }}
+                                                className={`btn ms-2 ${selectedLocation === "Cochin"
+                                                    ? "btn-info"
+                                                    : "btn-outline-dark"
+                                                    }`}
+                                                    data-bs-dismiss="modal"
+                                                onClick={() => handleLocationClick("Cochin",)}
+                                            >
+                                                <img src="https://o.remove.bg/downloads/73087149-91a1-4da2-acf5-112afc403010/Removal-232-removebg-preview.png" alt=""></img>Cochin
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-6 mt-2" style={{ fontFamily: "Work Sans, sans-serif" }}>
-                        {/* Location filter buttons */}
-                        <button
-                        id='btn'
-                            style={{ borderRadius: 0 }}
-                            className={`btn ${selectedLocation === "Chennai"
-                                    ? "btn-info"
-                                    : "btn-dark"
-                                }`}
-                            onClick={() => handleLocationClick("Chennai")}
-                        >
-                            Chennai
-                        </button>
-                        <button
-                        id='btn'
-                            style={{ borderRadius: 0 }}
-                            className={`btn ${selectedLocation === "Mumbai"
-                                    ? "btn-info"
-                                    : "btn-dark"
-                                }`}
-                            onClick={() => handleLocationClick("Mumbai")}
-                        >
-                            Mumbai
-                        </button>
-                        <button
-                        id='btn'
-                            style={{ borderRadius: 0 }}
-                            className={`btn ${selectedLocation === "Hyderabad"
-                                    ? "btn-info"
-                                    : "btn-dark"
-                                }`}
-                            onClick={() => handleLocationClick("Hyderabad")}
-                        >
-                            Hyderabad
-                        </button>
-                        <button
-                        id='btn'
-                            style={{ borderRadius: 0 }}
-                            className={`btn ${selectedLocation === "Cochin"
-                                    ? "btn-info"
-                                    : "btn-dark"
-                                }`}
-                            onClick={() => handleLocationClick("Cochin" ,)}
-                        >
-                            Cochin
-                        </button>
-                    </div>
+
                 </div>
 
             </div>
@@ -192,7 +209,7 @@ const Movie = () => {
                 {renderMovieCards(filteredMovieCards)}
             </div>
             <ToastContainer position="top-right" autoClose={3000} />
-            
+
         </div>
     );
 };
@@ -215,25 +232,24 @@ export const Tamildisplay = () => {
             .then((response) => response.json())
             .then((data) => settamil(data))
             .catch((error) => console.error("Error fetching data:", error));
-    },[])
+    }, [])
 
     useEffect(() => {
         getrating();
     }, [])
 
-    const getrating = async () =>
-    {
-       await axios
-        .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
-        .then((response) => {
-            setReviews(response.data);
-        })
-        .catch((error) => {
-            console.error("Error fetching reviews:", error);
-        });
+    const getrating = async () => {
+        await axios
+            .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
+            .then((response) => {
+                setReviews(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching reviews:", error);
+            });
 
     }
-   
+
     const handleRateSubmit = async () => {
         const review = document.querySelector('.input-form').value;
 
@@ -243,7 +259,7 @@ export const Tamildisplay = () => {
             review: review
         };
 
-         await axios.post("http://localhost:4000/ratingreviews", data)
+        await axios.post("http://localhost:4000/ratingreviews", data)
             .then((response) => {
                 toast.success("Review submitted:", response.data);
             })
@@ -270,10 +286,10 @@ export const Tamildisplay = () => {
         width: "100%",
         height: "500px", // Set the desired height
         backgroundSize: "cover",
-        padding:"50px",
-        backgroundPosition:"fixed",
-        backgroundImage: `url(${Tamil.cover})`, 
-      };
+        padding: "50px",
+        backgroundPosition: "fixed",
+        backgroundImage: `url(${Tamil.cover})`,
+    };
     return (
         <div>
             <div className=" pt-2" id='bg' style={divStyle}>
@@ -341,7 +357,7 @@ export const Tamildisplay = () => {
 
                                     </div>
                                     <div className="col-5">
-                                      <h5>Language : {Tamil.language}</h5>
+                                        <h5>Language : {Tamil.language}</h5>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -356,9 +372,9 @@ export const Tamildisplay = () => {
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Tamil.Certificate}</h2>
                                     </div>
                                     <div className="col-6 mt-2 " >
-                                  <Link to="/show">   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
+                                        <Link to="/show">   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
-                                    <Link to={`/Trailer/${Tamil.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
+                                    <Link to={`/TamilTrailer/${Tamil.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
 
                                 </div>
                             </div>
@@ -375,18 +391,18 @@ export const Tamildisplay = () => {
                     <h2 style={{ fontWeight: "bolder", fontSize: 26 }}>CAST  & CREW</h2>
                     <div className="avatar-container">
                         <div className="avatar">
-                        <img  src={Tamil.maleavatar} alt="" />
+                            <img src={Tamil.maleavatar} alt="" />
                             <strong><span>{Tamil.MaleLead}</span></strong>
                             <span>Lead Actor</span>
                         </div>
                         <div className="avatar">
-                        <img  src={Tamil.femaleleadavatar} alt="" />
+                            <img src={Tamil.femaleleadavatar} alt="" />
                             <strong><span>{Tamil.FemaleLead}</span></strong>
                             <span>Lead Actress</span>
 
                         </div>
                         <div className="avatar">
-                        <img  src={Tamil.Directoravatar} alt="" />
+                            <img src={Tamil.Directoravatar} alt="" />
                             <strong><span>{Tamil.Director}</span></strong>
                             <span>Director</span>
                         </div>
@@ -439,32 +455,31 @@ export const Malayalamdisplay = () => {
             .then((response) => response.json())
             .then((data) => setMalayalam(data))
             .catch((error) => console.error("Error fetching data:", error));
-    },[])
+    }, [])
 
     useEffect(() => {
         getrating();
     }, [])
-const getrating = async () =>
-{
-  await  axios
-    .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
-    .then((response) => {
-        setReviews(response.data);
-    })
-    .catch((error) => {
-        console.error("Error fetching reviews:", error);
-    });
-}
-const divStyle = {
-    width: "100%",
-    height: "500px", // Set the desired height
-    backgroundSize: "cover",
-    padding:"50px",
-    backgroundPosition:"fixed",
-    backgroundImage: `url(${Malayalam.cover})`, 
-  };
+    const getrating = async () => {
+        await axios
+            .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
+            .then((response) => {
+                setReviews(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching reviews:", error);
+            });
+    }
+    const divStyle = {
+        width: "100%",
+        height: "500px", // Set the desired height
+        backgroundSize: "cover",
+        padding: "50px",
+        backgroundPosition: "fixed",
+        backgroundImage: `url(${Malayalam.cover})`,
+    };
 
-    const handleRateSubmit = async  () => {
+    const handleRateSubmit = async () => {
         const review = document.querySelector('.input-form').value;
 
         const data = {
@@ -473,7 +488,7 @@ const divStyle = {
             review: review
         };
 
-      await  axios.post("http://localhost:4000/ratingreviews", data)
+        await axios.post("http://localhost:4000/ratingreviews", data)
             .then((response) => {
                 toast.success("Review submitted:", response.data);
             })
@@ -562,7 +577,7 @@ const divStyle = {
 
                                     </div>
                                     <div className="col-6">
-                                      <h5>Language : {Malayalam.language}</h5>
+                                        <h5>Language : {Malayalam.language}</h5>
                                     </div>
                                 </div>
                                 <div className="row ">
@@ -577,11 +592,11 @@ const divStyle = {
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Malayalam.Certificate}</h2>
                                     </div>
                                     <div className="col-6 mt-2 " >
-                                    <Link to="/show"><button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
+                                        <Link to="/show"><button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
-                                    <Link to={`/Trailer/${Malayalam.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
+                                    <Link to={`/MalayalamTrailer/${Malayalam.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
 
-                              
+
                                 </div>
                             </div>
                         </div>
@@ -597,18 +612,18 @@ const divStyle = {
                     <h2 style={{ fontWeight: "bolder", fontSize: 26 }}>CAST  & CREW</h2>
                     <div className="avatar-container">
                         <div className="avatar">
-                            <img  src={Malayalam.maleavatar} alt="" />
+                            <img src={Malayalam.maleavatar} alt="" />
                             <strong><span>{Malayalam.MaleLead}</span></strong>
                             <span>Lead Actor</span>
                         </div>
                         <div className="avatar">
-                        <img  src={Malayalam.femaleleadavatar} alt="" />
+                            <img src={Malayalam.femaleleadavatar} alt="" />
                             <strong><span>{Malayalam.FemaleLead}</span></strong>
                             <span>Lead Actress</span>
 
                         </div>
                         <div className="avatar">
-                        <img  src={Malayalam.Directoravatar} alt="" />
+                            <img src={Malayalam.Directoravatar} alt="" />
                             <strong><span>{Malayalam.Director}</span></strong>
                             <span>Director</span>
                         </div>
@@ -660,32 +675,30 @@ export const Telugudisplay = () => {
             .then((response) => response.json())
             .then((data) => setTelugu(data))
             .catch((error) => console.error("Error fetching data:", error));
-    },[])
-    
-    useEffect(() =>
-    {
+    }, [])
+
+    useEffect(() => {
         getrating();
-    },[])
-    const getrating = async () =>
-    {
-      await  axios.get(`http://localhost:4000/ratingreviews?movieId=${id}`)
-        .then((response) => {
-            setReviews(response.data);
-        })
-        .catch((error) => {
-            console.error("Error fetching reviews:", error);
-        });
+    }, [])
+    const getrating = async () => {
+        await axios.get(`http://localhost:4000/ratingreviews?movieId=${id}`)
+            .then((response) => {
+                setReviews(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching reviews:", error);
+            });
 
     }
     const divStyle = {
         width: "100%",
         height: "500px", // Set the desired height
         backgroundSize: "cover",
-        padding:"50px",
-        backgroundPosition:"fixed",
-        backgroundImage: `url(${Telugu.cover})`, 
-      };
-    const handleRateSubmit = async() => {
+        padding: "50px",
+        backgroundPosition: "fixed",
+        backgroundImage: `url(${Telugu.cover})`,
+    };
+    const handleRateSubmit = async () => {
         const review = document.querySelector('.input-form').value;
 
         const data = {
@@ -694,7 +707,7 @@ export const Telugudisplay = () => {
             review: review
         };
 
-       await axios.post("http://localhost:4000/ratingreviews", data)
+        await axios.post("http://localhost:4000/ratingreviews", data)
             .then((response) => {
                 toast.success("Review submitted:", response.data);
             })
@@ -783,7 +796,7 @@ export const Telugudisplay = () => {
 
                                     </div>
                                     <div className="col-5">
-                                      <h5>Language : {Telugu.language}</h5>
+                                        <h5>Language : {Telugu.language}</h5>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -798,10 +811,10 @@ export const Telugudisplay = () => {
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Telugu.Certificate}</h2>
                                     </div>
                                     <div className="col-6 mt-2 " >
-                                    <Link to="/show">   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
+                                        <Link to="/show">   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
                                     </div>
                                     <div className="col-5">
-                                    <Link to={`/Trailer/${Telugu.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
+                                        <Link to={`/TeluguTrailer/${Telugu.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
                                     </div>
                                 </div>
                             </div>
@@ -818,19 +831,19 @@ export const Telugudisplay = () => {
                     <h2 style={{ fontWeight: "bolder", fontSize: 26 }}>CAST  & CREW</h2>
                     <div className="avatar-container">
                         <div className="avatar">
-                        <img  src={Telugu.maleavatar} alt="" />
+                            <img src={Telugu.maleavatar} alt="" />
                             <strong><span>{Telugu.MaleLead}</span></strong>
                             <span>Lead Actor</span>
 
                         </div>
                         <div className="avatar">
-                        <img  src={Telugu.femaleleadavatar} alt="" />
+                            <img src={Telugu.femaleleadavatar} alt="" />
                             <strong><span>{Telugu.FemaleLead}</span></strong>
                             <span>Lead Actress</span>
 
                         </div>
                         <div className="avatar">
-                        <img  src={Telugu.Directoravatar} alt="" />
+                            <img src={Telugu.Directoravatar} alt="" />
                             <strong><span>{Telugu.Director}</span></strong>
                             <span>Director</span>
                         </div>

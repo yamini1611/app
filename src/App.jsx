@@ -32,9 +32,9 @@ function App() {
           <Route path="/" element={<MovieList />} />
           <Route path="/movies" element={<Movie />} />
           <Route path="/Trailer/:id" element={<Trailer />} />
-          <Route path="/Trailer/:id" element={<TamilTrailer />} />
-          <Route path="/Trailer/:id" element={<MalayalamTrailer />} />
-          <Route path="/Trailer/:id" element={<TeluguTrailer />} />
+          <Route path="/TamilTrailer/:id" element={<TamilTrailer />} />
+          <Route path="/MalayalamTrailer/:id" element={<MalayalamTrailer />} />
+          <Route path="/TeluguTrailer/:id" element={<TeluguTrailer />} />
           <Route path="/Tamilmovies/:id" element={<Tamildisplay />} />
           <Route path="/MalayalamMovies/:id" element={<Malayalamdisplay />} />
           <Route path="/TeluguMovies/:id" element={<Telugudisplay />} />
@@ -50,6 +50,7 @@ function App() {
           <Route path="/Next" element={<Next />} />
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
+        <Footer/>
       </BrowserRouter>
     </div>
   );
