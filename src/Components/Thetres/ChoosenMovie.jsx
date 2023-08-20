@@ -3,6 +3,7 @@ import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ChooseTickets from "../SeatRoom/ChooseTickets";
 
 
 const ChooseTamilmovie =() =>
@@ -37,6 +38,15 @@ const ChooseTamilmovie =() =>
         );
       });
       
+      const handleShow=(id)=>{
+
+
+        return(
+          <div>
+             <ChooseTickets movieId={id}/>
+          </div>
+        )
+      }
 
       
 return(
@@ -59,16 +69,16 @@ return(
               <p>
                 <strong>Show Timings:</strong>
               </p>
-              <Link to="/ChooseTickets" className="text-decoration-none">
+              {/* <Link to="/ChooseTickets" className="text-decoration-none"> */}
              
                 <ul className="show-list no-underline">
-                  <li>{theater.show1}</li>
-                  <li>{theater.show2}</li>
-                  <li>{theater.show3}</li>
-                  <li>{theater.show4}</li>
-                  <li>{theater.show5}</li>
+                  <li onClick={()=>{handleShow(Tamil.id)}}>{theater.show1}</li>
+                  <li onClick={()=>{handleShow()}}>{theater.show2}</li>
+                  <li onClick={()=>{handleShow()}}>{theater.show3}</li>
+                  <li onClick={()=>{handleShow()}}>{theater.show4}</li>
+                  <li onClick={()=>{handleShow()}}>{theater.show5}</li>
                 </ul>
-              </Link>
+              {/* </Link> */}
             </div>
           </div>
         ))}

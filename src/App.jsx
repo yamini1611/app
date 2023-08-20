@@ -27,6 +27,7 @@ import { ChooseHindiMovie } from "./Components/Thetres/ChoosenMovie";
 import { Hindidisplay } from "./Components/Homepage/Movie";
 import { ChooseTelugumovie } from "./Components/Thetres/ChoosenMovie";
 import { ChooseMalayalmmovie } from "./Components/Thetres/ChoosenMovie";
+import BookingSummary from "./Components/BookingSummary/BookingSummary";
 function App() {
   return (
     <div className="App">
@@ -55,6 +56,8 @@ function App() {
           <Route path="/ThetreList" element={<ThetreList />} />
           <Route path="/show" element={<SelectedTheaters />} />
           <Route path="/forgot-password" element={<PasswordReset />} />
+          <Route path="/BookingSummary" element={<BookingSummary />} />
+
           {/* // */}
           <Route path="/Next" element={<Next />} />
         </Routes>

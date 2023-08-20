@@ -36,6 +36,7 @@ export default function ResponsiveDialog(props) {
 {count===0?(
     
     <div className="card flex justify-content-center col-lg-6 mx-auto m-5">
+
             <Card  className="md:w-25rem shadow-none m-5">
                 <h1 className="text-center">Kindly declare your seating preference</h1>
             <p className="mx-auto container text-center p-5">{renderButton()}</p>
@@ -66,7 +67,7 @@ export default function ResponsiveDialog(props) {
       >
         <p className="mx-auto container text-center p-5">{renderButton()}</p>
       </Dialog>
-      {selectedSeats !== "" && <Theater noOfSeats={parseInt(selectedSeats)}/>}
+      {selectedSeats !== "" && <Theater movieId={props.movieId} noOfSeats={parseInt(selectedSeats)}/>}
     </div>
   );
 }
@@ -74,5 +75,5 @@ export default function ResponsiveDialog(props) {
 
 
 const termsAndConditions=()=>{
-  
+
 }
