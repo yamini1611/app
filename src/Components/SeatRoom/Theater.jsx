@@ -7,7 +7,7 @@ import { Card } from "primereact/card";
 
 import {  useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import BookingSummary from "../BookingSummary/BookingSummary";
+import BookingSummary from "../BookingSummary/BookingSummary.jsx";
 
 
 const Theater = (props) => {
@@ -22,7 +22,7 @@ const Theater = (props) => {
   const [ticketCost,setTicketCost]= useState();
   const array = useSelector((state) => state.array);
   const count = useSelector((state)=> state.counter)
-  const [bookingTicket,setBookingTicket] = useState(false);
+  var bookingTicket=true;
 
   const fetchingTickets=()=>{
     axios.get(`http://localhost:4000/SeatsAllocated`)
@@ -63,6 +63,8 @@ fetchingTickets();
 
 
   return (
+    <>
+    {bookingTicket &&(
     <div>
       <Divider className="text-center  m-4 col-lg-5 mx-auto p-1">
         <h6 className="text-secondary mt-2"> E l i t e </h6>
@@ -78,18 +80,23 @@ fetchingTickets();
       <Card className="mx-auto sticky-bottom">
         <div className="row container mx-auto">
          {/* <Link to='/BookingSummary'> */}
-           <Button label={`Proceed ${ticketCost} `}  raised onClick={()=>{setBookingTicket(true)}} />
+           <Button label={`Proceed ${ticketCost} `}  raised onClick={()=>{bookingTicket=true;console.log(bookingTicket) }} />
            {/* </Link> */}
         </div>
       </Card>
-      )}
-
-      {bookingTicket===true&&(
-        <BookingSummary />
-      )}
-      {console.log(seatsInEachRow)}    
+      )}     
+   
        
-    </div>
+    </div>)}
+
+      {(!bookingTicket && (
+ <>
+  <BookingSummary movieId={props.movieId} />
+  </>
+))}
+    
+   
+    </>
   );
 };
 
