@@ -1,51 +1,88 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import axios from 'axios';
-import '../styles/PasswordReset.css'
+import emailjs from '@emailjs/browser';
+import NewPassword from './NewPassword';
 
 const PasswordReset = () => {
-  const [email, setEmail] = useState('');
+  const form = useRef();
   const [message, setMessage] = useState('');
+  const [otp, setOtp] = useState('');
+  const [enteredOTP, setEnteredOTP] = useState('');
+  const [showNewPassword, setShowNewPassword] = useState(false);
 
-  const handlePasswordReset = () => {
-    if (!email) {
-      setMessage('Please enter your email.');
-    } else {
-      axios
-        .get(`http://localhost:4000/Register/?email=${email}`)
-        .then((response) => {
-          if (response.data.length > 0) {
-           
-            setMessage(`Password reset link sent to ${email}.`);
-          } else {
-            setMessage('No account found with this email.');
-          }
-        })
-        .catch((error) => {
-          console.error('Password reset failed:', error);
-          setMessage('Password reset failed. Please try again.');
-        });
+  const sendEmail = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form.current);
+    const enteredEmail = formData.get('message');
+
+    try {
+      const response = await axios.get('http://localhost:4000/Register');
+      const registeredUsers = response.data;
+
+      const user = registeredUsers.find(user => user.email === enteredEmail);
+      if (user) {
+        const randomCode = Math.floor(1000 + Math.random() * 9000);
+        setOtp(randomCode); 
+
+        const emailData = {
+          from_name: 'Your App',
+          from_email: 'yourapp@example.com',
+          message: `Your verification code: ${randomCode}`,
+          to_name: user.fullName,
+          to_email: enteredEmail,
+        };
+        await emailjs.send('service_tz8tvk8', 'template_vantckm', emailData, 'wKE-SxLbsRZble8LF');
+        setMessage(`Verification code sent to ${enteredEmail}`);
+      } else {
+        setMessage('Email not registered');
+      }
+    } catch (error) {
+      console.error(error);
+      setMessage('An error occurred');
     }
   };
+
+  const verifyOTP = () => {
+    const parsedOTP = parseInt(enteredOTP);
+
+    if (otp === '') {
+      setMessage('Please generate an OTP first.');
+    } else if (parsedOTP === otp) {
+      setMessage('Verification successful!');
+      setShowNewPassword(true);
+    } else {
+      setMessage('Incorrect OTP. Please try again.');
+    }
+  };
+
   return (
-    <div className="password-reset-container">
-      <h2 className="password-reset-header">Forgot Password</h2>
-      <p>Enter your email to receive a password reset link.</p>
-      <div className="password-reset-form">
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <button onClick={handlePasswordReset}>Reset Password</button>
-        <p className="password-reset-message">{message}</p>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-lg-6">
+          <h2 className="text-center">Forget Password</h2>
+          <form ref={form} onSubmit={sendEmail} className="mb-3">
+            <div className="mb-3">
+              <label htmlFor="emailInput" className="form-label">Enter your registered email:</label>
+              <input type="email" className="form-control" id="emailInput" name="message" />
+            </div>
+            <button type="submit" className="btn btn-primary">Send OTP</button>
+          </form>
+
+          {otp !== '' && (
+            <div>
+              <label htmlFor="otpInput" className="form-label">Enter OTP:</label>
+              <input type="text" className="form-control mb-2 text-black" id="otpInput" name="otp" value={enteredOTP} onChange={e => setEnteredOTP(e.target.value)} />
+              <button className="btn btn-success" onClick={verifyOTP}>Verify OTP</button>
+            </div>
+          )}
+
+          <p className="mt-3">{message}</p>
+        </div>
       </div>
+      {showNewPassword && <NewPassword />}
     </div>
   );
 };
 
 export default PasswordReset;
-
-

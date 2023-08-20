@@ -6,7 +6,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from "react-router-dom";
 import SelectedTheaters from "../Thetres/SelectedTheatres";
-
+import mumbai from '../Assets/Images/mumbai.png';
+import Hydrabad from '../Assets/Images/hydrabad.png';
+import Cochin from '../Assets/Images/Cochin.png';
+import chennai from '../Assets/Images/chennai.png'
 
 const Movie = () => {
     const [hindi, setHindi] = useState([]);
@@ -156,7 +159,7 @@ const Movie = () => {
                                                 onClick={() => handleLocationClick("Chennai")}
                                                 data-bs-dismiss="modal"
                                             >
-                                                <img src='https://o.remove.bg/downloads/16c26d54-e025-40de-88a4-e002c342dbdf/chen-removebg-preview.png' alt=""></img> Chennai
+                                                <img src={chennai} alt=""></img> Chennai
                                             </button>
                                             <button
 
@@ -167,7 +170,7 @@ const Movie = () => {
                                                     }`}
                                                 onClick={() => handleLocationClick("Mumbai")}
                                                 data-bs-dismiss="modal"
-                                            >  <img src='https://o.remove.bg/downloads/0280258c-979f-4bdd-821b-9178c1f68e00/mumbai-removebg-preview.png' alt="" ></img>
+                                            >  <img src={mumbai}  alt="" ></img>
 
                                                 Mumbai
                                             </button>
@@ -181,7 +184,7 @@ const Movie = () => {
                                                 onClick={() => handleLocationClick("Hyderabad")}
                                                 data-bs-dismiss="modal"
                                             >
-                                                <img src='https://o.remove.bg/downloads/bdb54da2-3dae-4509-9962-e2f67c74e530/hyd-removebg-preview.png' alt=''  ></img> Hyderabad
+                                                <img src={Hydrabad}  alt=''  ></img> Hyderabad
                                             </button>
                                             <button
 
@@ -193,7 +196,7 @@ const Movie = () => {
                                                     data-bs-dismiss="modal"
                                                 onClick={() => handleLocationClick("Cochin",)}
                                             >
-                                                <img src="https://o.remove.bg/downloads/73087149-91a1-4da2-acf5-112afc403010/Removal-232-removebg-preview.png" alt=""></img>Cochin
+                                                <img src={Cochin}  alt=""></img>Cochin
                                             </button>
                                         </div>
                                     </div>
