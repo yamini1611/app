@@ -79,9 +79,9 @@ fetchingTickets();
 {count===props.noOfSeats&&(
       <Card className="mx-auto sticky-bottom">
         <div className="row container mx-auto">
-         {/* <Link to='/BookingSummary'> */}
+         <Link to='/BookingSummary'>
            <Button label={`Proceed ${ticketCost} `}  raised onClick={()=>{bookingTicket=true;console.log(bookingTicket) }} />
-           {/* </Link> */}
+           </Link>
         </div>
       </Card>
       )}     
