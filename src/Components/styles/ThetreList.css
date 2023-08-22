@@ -97,8 +97,7 @@
 }
 
 .show-list li:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
+  transform: scale(1.08);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .cover-image {

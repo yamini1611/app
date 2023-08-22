@@ -246,12 +246,16 @@ export const Tamildisplay = () => {
     }, [])
 
     useEffect(() => {
+        
         getrating();
+
     }, [])
 
     const getrating = async () => {
+        setInterval(2000);
         await axios
             .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
+            
             .then((response) => {
                 setReviews(response.data);
             })
@@ -269,14 +273,16 @@ export const Tamildisplay = () => {
             rating: rating,
             review: review
         };
-
+         
         await axios.post("http://localhost:4000/ratingreviews", data)
+        
             .then((response) => {
                 toast.success("Review submitted:", response.data);
             })
             .catch((error) => {
                 console.error("Error submitting review:", error);
             });
+       
         document.querySelector(".input-form").value = "";
         setRating(0);
     };
@@ -295,7 +301,7 @@ export const Tamildisplay = () => {
 
     const divStyle = {
         width: "100%",
-        height: "500px", // Set the desired height
+        height: "550px", // Set the desired height
         backgroundSize: "cover",
         padding: "50px",
         backgroundPosition: "fixed",
