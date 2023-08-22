@@ -4,6 +4,9 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import Theater from "../SeatRoom/Theater";
 import { Card } from 'primereact/card';
+
+
+
 export default function ResponsiveDialog(props) {
   const [visible, setVisible] = useState(false);
   const [selectedSeats, setSelectedSeats] = useState("");

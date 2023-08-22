@@ -15,14 +15,15 @@ import Next from "./Components/Payment/Next";
 import Footer from "./Components/Footer/Footer";
 import Ticket from "./Components/Payment/Ticket";
 import Trailer from "./Components/Homepage/Trailer";
-import { Tamildisplay,
-Malayalamdisplay,
+import {
+  Tamildisplay,
+  Malayalamdisplay,
   Telugudisplay,
 } from "./Components/Homepage/Movie";
 import ThetreList from "./Components/Thetres/ThetreList";
 import SelectedTheaters from "./Components/Thetres/SelectedTheatres";
 import PasswordReset from "./Components/Authentication/PasswordReset";
-import { TamilTrailer ,MalayalamTrailer ,TeluguTrailer} from "./Components/Homepage/Trailer";
+import { TamilTrailer, MalayalamTrailer, TeluguTrailer } from "./Components/Homepage/Trailer";
 import ChooseTamilmovie from "./Components/Thetres/ChoosenMovie";
 import { ChooseHindiMovie } from "./Components/Thetres/ChoosenMovie";
 import { Hindidisplay } from "./Components/Homepage/Movie";
@@ -44,7 +45,7 @@ function App() {
           <Route path="/Tamilmovies/:id" element={<Tamildisplay />} />
           <Route path="/MalayalamMovies/:id" element={<Malayalamdisplay />} />
           <Route path="/TeluguMovies/:id" element={<Telugudisplay />} />
-          <Route  path="/HindiMovies/:id" element={<Hindidisplay />}/>
+          <Route path="/HindiMovies/:id" element={<Hindidisplay />} />
           <Route path="/movie/:id" element={<Moviedisplay />} />
           <Route path="/Choosenmovie/:id" element={<ChooseTamilmovie />} />
           <Route path="/ChoosenHindimovie/:id" element={<ChooseHindiMovie />} />
@@ -58,13 +59,11 @@ function App() {
           <Route path="/show" element={<SelectedTheaters />} />
           <Route path="/forgot-password" element={<PasswordReset />} />
           <Route path="/BookingSummary" element={<BookingSummary />} />
-
-          {/* // */}
           <Route path="/Next" element={<Next />} />
-          <Route path="/Ticket" element={<Ticket/>} />
+          <Route path="/Ticket" element={<Ticket />} />
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </div>
   );
