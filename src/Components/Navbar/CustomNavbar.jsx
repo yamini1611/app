@@ -110,7 +110,7 @@ const CustomNavbar = () => {
             Theaters
           </Nav.Link>
           <Nav.Link className="custom-nav-link" href="/schedule">
-            Schedule
+            Contact US
           </Nav.Link>
           <Nav.Link className="custom-nav-link" href="/ChooseTickets">
             SeatRoom

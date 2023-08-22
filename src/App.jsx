@@ -8,12 +8,14 @@ import GSI from "./Components/Google/GSI";
 import MovieList from "./Components/Homepage/Homepage";
 import Theater from "./Components/SeatRoom/Theater";
 import Moviedisplay from "./Components/Homepage/Homedisplay";
+import ContactUs from "./Components/TheaterOwner/TORegister";
 import { ToastContainer } from "react-toastify";
 import ChooseTickets from "./Components/SeatRoom/ChooseTickets";
 import Movie from "./Components/Homepage/Movie";
 import Next from "./Components/Payment/Next";
 import Footer from "./Components/Footer/Footer";
 import Ticket from "./Components/Payment/Ticket";
+import { TORegister } from "./Components/TheaterOwner/TORegister";
 import Trailer from "./Components/Homepage/Trailer";
 import {
   Tamildisplay,
@@ -37,6 +39,8 @@ function App() {
         <CustomNavbar />
         <Routes>
           <Route path="/" element={<MovieList />} />
+          <Route path="/schedule" element={<ContactUs />} />
+          <Route path="/TORegister" element={<TORegister />} />
           <Route path="/movies" element={<Movie />} />
           <Route path="/Trailer/:id" element={<Trailer />} />
           <Route path="/TamilTrailer/:id" element={<TamilTrailer />} />
