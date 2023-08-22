@@ -21,7 +21,7 @@ const Theater = (props) => {
   const [seatsInEachRow, setseatsInEachRow] = useState([]);
   const [ticketCost,setTicketCost]= useState();
   const array = useSelector((state) => state.array);
-  const count = useSelector((state)=> state.counter)
+  const count = useSelector((state) => state.counter)
   var bookingTicket=true;
 
   const fetchingTickets=()=>{
@@ -80,7 +80,7 @@ fetchingTickets();
       <Card className="mx-auto sticky-bottom">
         <div className="row container mx-auto">
          {/* <Link to='/BookingSummary'> */}
-           <Button label={`Proceed ${ticketCost} `}  raised onClick={()=>{bookingTicket=true;console.log(bookingTicket) }} />
+           <Button label={`Proceed ${ticketCost} `}  raised onClick={()=>{bookingTicket=true; }} />
            {/* </Link> */}
         </div>
       </Card>

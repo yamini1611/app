@@ -10,6 +10,10 @@ import mumbai from '../Assets/Images/mumbai.png';
 import Hydrabad from '../Assets/Images/hydrabad.png';
 import Cochin from '../Assets/Images/Cochin.png';
 import chennai from '../Assets/Images/chennai.png'
+import { useDispatch } from "react-redux";
+import { setBookings } from "../ReduxToolKit/counterSlice";
+import { useSelector } from "react-redux";
+import { selectBookings } from "../ReduxToolKit/counterSlice";
 
 const Movie = () => {
     const [hindi, setHindi] = useState([]);
@@ -32,6 +36,8 @@ const Movie = () => {
 
         const response2 = await axios.get("http://localhost:4000/TamilMovies");
         setTamil(response2.data);
+     
+        console.log(response2.data)
 
         const response3 = await axios.get("http://localhost:4000/TeluguMovies");
         setTelugu(response3.data);
