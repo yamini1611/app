@@ -1,4 +1,5 @@
 
+
 import React, { createContext, useEffect, useRef, useState } from "react";
 import Divider from "@mui/material/Divider";
 import ToggleButton from "react-bootstrap/ToggleButton";
@@ -26,6 +27,7 @@ function Seater(props) {
   const dispatch = useDispatch();
 
 
+
   const handleSeatClicked = (id) => {
     dispatch(addItem(id))
 
@@ -34,7 +36,7 @@ function Seater(props) {
 
 
 
-  // const handleSeatClicked = (id) => {
+  // const handleSeatClicked = (id)=> {
   //   axios.get(`http://localhost:4000/SeatsAllocated`).then((response) => {
 
   //     if (response.data[0].seatID.includes(id)) {
@@ -42,7 +44,7 @@ function Seater(props) {
   //       axios.put(`http://localhost:4000/SeatsAllocated/1`, {
   //         //If the seat is already booked, then remove it from the array
   //         seatID: [].concat(
-  //           response.data[0].seatID.filter((seat) => seat !== id)
+  //           response.data[0].seatID.filter((seat)=> seat !== id)
   //         ),
   //       });
   //     } else {
@@ -57,8 +59,8 @@ function Seater(props) {
 
   return (
     <>
-      {console.log(count)}
-      {count < props.noOfSeats || array.find((item) => item === props.seatID)
+      
+      {count.count < props.noOfSeats || array.find((item) => item !== props.seatID)
         ?
         (<ToggleButton
           className={`m-1 p-1 seatcheckbox${props.coldivide % 7 === 0 ? " me-5" : ""
@@ -92,6 +94,7 @@ function Seater(props) {
             }
           }}
         >
+         
           {props.num}
         </ToggleButton>) : (<ToggleButton
           className={`m-1 p-1 seatcheckbox${props.coldivide % 7 === 0 ? " me-5" : ""
@@ -105,6 +108,7 @@ function Seater(props) {
         //   dispatch(resetItem(props.seatID))
         // }}
         >
+          {console.log(count)}
           {props.num}
         </ToggleButton>)
       }
@@ -114,6 +118,7 @@ function Seater(props) {
 }
 
 const SeatLayout = (props) => {
+  console.log(props)
   const totalRows = props.rows;
   const seatsPerRow = 20;
   const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
@@ -152,7 +157,7 @@ const SeatLayout = (props) => {
       <div className="col-lg-12 mt-3">{seatRows}</div>
       {props.divider && (
         <Divider className="text-center mt-5 col-lg-5 mx-auto pb-5">
-          Here's the screen
+          Here's the screen 
         </Divider>
       )}
     </div>

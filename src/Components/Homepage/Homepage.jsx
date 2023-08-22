@@ -21,7 +21,7 @@ const MovieList = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container mb-5" id='hp'>
 
             <div id="carouselExampleInterval" className="carousel slide mt-3" data-bs-ride="carousel" >
                 <div className="carousel-inner">
