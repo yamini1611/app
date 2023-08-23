@@ -66,37 +66,57 @@ export const TORegister =() =>
         }),
         onSubmit: async (values) => {
           try {
+            const response1 = await fetch('http://localhost:4000/Register', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: values.email,
+                password: values.password,
+              }),
+            });
+    
+            if (response1.ok) {
+              
+            } else {
+              const data = await response1.json();
+              toast.error(data.message);
+            }
+          } catch (error) {
+            toast.error('An error occurred. Please try again later.');
+          }
+          try {
             const response = await fetch('http://localhost:4000/TheaterOwner', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify(values),
+
+            
             });
     
             if (response.ok) {
-              // Display success toast message
-              toast.success('Registration successful! Redirecting to home page...', {
+              toast.success('Registration successful! ', {
                 onClose: () => {
-                  // Navigate to the home page
                   setInterval(2000);
                   window.location.href = '/';
                 },
               });
             } else {
               const data = await response.json();
-              // Display toast message with validation errors
               toast.error(data.message);
             }
           } catch (error) {
-            // Handle error
+        
             toast.error('An error occurred. Please try again later.');
           }
         },
       });
     
       return (
-        <Container style={{ fontFamily:"Work Sans, sans-serif",width:550 ,border:"solid"}} className="mt-4 p-4 mb-3">
+        <Container id='divTO' className="mt-4 p-4 mb-3">
           <h2 className='text-center'>Theater Owner Registration</h2>
           <Form onSubmit={formik.handleSubmit}>
             {/* Theater Name */}
