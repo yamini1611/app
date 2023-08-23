@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminPage = () => {
   const [theaterData, setTheaterData] = useState([]);
@@ -16,9 +18,7 @@ const AdminPage = () => {
   }, []);
 
   const handleAccept = (theaterId) => {
-
     const theaterToAccept = theaterData.find(theater => theater.id === theaterId);
-
 
     setAcceptedTheaters(prevAccepted => [...prevAccepted, theaterToAccept]);
 
@@ -38,20 +38,25 @@ const AdminPage = () => {
   };
 
   const handlePostAcceptedTheaters = () => {
-    axios.post('http://localhost:4000/ThetreList', acceptedTheaters)
-      .then(response => {
-        console.log('posted');
-        setAcceptedTheaters([]);
+    axios.post('http://localhost:4000/Theateraccepted', acceptedTheaters)
+      .then(() => {
+        setAcceptedTheaters([]); // Clear accepted theaters after successful post
+
+        toast.success('Successfully added accepted theaters!', {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       })
-      .catch(error => {
-        console.error('Error posting accepted theaters:', error);
+      .catch(() => {
+        toast.error('Failed to add accepted theaters.', {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       });
   };
 
   return (
     <div className="container mt-5">
-      <h1>Theater Data</h1>
-      <div className="row">
+      <h1>Theater Requests</h1>
+         <div className="row">
         {theaterData.map(theater => (
           <div key={theater.id} className="col-md-6 mb-4">
             <div className="card">
@@ -102,6 +107,7 @@ const AdminPage = () => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };
