@@ -151,8 +151,8 @@ const MovieList = ({ user }) => {
           <div key={movies.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
             <Card className="movie-card mb-2">
               <CardImg src={movies.image} id="movie-card"></CardImg>
-              <div className="mt-2">
-                <strong>{movies.Name}</strong>
+              <div className="mt-2 text-center">
+                <strong style={{fontFamily:"Work Sans, sans-serif"}}>{movies.Name}</strong>
                 {user && user.role === "admin" && (
                   <div>
                     <button
