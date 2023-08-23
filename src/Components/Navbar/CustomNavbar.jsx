@@ -118,7 +118,7 @@ const CustomNavbar = () => {
           {/* edited by hari */}
           <Nav.Link className="custom-nav-link" href="/Next">Payment</Nav.Link>
 
-          <Nav.Link className="custom-nav-link" href="/AdminPage">Admin</Nav.Link>
+          <Nav.Link className="custom-nav-link" href="/Admin">Admin</Nav.Link>
         </Nav>
 
         <Form inline className="custom-search d-none d-lg-block">

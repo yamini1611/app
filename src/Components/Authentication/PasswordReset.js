@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import axios from 'axios';
 import emailjs from '@emailjs/browser';
 import NewPassword from './NewPassword';
-import '../styles/PasswordReset.css'
+import '../styles/PasswordReset.css';
 
 const PasswordReset = () => {
   const form = useRef();
@@ -10,6 +10,7 @@ const PasswordReset = () => {
   const [otp, setOtp] = useState('');
   const [enteredOTP, setEnteredOTP] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
+  const [user, setUser] = useState(null); 
 
   const sendEmail = async (e) => {
     e.preventDefault();
@@ -21,8 +22,8 @@ const PasswordReset = () => {
       const response = await axios.get('http://localhost:4000/Register');
       const registeredUsers = response.data;
 
-      const user = registeredUsers.find(user => user.email === enteredEmail);
-      if (user) {
+      const foundUser = registeredUsers.find(user => user.email === enteredEmail);
+      if (foundUser) {
         const randomCode = Math.floor(1000 + Math.random() * 9000);
         setOtp(randomCode); 
 
@@ -30,11 +31,12 @@ const PasswordReset = () => {
           from_name: 'Your App',
           from_email: 'yourapp@example.com',
           message: `Your verification code: ${randomCode}`,
-          to_name: user.fullName,
+          to_name: foundUser.fullName,
           to_email: enteredEmail,
         };
         await emailjs.send('service_tz8tvk8', 'template_vantckm', emailData, 'wKE-SxLbsRZble8LF');
         setMessage(`Verification code sent to ${enteredEmail}`);
+        setUser(foundUser);
       } else {
         setMessage('Email not registered');
       }
@@ -81,7 +83,7 @@ const PasswordReset = () => {
           <p className="mt-3">{message}</p>
         </div>
       </div>
-      {showNewPassword && <NewPassword />}
+      {showNewPassword && <NewPassword user={user} />}
     </div>
   );
 };

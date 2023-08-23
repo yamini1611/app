@@ -32,6 +32,7 @@ import { Hindidisplay } from "./Components/Homepage/Movie";
 import { ChooseTelugumovie } from "./Components/Thetres/ChoosenMovie";
 import { ChooseMalayalmmovie } from "./Components/Thetres/ChoosenMovie";
 import BookingSummary from "./Components/BookingSummary/BookingSummary";
+import AdminPage from "./Components/Admin/AdminPage";
 function App() {
   return (
     <div className="App">
@@ -65,6 +66,7 @@ function App() {
           <Route path="/BookingSummary" element={<BookingSummary />} />
           <Route path="/Next" element={<Next />} />
           <Route path="/Ticket" element={<Ticket />} />
+          <Route path="/Admin" element={<AdminPage/>}/>
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
         <Footer />
