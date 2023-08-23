@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import '../styles/BookingSummary.css'
 const BookingSummary = (props) => {
     const bookedSeats = useSelector((state)=>state.array);
     const [theaterName, setTheaterName] = useState();
     const [ticketCost, setTicketCost] = useState();
+	const array = useSelector((state) => state.array);
+const seatName =()=>{
+	if(array[0][0]==="E"){
+		return("Elite")
+}else{
+	return("Budget");
+}
+}
 
+seatName();
     
     return (
         <div className='booking-summary-body'>
@@ -37,6 +46,9 @@ const BookingSummary = (props) => {
 				<h2>Olivia Rodrigo</h2>
 			</div>
 			<div class="time">
+				<p>{seatName()}: </p>
+
+
 				<p>8:00 PM <span>TO</span> 11:00 PM</p>
 				<p>DOORS <span>@</span> 7:00 PM</p>
 			</div>

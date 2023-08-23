@@ -1,17 +1,30 @@
-//This is the redux toolkit function which will give the functionality of the decrement and the increment for the count
-
 import { combineReducers, createSlice } from "@reduxjs/toolkit";
 
 const counterSlice = createSlice({
     name: "counter",
-    initialState: 0,
+    initialState: {
+        count: 0,
+        bookings: 0
+    },
     reducers: {
-        increment: (state) => state + 1,
-        decrement: (state) => state - 1,
-        reset: (state) => state = 0
+        increment: (state) => {
+            state.count += 1;
+        },
+        decrement: (state) => {
+            state.count -= 1;
+        },
+        reset: (state) => {
+            state.count = 0;
+        },
+        setBookings: (state, action) => {
+            state.bookings = action.payload;
+        }
+
 
     }
 })
+
+
 
 
 
@@ -31,9 +44,11 @@ export const arrayReducer = (state = [], action) => {
 
 
 
+export const { setBookings } = counterSlice.actions;
 
 export const { increment, decrement, reset } = counterSlice.actions;
 
+export const selectBookings = (state) => state.counter.bookings;
 
 
 export default counterSlice.reducer;

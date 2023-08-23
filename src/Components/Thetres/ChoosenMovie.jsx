@@ -13,6 +13,8 @@ const ChooseTamilmovie =() =>
     const { id } = useParams();
     const [theaterData, setTheaterData] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState("");
+    const [showChooseTickets, setShowChooseTickets] = useState(true);
+
 
     useEffect(() => {
         fetch(`http://localhost:4000/TamilMovies/${id}`)
@@ -40,55 +42,56 @@ const ChooseTamilmovie =() =>
       });
       
       const handleShow=(id)=>{
-
-
-        return(
-          <div>
-             <ChooseTickets movieId={id}/>
-          </div>
-        )
+        setShowChooseTickets(false)
+        
       }
 
       
 return(
+  <>{showChooseTickets ? (
     <div id='iddiv'>
-   <div id="theatre-list" className="theatre-list-container">
-      <h1 className="heading" >{Tamil.Name}</h1>
-      
-      {filteredTheaters.length === 0 ? (
-        <div>
-      <p>No theater found.</p>
-      <img src="https://assets-in.bmscdn.com/coupon/journey/coupon-weird.png" alt=""></img></div>
-    ) : (
-      <div className="theatre-cards">
-        {filteredTheaters.map((theater, index) => (
-          <div key={index} className="card" id='card'>
-            <h3 className="theatre-name">{theater.Name}</h3>
-            <img src={theater.cover} alt={`${theater.Name} Cover`} className="cover-image" />
-            <p>
-              <span className="movie-name">{theater.MoviesRunning1}</span>
-            </p>
-            <div className="show-times">
-              <p>
-                <strong>Show Timings:</strong>
-              </p>
-              {/* <Link to="/ChooseTickets" className="text-decoration-none"> */}
-             
-                <ul className="show-list no-underline">
-                  <li onClick={()=>{handleShow(Tamil.id)}}>{theater.show1}</li>
-                  <li onClick={()=>{handleShow()}}>{theater.show2}</li>
-                  <li onClick={()=>{handleShow()}}>{theater.show3}</li>
-                  <li onClick={()=>{handleShow()}}>{theater.show4}</li>
-                  <li onClick={()=>{handleShow()}}>{theater.show5}</li>
-                </ul>
-              {/* </Link> */}
-            </div>
-          </div>
-        ))}
-      </div>
-    )}
-    </div>
-    </div>
+    <div id="theatre-list" className="theatre-list-container">
+       <h1 className="heading" >{Tamil.Name}</h1>
+       
+       {filteredTheaters.length === 0 ? (
+         <div>
+       <p>No theater found.</p>
+       <img src="https://assets-in.bmscdn.com/coupon/journey/coupon-weird.png" alt=""></img></div>
+     ) : (
+       <div className="theatre-cards">
+         {filteredTheaters.map((theater, index) => (
+           <div key={index} className="card" id='card'>
+             <h3 className="theatre-name">{theater.Name}</h3>
+             <img src={theater.cover} alt={`${theater.Name} Cover`} className="cover-image" />
+             <p>
+               <span className="movie-name">{theater.MoviesRunning1}</span>
+             </p>
+             <div className="show-times">
+               <p>
+                 <strong>Show Timings:</strong>
+               </p>
+               {/* {/ <Link to="/ChooseTickets" className="text-decoration-none"> /} */}
+              
+                 <ul className="show-list no-underline">
+                   <li onClick={()=>{handleShow(Tamil.id)}}>{theater.show1}</li>
+                   <li onClick={()=>{handleShow()}}>{theater.show2}</li>
+                   <li onClick={()=>{handleShow()}}>{theater.show3}</li>
+                   <li onClick={()=>{handleShow()}}>{theater.show4}</li>
+                   <li onClick={()=>{handleShow()}}>{theater.show5}</li>
+                 </ul>
+               {/* {/ </Link> /} */}
+             </div>
+           </div>
+         ))}
+       </div>
+     )}
+     </div>
+     </div>
+  ):(<ChooseTickets movieId={Tamil.id}/>)}
+   
+
+
+    </>
 )
 }
 

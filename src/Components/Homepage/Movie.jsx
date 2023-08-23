@@ -10,6 +10,10 @@ import mumbai from '../Assets/Images/mumbai.png';
 import Hydrabad from '../Assets/Images/hydrabad.png';
 import Cochin from '../Assets/Images/Cochin.png';
 import chennai from '../Assets/Images/chennai.png'
+import { useDispatch } from "react-redux";
+import { setBookings } from "../ReduxToolKit/counterSlice";
+import { useSelector } from "react-redux";
+import { selectBookings } from "../ReduxToolKit/counterSlice";
 
 const Movie = () => {
     const [hindi, setHindi] = useState([]);
@@ -32,6 +36,8 @@ const Movie = () => {
 
         const response2 = await axios.get("http://localhost:4000/TamilMovies");
         setTamil(response2.data);
+     
+        console.log(response2.data)
 
         const response3 = await axios.get("http://localhost:4000/TeluguMovies");
         setTelugu(response3.data);
@@ -246,12 +252,16 @@ export const Tamildisplay = () => {
     }, [])
 
     useEffect(() => {
+        
         getrating();
+
     }, [])
 
     const getrating = async () => {
+        setInterval(2000);
         await axios
             .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
+            
             .then((response) => {
                 setReviews(response.data);
             })
@@ -269,14 +279,16 @@ export const Tamildisplay = () => {
             rating: rating,
             review: review
         };
-
+         
         await axios.post("http://localhost:4000/ratingreviews", data)
+        
             .then((response) => {
                 toast.success("Review submitted:", response.data);
             })
             .catch((error) => {
                 console.error("Error submitting review:", error);
             });
+       
         document.querySelector(".input-form").value = "";
         setRating(0);
     };
@@ -295,7 +307,7 @@ export const Tamildisplay = () => {
 
     const divStyle = {
         width: "100%",
-        height: "500px", // Set the desired height
+        height: "550px", // Set the desired height
         backgroundSize: "cover",
         padding: "50px",
         backgroundPosition: "fixed",
