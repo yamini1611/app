@@ -9,11 +9,10 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import BookingSummary from "../BookingSummary/BookingSummary.jsx";
 import { useDispatch } from "react-redux";
-import { setBookings } from "../ReduxToolKit/counterSlice";
-import { selectBookings } from "../ReduxToolKit/counterSlice";
+
+
 
 const Theater = (props) => {
-  console.log("Inside theater");
   const [rows, setRows] = useState(13);
   const [eliteRows, setEliteRows] = useState(13);
   const [budgetRows, setBudgetRows] = useState(2);
@@ -24,11 +23,12 @@ const Theater = (props) => {
   const [ticketCost, setTicketCost] = useState();
   const array = useSelector((state) => state.array);
   const count = useSelector((state) => state.counter);
-  const movieName = useSelector(selectBookings);
+
   const dispatch = useDispatch();
   var bookingTicket = true;
 
-  dispatch(setBookings(props.movieId));
+
+
 
   const fetchingTickets = () => {
     axios.get(`http://localhost:4000/SeatsAllocated`).then((response) => {
@@ -72,7 +72,8 @@ const Theater = (props) => {
           divider={true}
           category="B"
         />
-        {count === props.noOfSeats && (
+        
+        {count.count === props.noOfSeats && (
           <Card className="mx-auto sticky-bottom">
             <div className="row container mx-auto">
               <Link to="/BookingSummary">

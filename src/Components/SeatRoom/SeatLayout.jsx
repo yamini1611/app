@@ -1,5 +1,3 @@
-
-
 import React, { createContext, useEffect, useRef, useState } from "react";
 import Divider from "@mui/material/Divider";
 import ToggleButton from "react-bootstrap/ToggleButton";
@@ -11,9 +9,12 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 //core
 import "primereact/resources/primereact.min.css";
 import { useDispatch, useSelector } from "react-redux";
-import { increment, decrement, reset } from "../ReduxToolKit/counterSlice";
+import { increment, decrement, reset, setBookings, selectBookings } from "../ReduxToolKit/counterSlice";
+
 import { arrayReducer } from "../ReduxToolKit/counterSlice";
+
 export const seatContext = createContext();
+
 
 function Seater(props) {
 
@@ -24,43 +25,26 @@ function Seater(props) {
   const addItem = (item) => ({ type: "add", payload: item });
   const popItem = (item) => ({ type: "pop", payload: item });
   const resetItem = (item) => ({ type: 'reset', payload: item });
+  const movieName = useSelector(selectBookings);
   const dispatch = useDispatch();
 
-
+  // dispatch(setBookings(props.movieId));
 
   const handleSeatClicked = (id) => {
-    dispatch(addItem(id))
-
+    console.log("hej")
+    dispatch((addItem(id)))
+    console.log(array)
+    console.log(count.count)
   }
 
 
-
-
-  // const handleSeatClicked = (id)=> {
-  //   axios.get(`http://localhost:4000/SeatsAllocated`).then((response) => {
-
-  //     if (response.data[0].seatID.includes(id)) {
-
-  //       axios.put(`http://localhost:4000/SeatsAllocated/1`, {
-  //         //If the seat is already booked, then remove it from the array
-  //         seatID: [].concat(
-  //           response.data[0].seatID.filter((seat)=> seat !== id)
-  //         ),
-  //       });
-  //     } else {
-  //       axios.put(`http://localhost:4000/SeatsAllocated/1`, {
-  //         //If the seat is not booked then append it to the seat list
-  //         seatID: [].concat(response.data[0].seatID, id),
-  //       });
-  //     }
-  //   });
-  // };
+console.log(array)
 
 
   return (
     <>
-      
-      {count.count < props.noOfSeats || array.find((item) => item !== props.seatID)
+
+      {count.count < props.noOfSeats || array.find((item)=>item===props.seatID)
         ?
         (<ToggleButton
           className={`m-1 p-1 seatcheckbox${props.coldivide % 7 === 0 ? " me-5" : ""
@@ -72,16 +56,19 @@ function Seater(props) {
           checked={checked}
           value="1"
           onClick={() => {
-            console.log('Clicked')
+         
             setChecked(!checked);
-            if (count < props.noOfSeats) {
+            if (count.count < props.noOfSeats) {
+
 
 
               // setChecked(!checked);
 
               if (!checked) {
+               
                 dispatch(increment());
-                handleSeatClicked(props.seatID);
+                dispatch((addItem(props.seatID)))
+              console.log(count.count)
 
               } else {
                 dispatch(decrement());
@@ -89,12 +76,13 @@ function Seater(props) {
               }
 
 
-            } else {
-              dispatch(decrement());
+            }else{
+              console.log(count.count,props.noOfSeats)
             }
+            
           }}
         >
-         
+
           {props.num}
         </ToggleButton>) : (<ToggleButton
           className={`m-1 p-1 seatcheckbox${props.coldivide % 7 === 0 ? " me-5" : ""
@@ -108,7 +96,8 @@ function Seater(props) {
         //   dispatch(resetItem(props.seatID))
         // }}
         >
-          {console.log(count)}
+          {/* {console.log(count)} */}
+          {console.log("hey")}
           {props.num}
         </ToggleButton>)
       }
@@ -118,7 +107,7 @@ function Seater(props) {
 }
 
 const SeatLayout = (props) => {
-  console.log(props)
+
   const totalRows = props.rows;
   const seatsPerRow = 20;
   const alphabet = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
@@ -157,7 +146,7 @@ const SeatLayout = (props) => {
       <div className="col-lg-12 mt-3">{seatRows}</div>
       {props.divider && (
         <Divider className="text-center mt-5 col-lg-5 mx-auto pb-5">
-          Here's the screen 
+          Here's the screen
         </Divider>
       )}
     </div>

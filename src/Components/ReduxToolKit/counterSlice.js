@@ -2,21 +2,29 @@ import { combineReducers, createSlice } from "@reduxjs/toolkit";
 
 const counterSlice = createSlice({
     name: "counter",
-    initialState:{
- count: 0,
-    bookings: []
+    initialState: {
+        count: 0,
+        bookings: 0
     },
     reducers: {
-        increment: (state) => state + 1,
-        decrement: (state) => state - 1,
-        reset: (state) => state = 0,
-        setBookings:(state,action)=>{
-            state.bookings=action.payload;
+        increment: (state) => {
+            state.count += 1;
+        },
+        decrement: (state) => {
+            state.count -= 1;
+        },
+        reset: (state) => {
+            state.count = 0;
+        },
+        setBookings: (state, action) => {
+            state.bookings = action.payload;
         }
-        
+
 
     }
 })
+
+
 
 
 
