@@ -61,7 +61,7 @@ export const TORegister =() =>
           capacity:Yup.string().required('capacity is required'),
           cancellationAvailable:Yup.string().required('Cancellation is required'),
           screensCount:Yup.string().required('no of screens is required '),
-          password:Yup.string().required('Password is required'),
+          password:Yup.string().required('Password is required'), 
           email:Yup.string().required('Email is required')
         }),
         onSubmit: async (values) => {
@@ -163,7 +163,7 @@ export const TORegister =() =>
               {formik.touched.ticketRange && formik.errors.ticketRange ? (
                 <div className="error">{formik.errors.ticketRange}</div>
               ) : null}
-            </Form.Group>
+            </Form.Group> 
             {/* Ticket Price */}
             <Form.Group controlId="ticketPrice">
               <Form.Label>Ticket Price</Form.Label>
