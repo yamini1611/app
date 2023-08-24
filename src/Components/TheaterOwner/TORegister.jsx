@@ -169,7 +169,7 @@ export const TORegister =() =>
               {formik.touched.ticketRange && formik.errors.ticketRange ? (
                 <div className="error">{formik.errors.ticketRange}</div>
               ) : null}
-            </Form.Group>
+            </Form.Group> 
             {/* Ticket Price */}
             <Form.Group controlId="ticketPrice">
               <Form.Label>Ticket Price</Form.Label>
