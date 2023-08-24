@@ -118,6 +118,8 @@ const CustomNavbar = () => {
           {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("TO") && (
             <Nav.Link className="custom-nav-link" >
              <Link to="/Theaterdetails" style={{textDecoration:"none",color:"white"}}>  Theater Owner </Link>
+            <Nav.Link className="custom-nav-link" href="/MyTheatre">
+              Theater Owner 
             </Nav.Link>
           )}
           {/* Admin Link */}
