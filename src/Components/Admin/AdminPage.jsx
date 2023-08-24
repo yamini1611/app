@@ -20,7 +20,9 @@ const AdminPage = () => {
   const handleAccept = (theaterId) => {
     const theaterToAccept = theaterData.find(theater => theater.id === theaterId);
 
-    setAcceptedTheaters(prevAccepted => [...prevAccepted, theaterToAccept]);
+    const updatedTheater = { ...theaterToAccept, status: true };
+
+    setAcceptedTheaters(prevAccepted => [...prevAccepted, updatedTheater]);
 
     setTheaterData(prevTheaters => prevTheaters.filter(theater => theater.id !== theaterId));
   };
@@ -38,7 +40,8 @@ const AdminPage = () => {
   };
 
   const handlePostAcceptedTheaters = () => {
-    axios.post('http://localhost:4000/Theateraccepted', acceptedTheaters)
+    const theatersWithUpdatedStatus = acceptedTheaters.map(theater => ({ ...theater, status: true }));
+    axios.post('http://localhost:4000/Theateraccepted', theatersWithUpdatedStatus)
       .then(() => {
         setAcceptedTheaters([]); // Clear accepted theaters after successful post
 
