@@ -5,7 +5,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import ChooseTickets from "../SeatRoom/ChooseTickets";
 import "../styles/ThetreList.css";
-
+import { setMovieCategory } from "../ReduxToolKit/counterSlice";
+import { useDispatch } from "react-redux";
 
 const ChooseTamilmovie =() =>
 {
@@ -14,12 +15,15 @@ const ChooseTamilmovie =() =>
     const [theaterData, setTheaterData] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState("");
     const [showChooseTickets, setShowChooseTickets] = useState(true);
-
+    const dispatch = useDispatch();
+  
 
     useEffect(() => {
+
         fetch(`http://localhost:4000/TamilMovies/${id}`)
             .then((response) => response.json())
             .then((data) => settamil(data))
+            .then(()=>dispatch(setMovieCategory("TamilMovies")))
             .catch((error) => console.error("Error fetching data:", error));
     }, [])
 

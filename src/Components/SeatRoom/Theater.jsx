@@ -24,6 +24,7 @@ const Theater = (props) => {
   const array = useSelector((state) => state.array);
   const count = useSelector((state) => state.counter);
 
+
   const dispatch = useDispatch();
   var bookingTicket = true;
 
@@ -76,8 +77,8 @@ const Theater = (props) => {
         {count.count === props.noOfSeats && (
           <Card className="mx-auto sticky-bottom">
             <div className="row container mx-auto">
-              <Link to="/BookingSummary">
-                <Button label={`Payment Rs ${ticketCost}`} raised />
+              <Link to="/Next">
+                <Button className="container" label={`Payment Rs ${ticketCost}`} raised />
               </Link>
             </div>
           </Card>

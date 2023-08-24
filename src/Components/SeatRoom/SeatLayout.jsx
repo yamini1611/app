@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { increment, decrement, reset, setBookings, selectBookings } from "../ReduxToolKit/counterSlice";
 
 import { arrayReducer } from "../ReduxToolKit/counterSlice";
+import { useParams } from "react-router";
 
 export const seatContext = createContext();
 
@@ -27,18 +28,11 @@ function Seater(props) {
   const resetItem = (item) => ({ type: 'reset', payload: item });
   const movieName = useSelector(selectBookings);
   const dispatch = useDispatch();
-
-  // dispatch(setBookings(props.movieId));
-
-  const handleSeatClicked = (id) => {
-    console.log("hej")
-    dispatch((addItem(id)))
-    console.log(array)
-    console.log(count.count)
-  }
+  const {id} = useParams();
 
 
-console.log(array)
+
+dispatch(setBookings(parseInt(id)))
 
 
   return (
@@ -58,7 +52,7 @@ console.log(array)
           onClick={() => {
          
             setChecked(!checked);
-            if (count.count < props.noOfSeats) {
+            if (count.count <= props.noOfSeats) {
 
 
 
@@ -96,8 +90,8 @@ console.log(array)
         //   dispatch(resetItem(props.seatID))
         // }}
         >
-          {/* {console.log(count)} */}
-          {console.log("hey")}
+         
+       
           {props.num}
         </ToggleButton>)
       }

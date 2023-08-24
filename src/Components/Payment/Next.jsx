@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../Payment/Next.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import GooglePayButton from '@google-pay/button-react';
 import { ToastContainer, toast } from 'react-toastify';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import axios from 'axios';
 
 const Next = () => {
     const Navigate = useNavigate();
@@ -13,12 +15,26 @@ const Next = () => {
     const [expiry, SetExpiry] = useState('');
     const [cvv, SetCvv] = useState('');
     const [errors, setErrors] = useState({});
+    const movieId = useSelector((state) => state.counter);
+    const [movieDetails, setMovieDetails] = useState();
+
+
+
+
+    const movieDetailsfetch = () => {
+        axios.get(`http://localhost:4000/${movieId.movieCategory}/${movieId.bookings}`)
+            .then((response) => {
+                setMovieDetails(response.data);
+
+            })
+    }
 
     const handleClick = () => {
         Navigate("/");
     }
 
     useEffect(() => {
+        movieDetailsfetch();
         fetch("http://localhost:4000/Payment")
             .then((response) => response.json())
             .then((data) => SetPayment(data))
@@ -105,7 +121,11 @@ const Next = () => {
                 </div>
                 <div class="card paymentdetails px-4 ps-5 me-5">
                     <p class="h8 py-3">Payment Details</p>
-                    <p className="fs-6 d-flex flex-row" style={{ fontWeight: 'bold' }}><Summary /></p>
+                    <p className="fs-6 d-flex flex-row" style={{ fontWeight: 'bold' }}>
+                        {movieDetails && (
+                            <Summary md={movieDetails} />
+                        )}
+                    </p>
                     <div class="row gx-3">
                         <div class="col-12">
                             <div class="d-flex flex-column">
@@ -194,10 +214,32 @@ const Next = () => {
 
 
 
-const Summary = () => {
+const Summary = (props) => {
+
+    const array = useSelector((state) => state.array);
+    const seatName = () => {
+        if (array[0][0] === "E") {
+            // setTicketCost(190);
+            return ("Elite")
+        } else {
+            // setTicketCost(60);
+            return ("Budget");
+        }
+        
+    }
+    const ticketCost=()=>{
+        if (array[0][0] === "E") {
+            // setTicketCost(190);
+            return (190)
+        } else {
+            // setTicketCost(60);
+            return (60);
+        }
+    }
     const currentTime = new Date().toLocaleString();
     return (
         <>
+        {props &&(
             <div class="container-fluid">
                 <div class="container  h-100">
                     <div class="row d-flex justify-content-center align-items-center h-100 text-center">
@@ -222,24 +264,26 @@ const Summary = () => {
                                                 <h5 class="mb-3 fs-3">BOOKING STATUS</h5>
                                                 <h5 class="mb-5">Seats Locked</h5>
                                             </div>
+                                            <div class="ms-2">
+                                                <div class="text-center">
+                                                    <p>Movie Name : {props.md.Name}</p>
+                                                </div>
+                                            </div>
                                             <div class="row justify-content-center">
                                                 <div class="col-md-4 text-center">
                                                     <p class="lead fw-bold fs-6">{currentTime}</p>
                                                 </div>
                                             </div>
-                                            <p className=" ms-2 fs-5 d-flex justify-content-around">Elite Category</p>
+
+                                            <p className=" ms-2 fs-5 d-flex justify-content-around">Seatings</p>
                                             <div class="ms-2">
                                                 <div class="text-center">
-                                                    <p>Elite : 0</p>
+                                                    <p>{seatName()}: {array.join(",")}</p>
                                                 </div>
                                             </div>
-                                            <p className=" mb-2 ms-2 fs-5 d-flex justify-content-around">Budget Category</p>
 
-                                            <div class="d-flex justify-content-around ms-2">
-                                                <p>Budget : 0</p>
-                                            </div>
                                             <div class="d-flex justify-content-around ms-2 fs-4">
-                                                <p>Total : ₹ 0</p>
+                                                <p>Total : ₹ {ticketCost()}</p>
                                             </div>
 
                                             <div className="d-flex justify-content-center">
@@ -258,6 +302,7 @@ const Summary = () => {
                     </div>
                 </div>
             </div>
+            )}
         </>
     )
 }

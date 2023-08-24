@@ -1,10 +1,5 @@
-import React, { useState } from "react";
-import {
-  Navbar as BootstrapNavbar,
-  Nav,
-  Form,
-  FormControl,
-} from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Navbar as BootstrapNavbar, Nav, Form, FormControl } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../Assets/Images/logo1.gif";
 import "../styles/CustomNavbar.css";
@@ -13,37 +8,36 @@ import axios from "axios";
 
 const CustomNavbar = () => {
   var logOutDetails;
-  const handleSignOut = () => {
+  const [loggedInUser, setLoggedInUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    fetchLoggedInUser();
+  }, []);
+
+  const fetchLoggedInUser = () => {
     axios
       .get(`http://localhost:4000/GoogleSignIn/?isLogged=true`)
       .then((response) => {
         if (response.data.length > 0) {
-          console.log("IF PART======")
-          document.getElementById("register-btn").hidden = true;
-          document.getElementById("login-btn").hidden = true;
-          document.getElementById("logout-btn").hidden = false;
+          setLoggedInUser(response.data[0]);
+          setIsLoggedIn(true);
         } else {
-
           axios.get(`http://localhost:4000/Register/?isLogged=true`)
             .then((response) => {
               if (response.data.length > 0) {
-                console.log("ELSE PART")
-                document.getElementById("register-btn").hidden = true;
-                document.getElementById("login-btn").hidden = true;
-                document.getElementById("logout-btn").hidden = false;
+                setLoggedInUser(response.data[0]);
+                setIsLoggedIn(true);
               } else {
-                document.getElementById("register-btn").hidden = false;
-                document.getElementById("login-btn").hidden = false;
-                document.getElementById("logout-btn").hidden = true;
+                setIsLoggedIn(false);
               }
             });
         }
+      })
+      .catch((error) => {
+        console.log(error);
       });
-
-
-
   };
-  handleSignOut();
 
   const handleLogOut = () => {
 
@@ -86,10 +80,11 @@ const CustomNavbar = () => {
         console.log(error)
       })
   };
+
   return (
-    <BootstrapNavbar className="custom-navbar sticky-top" expand="lg" id='font'>
+    <BootstrapNavbar className="custom-navbar sticky-top" expand="lg" id="font">
       <BootstrapNavbar.Brand href="/" className="custom-logo">
-        <img
+      <img
           src={logo}
           width="70"
           height="70"
@@ -115,39 +110,48 @@ const CustomNavbar = () => {
           <Nav.Link className="custom-nav-link" href="/ChooseTickets">
             SeatRoom
           </Nav.Link>
-          {/* edited by hari */}
-          <Nav.Link className="custom-nav-link" href="/Next">Payment</Nav.Link>
+          {/* Payment Link */}
+          <Nav.Link className="custom-nav-link" href="/Next">
+            Payment
+          </Nav.Link>
 
-          <Nav.Link className="custom-nav-link" href="/AdminPage">Admin</Nav.Link>
+          {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("TO") && (
+            <Nav.Link className="custom-nav-link" href="/Theaterdetails">
+              Theater Owner 
+            </Nav.Link>
+          )}
+          {/* Admin Link */}
+          {isLoggedIn && (
+            <Nav.Link className="custom-nav-link" href="/Admin">
+              Admin
+            </Nav.Link>
+          )}
         </Nav>
 
         <Form inline className="custom-search d-none d-lg-block">
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+          {/* Search form */}
         </Form>
 
-        <Link
-          to="/register"
-          className="custom-register text-decoration-none "
-          id="register-btn"
-        >
-          Register  <i class="fa-solid fa-user-plus"></i>
-        </Link>
-        <Link
-          to="/signin"
-          className="custom-register text-decoration-none ms-3"
-          id="login-btn"
-        >
-          Login  <i class="fa-solid fa-arrow-right-from-bracket"></i>
-    
-        </Link>
-        <Link
-          to="/logout"
-          onClick={() => handleLogOut()}
-          className="custom-register text-decoration-none"
-          id="logout-btn"
-        >
-          Logout  <i class="fa-solid fa-right-from-bracket"></i>
-        </Link>
+        {/* Register Link */}
+        {!isLoggedIn && (
+          <Link to="/register" className="custom-register text-decoration-none" id="register-btn">
+            Register  <i className="fa-solid fa-user-plus"></i>
+          </Link>
+        )}
+
+        {/* Login Link */}
+        {!isLoggedIn && (
+          <Link to="/signin" className="custom-register text-decoration-none ms-3" id="login-btn">
+            Login  <i className="fa-solid fa-arrow-right-from-bracket"></i>
+          </Link>
+        )}
+
+        {/* Logout Link */}
+        {isLoggedIn && (
+          <Link to="/logout" onClick={handleLogOut} className="custom-register text-decoration-none" id="logout-btn">
+            Logout  <i className="fa-solid fa-right-from-bracket"></i>
+          </Link>
+        )}
       </BootstrapNavbar.Collapse>
     </BootstrapNavbar>
   );

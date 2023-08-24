@@ -7,7 +7,7 @@ import card1 from "../Assets/Images/card1.png";
 import card2 from "../Assets/Images/card2.png";
 import card3 from "../Assets/Images/card3.png";
 
-const MovieList = () => {
+const MovieList = ({ user }) => {
   const [card, setCard] = useState([]);
   const [newMovie, setNewMovie] = useState({
     name: "",
@@ -57,7 +57,7 @@ const MovieList = () => {
 
   return (
     <div className="container mb-5" id="hp">
-      <div
+        <div
         id="carouselExampleInterval"
         className="carousel slide mt-3"
         data-bs-ride="carousel"
@@ -139,6 +139,7 @@ const MovieList = () => {
           </Card>
         </div>
       </div>
+
       <strong>
         <h2 id="title" className="mt-2">
           Recommended Movies
@@ -150,28 +151,32 @@ const MovieList = () => {
           <div key={movies.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
             <Card className="movie-card mb-2">
               <CardImg src={movies.image} id="movie-card"></CardImg>
-              <div className="mt-2">
-                <strong>{movies.Name}</strong>
-                <div>
-                  <button
-                    className="btn btn-danger mt-1"
-                    onClick={() => handleDeleteMovie(movies.id)}
-                  >
-                    Delete
-                  </button>
-                </div>
+              <div className="mt-2 text-center">
+                <strong style={{fontFamily:"Work Sans, sans-serif"}}>{movies.Name}</strong>
+                {user && user.role === "admin" && (
+                  <div>
+                    <button
+                      className="btn btn-danger mt-1"
+                      onClick={() => handleDeleteMovie(movies.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                )}
               </div>
             </Card>
           </div>
         ))}
       </div>
 
-      <button
-        className="btn btn-primary mt-3"
-        onClick={() => setShowForm(!showForm)}
-      >
-        {showForm ? "Hide Form" : "Add Movie"}
-      </button>
+      {user && user.role === "admin" && (
+        <button
+          className="btn btn-primary mt-3"
+          onClick={() => setShowForm(!showForm)}
+        >
+          {showForm ? "Hide Form" : "Add Movie"}
+        </button>
+      )}
 
       {showForm && (
         <div className="mt-5">
@@ -182,7 +187,7 @@ const MovieList = () => {
             </label>
             <input
               type="text"
-              className="form-control"
+              className="form-control text-black"
               id="movieName"
               name="name"
               value={newMovie.name}
@@ -195,7 +200,7 @@ const MovieList = () => {
             </label>
             <input
               type="text"
-              className="form-control"
+              className="form-control text-black"
               id="imageURL"
               name="image"
               value={newMovie.image}

@@ -61,7 +61,11 @@ export const TORegister =() =>
           capacity:Yup.string().required('capacity is required'),
           cancellationAvailable:Yup.string().required('Cancellation is required'),
           screensCount:Yup.string().required('no of screens is required '),
-          password:Yup.string().required('Password is required'), 
+          password:Yup.string().required('Password is required').matches(
+            /^(?=^TO)(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+            'Must start with TO, contain at least 8 characters, one uppercase, one lowercase, one number, and one special character'
+          ),
+          
           email:Yup.string().required('Email is required')
         }),
         onSubmit: async (values) => {
