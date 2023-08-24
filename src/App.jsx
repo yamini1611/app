@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "./Components/Authentication/Register";
 import SignIn from "./Components/Authentication/SignIn";
@@ -33,12 +33,16 @@ import { ChooseTelugumovie } from "./Components/Thetres/ChoosenMovie";
 import { ChooseMalayalmmovie } from "./Components/Thetres/ChoosenMovie";
 import BookingSummary from "./Components/BookingSummary/BookingSummary";
 import AdminPage from "./Components/Admin/AdminPage";
+
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>
         <CustomNavbar />
+
         <Routes>
+
           <Route path="/" element={<MovieList />} />
           <Route path="/schedule" element={<ContactUs />} />
           <Route path="/TORegister" element={<TORegister />} />
@@ -66,7 +70,7 @@ function App() {
           <Route path="/BookingSummary" element={<BookingSummary />} />
           <Route path="/Next" element={<Next />} />
           <Route path="/Ticket" element={<Ticket />} />
-          <Route path="/Admin" element={<AdminPage/>}/>
+          <Route path="/Admin" element={<AdminPage />} />
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
         <Footer />
