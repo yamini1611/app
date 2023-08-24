@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../Payment/Next.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import GooglePayButton from '@google-pay/button-react';
 import { ToastContainer, toast } from 'react-toastify';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import axios from 'axios';
 
 const Next = () => {
     const Navigate = useNavigate();
@@ -13,6 +15,14 @@ const Next = () => {
     const [expiry, SetExpiry] = useState('');
     const [cvv, SetCvv] = useState('');
     const [errors, setErrors] = useState({});
+    const movieId = useSelector((state) => state.counter);
+
+    console.log(movieId.bookings);
+
+
+    const movieDetailsfetch=()=>{
+        axios.get(`http://localhost:4000/`)
+    }
 
     const handleClick = () => {
         Navigate("/");

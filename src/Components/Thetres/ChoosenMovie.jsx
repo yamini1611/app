@@ -17,6 +17,7 @@ const ChooseTamilmovie =() =>
 
 
     useEffect(() => {
+      
         fetch(`http://localhost:4000/TamilMovies/${id}`)
             .then((response) => response.json())
             .then((data) => settamil(data))
