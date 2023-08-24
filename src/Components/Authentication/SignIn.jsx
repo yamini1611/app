@@ -21,24 +21,30 @@ const SignIn = () => {
         .then((response) => {
           const userData = response.data.find(user => user.email === email && user.password === password);
           if (userData) {
-            axios.get(`http://localhost:4000/Register/?email=${userData.email}`)
-                    .then((response)=>{
-                        axios.put(`http://localhost:4000/Register/${response.data[0].id}`, {
-                            fullName: response.data[0].fullName,
-                            email: response.data[0].email,
-                            isLogged: true,
-                            password: response.data[0].password,
-                        })
-                        .then(()=>{
-                          alert(`Welcome Back ${userData.fullName}`)
-                          setTimeout(()=>{
-                            history('/Theater');    
-                          },200)
-                        })
-                    })
-
-            console.log('Login successful!', userData);
-            // You might want to redirect the user to another page after successful login
+            axios.get(`http://localhost:4000/Theateraccepted/?email=${userData.email}`)
+              .then((response) => {
+                if (response.data.length > 0) {
+                  // Assuming you want to pass the theater data to MyTheatre component
+                  const theaterData = response.data[0];
+                  axios.put(`http://localhost:4000/Register/${userData.id}`, {
+                    fullName: userData.fullName,
+                    email: userData.email,
+                    isLogged: true,
+                    password: userData.password,
+                  }).then(() => {
+                    alert(`Welcome Back ${userData.email}`);
+        
+                    setTimeout(() => {
+                      history(`/MyTheatre`);
+                    }, 200);
+                  });
+                } else {
+                  setErrorMessage('Theater details not found.');
+                }
+              })
+              .catch(() => {
+                setErrorMessage('Error fetching theater details.');
+              });
           } else {
             setErrorMessage('Login failed. Please check your credentials and try again.');
           }
@@ -49,7 +55,6 @@ const SignIn = () => {
         });
     }
   };
-
   return (
     <div className="signin-page" style={{ fontFamily:"Work Sans, sans-serif"}}>
       <div className="signin-container">

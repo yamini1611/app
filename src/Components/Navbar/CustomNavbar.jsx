@@ -116,7 +116,7 @@ const CustomNavbar = () => {
           </Nav.Link>
 
           {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("TO") && (
-            <Nav.Link className="custom-nav-link" href="/Theaterdetails">
+            <Nav.Link className="custom-nav-link" href="/MyTheatre">
               Theater Owner 
             </Nav.Link>
           )}

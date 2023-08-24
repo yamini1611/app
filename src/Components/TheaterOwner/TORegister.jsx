@@ -96,8 +96,10 @@ export const TORegister =() =>
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify(values),
-
+              body: JSON.stringify({
+                ...values, // Spread the existing values
+                status: false, // Add the status field
+              }),
             
             });
     
