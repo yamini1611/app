@@ -84,7 +84,7 @@ const CustomNavbar = () => {
   return (
     <BootstrapNavbar className="custom-navbar sticky-top" expand="lg" id="font">
       <BootstrapNavbar.Brand href="/" className="custom-logo">
-      <img
+        <img
           src={logo}
           width="70"
           height="70"
