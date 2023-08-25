@@ -121,7 +121,7 @@ const CustomNavbar = () => {
             </Nav.Link>
           )}
           {/* Admin Link */}
-          {isLoggedIn && (
+          {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("ad") && (
             <Nav.Link className="custom-nav-link" >
                <Link to="/Admin" id='nlink'></Link>  Admin
             </Nav.Link>
