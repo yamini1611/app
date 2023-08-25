@@ -95,35 +95,35 @@ const CustomNavbar = () => {
       <BootstrapNavbar.Toggle aria-controls="navbar-nav" />
       <BootstrapNavbar.Collapse id="navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link className="custom-nav-link" href="/">
-            Home
+          <Nav.Link className="custom-nav-link" >
+          <Link to="/" id='nlink'>Home</Link>  
           </Nav.Link>
-          <Nav.Link className="custom-nav-link" href="/movies">
-            Movies
+          <Nav.Link className="custom-nav-link">
+          <Link to="/movies" id='nlink'> Movies</Link>
           </Nav.Link>
-          <Nav.Link className="custom-nav-link" href="/ThetreList">
-            Theaters
+          <Nav.Link className="custom-nav-link" >
+          <Link to="/ThetreList" id='nlink'>Theaters</Link>
           </Nav.Link>
-          <Nav.Link className="custom-nav-link" href="/schedule">
-            Contact US
+          <Nav.Link className="custom-nav-link">
+          <Link to="/schedule" id='nlink'>  Contact US </Link>
           </Nav.Link>
-          <Nav.Link className="custom-nav-link" href="/ChooseTickets">
-            SeatRoom
+          <Nav.Link className="custom-nav-link" >
+          <Link to="/ChooseTickets" id='nlink'>  SeatRoom </Link>
           </Nav.Link>
           {/* Payment Link */}
-          <Nav.Link className="custom-nav-link" href="/Next">
-            Payment
+          <Nav.Link className="custom-nav-link" >
+          <Link to="/Next" id='nlink'>  Payment </Link>
           </Nav.Link>
 
           {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("TO") && (
-            <Nav.Link className="custom-nav-link" href="/MyTheatre">
-              Theater Owner 
+            <Nav.Link className="custom-nav-link" >
+               <Link to="/MyTheatre" id='nlink'></Link>  Theater Owner 
             </Nav.Link>
           )}
           {/* Admin Link */}
           {isLoggedIn && (
-            <Nav.Link className="custom-nav-link" href="/Admin">
-              Admin
+            <Nav.Link className="custom-nav-link" >
+               <Link to="/Admin" id='nlink'></Link>  Admin
             </Nav.Link>
           )}
         </Nav>
