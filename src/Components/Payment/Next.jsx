@@ -6,9 +6,12 @@ import GooglePayButton from '@google-pay/button-react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import axios from 'axios';
+import Paypal from './Paypal';
+
 
 const Next = () => {
     const Navigate = useNavigate();
+    const [checkout, setCheckOut] = useState(true);
     const [Payment, SetPayment] = useState("");
     const [name, SetName] = useState('');
     const [cardnumber, SetCardnumber] = useState('');
@@ -101,8 +104,10 @@ const Next = () => {
                         SetCardnumber("");
                         SetExpiry("");
                         SetCvv("");
+
                     }
                 })
+
                 .catch((error) => {
                     console.error("Error during registration:", error);
                 });
@@ -204,6 +209,18 @@ const Next = () => {
                                 buttonColor="white"
                                 buttonType="Pay"
                             />
+                            OR
+                            {checkout ? (
+                                <Paypal />
+                            ) : (
+                                <button
+                                    onClick={() => {
+                                        setCheckOut(true);
+                                    }}
+                                >
+                                    Checkout
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -225,9 +242,9 @@ const Summary = (props) => {
             // setTicketCost(60);
             return ("Budget");
         }
-        
+
     }
-    const ticketCost=()=>{
+    const ticketCost = () => {
         if (array[0][0] === "E") {
             // setTicketCost(190);
             return (190*array.length)
@@ -244,59 +261,60 @@ let year = date.getFullYear();
 let currentDate = `${day}-${month}-${year}`;
     return (
         <>
-        {props &&(
-            <div class="container-fluid">
-                <div class="container  h-100">
-                    <div class="row d-flex justify-content-center align-items-center h-100 text-center">
-                        <div class="col">
-                            {/* <!-- Button trigger modal --> */}
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal1" style={{}}>
-                                Payment Summary
-                            </button>
+            {props && (
+                <div class="container-fluid">
+                    <div class="container  h-100">
+                        <div class="row d-flex justify-content-center align-items-center h-100 text-center">
+                            <div class="col">
+                                {/* <!-- Button trigger modal --> */}
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal1" style={{}}>
+                                    Payment Summary
+                                </button>
 
-                            {/* <!-- Modal --> */}
-                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content text-white" style={{ backgroundColor: '#090633fd', borderRadius: '10px' }}>
-                                        <div class="modal-header border-bottom-0">
-                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body text-start px-4 pt-0 pb-4">
-                                            <div class="text-center">
-                                                <h5 class="mb-3 fs-3">BOOKING STATUS</h5>
-                                                <h5 class="mb-3">Seats Locked</h5>
+                                {/* <!-- Modal --> */}
+                                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content text-white" style={{ backgroundColor: '#090633fd', borderRadius: '10px' }}>
+                                            <div class="modal-header border-bottom-0">
+                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
                                             </div>
-                                            <div class="ms-2">
+                                            <div class="modal-body text-start px-4 pt-0 pb-4">
                                                 <div class="text-center">
-                                                    <p>Movie Name : {props.md.Name}</p>
+                                                    <h5 class="mb-3 fs-3">BOOKING STATUS</h5>
+                                                    <h5 class="mb-5">Seats Locked</h5>
                                                 </div>
-                                            </div>
-                                            <div class="row justify-content-center">
-                                                <div class="col-md-4 text-center">
-                                                    <p class="lead fw-bold fs-6">Booking Date: {currentDate}</p>
+                                                <div class="ms-2">
+                                                    <div class="text-center">
+                                                        <p>Movie Name : {props.md.Name}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-4 text-center">
+                                                        <p class="lead fw-bold fs-6">{currentDate}</p>
+                                                    </div>
+                                                </div>
 
-                                            <p className=" ms-2 fs-5 d-flex justify-content-around">Seatings</p>
-                                            <div class="ms-2">
-                                                <div class="text-center">
-                                                    <p>{seatName()}: {array.join(",")}</p>
+                                                <p className=" ms-2 fs-5 d-flex justify-content-around">Seatings</p>
+                                                <div class="ms-2">
+                                                    <div class="text-center">
+                                                        <p>{seatName()}: {array.join(",")}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="d-flex justify-content-around ms-2 fs-4">
-                                                <p>Total : ₹ {ticketCost()}</p>
-                                            </div>
-
-                                            <div className="d-flex justify-content-center">
-                                                <div class="col-md-2">
-                                                    <p className="ms-2"> <i class="fas fa-phone fa-lg "></i> 6382830212</p>
+                                                <div class="d-flex justify-content-around ms-2 fs-4">
+                                                    <p>Total : ₹ {ticketCost()}</p>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <p className="ms-2"><i class="fas fa-envelope fa-lg"></i> Queries?</p>
+
+                                                <div className="d-flex justify-content-center">
+                                                    <div class="col-md-2">
+                                                        <p className="ms-2"> <i class="fas fa-phone fa-lg "></i>6382830212</p>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <p className="ms-2"><i class="fas fa-envelope fa-lg"></i>Queries?</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -306,7 +324,6 @@ let currentDate = `${day}-${month}-${year}`;
                         </div>
                     </div>
                 </div>
-            </div>
             )}
         </>
     )
