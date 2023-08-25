@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Card, CardImg } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import '../styles/Homepage.css';
-// import card1 from '../Assets/Images/card1.png';
-// import card2 from '../Assets/Images/card2.png';
-// import card3 from '../Assets/Images/card3.png';
+import card1 from '../Assets/Images/card1.png';
+import card2 from '../Assets/Images/card2.png';
+import card3 from '../Assets/Images/card3.png';
 
 const MovieList = () => {
     const [card, setCard] = useState([]);
@@ -81,6 +81,31 @@ const MovieList = () => {
           ></span>
           <span className="visually-hidden">Next</span>
         </button>
+      </div>
+
+      <h2 id="bh" className="p-5">
+        Unlock Your Cinema Adventure: Where Every Click Becomes a Front-Row Seat
+        to Excitement!
+      </h2>
+
+      <div className="row">
+        <div className="col">
+          <Card className="movie-card mb-2">
+            <CardImg src={card1}></CardImg>
+          </Card>
+        </div>
+
+        <div className="col">
+          <Card className="movie-card mb-2">
+            <CardImg src={card2}></CardImg>
+          </Card>
+        </div>
+
+        <div className="col">
+          <Card className="movie-card mb-2">
+            <CardImg src={card3}></CardImg>
+          </Card>
+        </div>
       </div>
 
             <strong><h2 id='title' className="mt-2">Recommended Movies</h2></strong>
