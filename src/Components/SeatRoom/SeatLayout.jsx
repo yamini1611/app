@@ -29,7 +29,7 @@ function Seater(props) {
   const movieName = useSelector(selectBookings);
   const dispatch = useDispatch();
   const {id} = useParams();
-
+console.log(count)
 
 
 dispatch(setBookings(parseInt(id)))
@@ -62,7 +62,8 @@ dispatch(setBookings(parseInt(id)))
                
                 dispatch(increment());
                 dispatch((addItem(props.seatID)))
-              console.log(count.count)
+              console.log(count.count);
+
 
               } else {
                 dispatch(decrement());

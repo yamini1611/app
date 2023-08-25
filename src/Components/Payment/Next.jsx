@@ -30,7 +30,7 @@ const Next = () => {
     }
 
     const handleClick = () => {
-        Navigate("/");
+        Navigate("/Choosenmovie");
     }
 
     useEffect(() => {
@@ -230,13 +230,18 @@ const Summary = (props) => {
     const ticketCost=()=>{
         if (array[0][0] === "E") {
             // setTicketCost(190);
-            return (190)
+            return (190*array.length)
         } else {
             // setTicketCost(60);
             return (60);
         }
     }
-    const currentTime = new Date().toLocaleString();
+const date = new Date();
+
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+let currentDate = `${day}-${month}-${year}`;
     return (
         <>
         {props &&(
@@ -262,7 +267,7 @@ const Summary = (props) => {
                                         <div class="modal-body text-start px-4 pt-0 pb-4">
                                             <div class="text-center">
                                                 <h5 class="mb-3 fs-3">BOOKING STATUS</h5>
-                                                <h5 class="mb-5">Seats Locked</h5>
+                                                <h5 class="mb-3">Seats Locked</h5>
                                             </div>
                                             <div class="ms-2">
                                                 <div class="text-center">
@@ -271,7 +276,7 @@ const Summary = (props) => {
                                             </div>
                                             <div class="row justify-content-center">
                                                 <div class="col-md-4 text-center">
-                                                    <p class="lead fw-bold fs-6">{currentTime}</p>
+                                                    <p class="lead fw-bold fs-6">Booking Date: {currentDate}</p>
                                                 </div>
                                             </div>
 
@@ -288,10 +293,10 @@ const Summary = (props) => {
 
                                             <div className="d-flex justify-content-center">
                                                 <div class="col-md-2">
-                                                    <p className="ms-2"> <i class="fas fa-phone fa-lg "></i>6382830212</p>
+                                                    <p className="ms-2"> <i class="fas fa-phone fa-lg "></i> 6382830212</p>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <p className="ms-2"><i class="fas fa-envelope fa-lg"></i>Queries?</p>
+                                                    <p className="ms-2"><i class="fas fa-envelope fa-lg"></i> Queries?</p>
                                                 </div>
                                             </div>
                                         </div>

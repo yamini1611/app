@@ -34,6 +34,8 @@ import { ChooseMalayalmmovie } from "./Components/Thetres/ChoosenMovie";
 import BookingSummary from "./Components/BookingSummary/BookingSummary";
 import AdminPage from "./Components/Admin/AdminPage";
 import MyTheatre from "./Components/TheaterOwner/MyTheatre";
+
+
 function App() {
   return (
     <div className="App">
