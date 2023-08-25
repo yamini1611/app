@@ -105,11 +105,13 @@ export const ChooseHindiMovie =() =>
     const [theaterData, setTheaterData] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState("");
     const [showChooseTickets, setShowChooseTickets] = useState(true);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         fetch(`http://localhost:4000/HindiMovies/${id}`)
             .then((response) => response.json())
             .then((data) => setHindi(data))
+            .then(()=>dispatch(setMovieCategory("HindiMovies")))
             .catch((error) => console.error("Error fetching data:", error));
     }, [])
 
@@ -192,11 +194,13 @@ export const ChooseTelugumovie =() =>
     const [theaterData, setTheaterData] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState("");
     const [showChooseTickets, setShowChooseTickets] = useState(true);
-
+    const dispatch = useDispatch();
     useEffect(() => {
         fetch(`http://localhost:4000/TeluguMovies/${id}`)
             .then((response) => response.json())
             .then((data) => setTelugu(data))
+            .then(()=>dispatch(setMovieCategory("TeluguMovies")))
+
             .catch((error) => console.error("Error fetching data:", error));
     }, [])
 
