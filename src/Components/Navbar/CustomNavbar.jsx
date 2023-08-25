@@ -117,13 +117,13 @@ const CustomNavbar = () => {
 
           {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("TO") && (
             <Nav.Link className="custom-nav-link" >
-               <Link to="/MyTheatre" id='nlink'></Link>  Theater Owner 
+               <Link to="/MyTheatre" id='nlink'> Theater Owner </Link> 
             </Nav.Link>
           )}
           {/* Admin Link */}
           {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("ad") && (
             <Nav.Link className="custom-nav-link" >
-               <Link to="/Admin" id='nlink'></Link>  Admin
+               <Link to="/Admin" id='nlink'>  Admin</Link>
             </Nav.Link>
           )}
         </Nav>
