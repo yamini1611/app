@@ -55,7 +55,7 @@ export const TORegister =() =>
         },
         validationSchema: Yup.object({
           theaterName: Yup.string().required('Theater Name is required'),
-          location: Yup.string().required('Location is required'),
+          location: Yup.string().required('Location is required').length(8,'Specify Full Address'),
           ticketRange:Yup.string().required('Ticket Range is required'),
           ticketPrice:Yup.string().required('Ticket Price is Required'),
           capacity:Yup.string().required('capacity is required'),

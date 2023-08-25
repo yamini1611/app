@@ -330,7 +330,7 @@ export const Tamildisplay = () => {
 
     const divStyle = {
         width: "100%",
-        height: "550px", // Set the desired height
+        height: "600px", // Set the desired height
         backgroundSize: "cover",
         padding: "50px",
         backgroundPosition: "fixed",
@@ -545,7 +545,7 @@ export const Malayalamdisplay = () => {
     }
     const divStyle = {
         width: "100%",
-        height: "500px", // Set the desired height
+        height: "600px", // Set the desired height
         backgroundSize: "cover",
         padding: "50px",
         backgroundPosition: "fixed",
@@ -823,7 +823,7 @@ export const Telugudisplay = () => {
     }
     const divStyle = {
         width: "100%",
-        height: "500px", // Set the desired height
+        height: "600px", // Set the desired height
         backgroundSize: "cover",
         padding: "50px",
         backgroundPosition: "fixed",
@@ -1157,7 +1157,7 @@ export const Hindidisplay = () => {
 
     const divStyle = {
         width: "100%",
-        height: "500px", // Set the desired height
+        height: "600px", 
         backgroundSize: "100%",
         padding: "50px",
         backgroundPosition: "fixed",
@@ -1167,10 +1167,10 @@ export const Hindidisplay = () => {
         <div>
             <div className="pt-2" id='bg' style={divStyle}>
 
-                <div className="container-fluid" id='con'>
-                    <div className="row mt-3 " id='vc'>
-                        <div key={display.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
-                            <Card className="movie-card mb-2">
+                <div className="container-fluid " id='con'>
+                    <div className="row mt-3" id='vc'>
+                        <div key={display.id} className="col-sm-6 col-md-4 col-lg-3 mb-2  p-2">
+                            <Card className="movie-card mb-2 mt-2">
                                 <CardImg src={display.image} id="movie-card" />
                             </Card>
                         </div>

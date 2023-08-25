@@ -30,7 +30,7 @@ const TheatreList = () => {
     <div id="theatre-list" className="theatre-list-container">
       <h1 className="heading">Theatres</h1>
       <div className="label-container">
-        {/* Location selection dropdown */}
+      {/* Location selection dropdown */}
       </div>
       <div className="theatre-cards">
         {filteredTheaters.map((theater, index) => (
