@@ -25,7 +25,7 @@ const MovieList = () => {
 
     return (
         <div className="container mb-5" id='hp'>
-           <div
+            <div
         id="carouselExampleInterval"
         className="carousel slide mt-3"
         data-bs-ride="carousel"
@@ -89,10 +89,9 @@ const MovieList = () => {
                 {card.map((movies) => (
                     <div key={movies.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
                         <Link to={`/movie/${movies.id}`} className="card-link" style={{ textDecoration: "none", color: "black" }}>
-                            <Link >
-            <Card className="movie-card mb-2" >
+                            <Card className="movie-card mb-2" >
                                 <CardImg src={movies.image} id="movie-card"></CardImg>
-                            </Card></Link>
+                            </Card>
                             <strong><h5 id='name'>{movies.Name}</h5></strong>
                         </Link>
                     </div>
