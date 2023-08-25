@@ -89,9 +89,10 @@ const MovieList = () => {
                 {card.map((movies) => (
                     <div key={movies.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
                         <Link to={`/movie/${movies.id}`} className="card-link" style={{ textDecoration: "none", color: "black" }}>
-                            <Card className="movie-card mb-2" >
+                            <Link >
+            <Card className="movie-card mb-2" >
                                 <CardImg src={movies.image} id="movie-card"></CardImg>
-                            </Card>
+                            </Card></Link>
                             <strong><h5 id='name'>{movies.Name}</h5></strong>
                         </Link>
                     </div>

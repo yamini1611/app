@@ -5,7 +5,7 @@ const counterSlice = createSlice({
     initialState: {
         count: 0,
         bookings: 0,
-        movieCategory:""
+        movieCategory: ""
     },
     reducers: {
         increment: (state) => {
@@ -20,8 +20,8 @@ const counterSlice = createSlice({
         setBookings: (state, action) => {
             state.bookings = action.payload;
         },
-        setMovieCategory:(state,action)=>{
-            state.movieCategory=action.payload;
+        setMovieCategory: (state, action) => {
+            state.movieCategory = action.payload;
         }
 
 
@@ -30,6 +30,28 @@ const counterSlice = createSlice({
 
 
 
+
+
+// export const counterSlice2 = createSlice({
+//     name: "allDetails",
+//     initialState: {},
+//     reducers: {
+//         setDetails: (state, action) => {
+//             state = action.payload
+//         }
+
+//     }
+// })
+
+
+export const counterSlice2 = (state = {}, action) => {
+    switch (action.type){
+            case "alldetails":
+                return action.payload
+        default:
+            return state;
+    }
+}
 
 
 export const arrayReducer = (state = [], action) => {
@@ -48,7 +70,7 @@ export const arrayReducer = (state = [], action) => {
 
 
 
-export const { setBookings ,setMovieCategory } = counterSlice.actions;
+export const { setBookings, setMovieCategory } = counterSlice.actions;
 
 export const { increment, decrement, reset } = counterSlice.actions;
 
