@@ -96,34 +96,34 @@ const CustomNavbar = () => {
       <BootstrapNavbar.Collapse id="navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link className="custom-nav-link" >
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}> Home</Link>
-          </Nav.Link>
-          <Nav.Link className="custom-nav-link" >
-            <Link to="/movies" style={{ textDecoration: "none", color: "white" }}>Movies</Link>
-          </Nav.Link>
-          <Nav.Link className="custom-nav-link" >
-          <Link to="/ThetreList" style={{textDecoration:"none",color:"white"}}> Theaters </Link>
+          <Link to="/" id='nlink'>Home</Link>  
           </Nav.Link>
           <Nav.Link className="custom-nav-link">
-          <Link to="/schedule" style={{textDecoration:"none",color:"white"}}> Contact US </Link>
+          <Link to="/movies" id='nlink'> Movies</Link>
           </Nav.Link>
           <Nav.Link className="custom-nav-link" >
-          <Link to="/ChooseTickets" style={{textDecoration:"none",color:"white"}}> SeatRoom </Link>
+          <Link to="/ThetreList" id='nlink'>Theaters</Link>
+          </Nav.Link>
+          <Nav.Link className="custom-nav-link">
+          <Link to="/schedule" id='nlink'>  Contact US </Link>
+          </Nav.Link>
+          <Nav.Link className="custom-nav-link" >
+          <Link to="/ChooseTickets" id='nlink'>  SeatRoom </Link>
           </Nav.Link>
           {/* Payment Link */}
-          <Nav.Link className="custom-nav-link">
-          <Link to="/Next" style={{textDecoration:"none",color:"white"}}> Payment </Link>
+          <Nav.Link className="custom-nav-link" >
+          <Link to="/Next" id='nlink'>  Payment </Link>
           </Nav.Link>
 
           {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("TO") && (
             <Nav.Link className="custom-nav-link" >
-             <Link to="/Theaterdetails" style={{textDecoration:"none",color:"white"}}>  Theater Owner </Link>
-          </Nav.Link>
+               <Link to="/MyTheatre" id='nlink'></Link>  Theater Owner 
+            </Nav.Link>
           )}
           {/* Admin Link */}
           {isLoggedIn && (
-            <Nav.Link className="custom-nav-link" href="/Admin">
-            <Link to="/Admin" style={{textDecoration:"none",color:"white"}}>    Admin  </Link>
+            <Nav.Link className="custom-nav-link" >
+               <Link to="/Admin" id='nlink'></Link>  Admin
             </Nav.Link>
           )}
         </Nav>

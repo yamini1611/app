@@ -4,7 +4,7 @@ import "../styles/ThetreList.css";
 import { Link } from "react-router-dom";
 
 const SelectedTheaters = () => {
-  const [selectedLocation, setSelectedLocation] = useState("chennai");
+  const [selectedLocation, setSelectedLocation] = useState(["chennai" ,"mumbai" ,"hydrabad","cochin"]);
   const [selectedMovie, setSelectedMovie] = useState("");
   const [theaterData, setTheaterData] = useState([]);
 
