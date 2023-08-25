@@ -114,16 +114,19 @@ const CustomNavbar = () => {
           <Nav.Link className="custom-nav-link" >
           <Link to="/Next" id='nlink'>  Payment </Link>
           </Nav.Link>
+          <Nav.Link className="custom-nav-link" href="/BookingSummary">
+            Ticket
+          </Nav.Link>
 
           {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("TO") && (
             <Nav.Link className="custom-nav-link" >
-               <Link to="/MyTheatre" id='nlink'></Link>  Theater Owner 
+               <Link to="/MyTheatre" id='nlink'> Theater Owner </Link> 
             </Nav.Link>
           )}
           {/* Admin Link */}
-          {isLoggedIn && (
+          {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("ad") && (
             <Nav.Link className="custom-nav-link" >
-               <Link to="/Admin" id='nlink'></Link>  Admin
+               <Link to="/Admin" id='nlink'>  Admin</Link>
             </Nav.Link>
           )}
         </Nav>
@@ -148,7 +151,7 @@ const CustomNavbar = () => {
 
         {/* Logout Link */}
         {isLoggedIn && (
-          <Link to="/logout" onClick={handleLogOut} className="custom-register text-decoration-none" id="logout-btn">
+          <Link to="/signin" onClick={handleLogOut} className="custom-register text-decoration-none" id="logout-btn">
             Logout  <i className="fa-solid fa-right-from-bracket"></i>
           </Link>
         )}
