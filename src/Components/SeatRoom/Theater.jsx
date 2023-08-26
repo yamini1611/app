@@ -57,7 +57,7 @@ const Theater = (props) => {
 
   return (
     <>
-      <div>
+      <div style={{fontFamily: "Work Sans , sansserif"}}>
         <Divider className="text-center  m-4 col-lg-5 mx-auto p-1">
           <h6 className="text-secondary mt-2"> E l i t e </h6>
         </Divider>
@@ -77,8 +77,8 @@ const Theater = (props) => {
         {count.count === props.noOfSeats && (
           <Card className="mx-auto sticky-bottom">
             <div className="row container mx-auto">
-              <Link to="/Next">
-                <Button className="container" label={`Payment Rs ${ticketCost}`} raised />
+              <Link to="/Next" >
+                <Button className="container" style={{fontFamily: "Work Sans , sansserif"}} label={`Payment Rs ${ticketCost}`} raised />
               </Link>
             </div>
           </Card>
