@@ -5,6 +5,8 @@ import logo from "../Assets/Images/logo1.gif";
 import "../styles/CustomNavbar.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CustomNavbar = () => {
   var logOutDetails;
@@ -28,6 +30,7 @@ const CustomNavbar = () => {
               if (response.data.length > 0) {
                 setLoggedInUser(response.data[0]);
                 setIsLoggedIn(true);
+
               } else {
                 setIsLoggedIn(false);
               }
@@ -44,6 +47,7 @@ const CustomNavbar = () => {
     axios.get(`http://localhost:4000/Register/?isLogged=true`)
       .then((response) => {
         logOutDetails = response.data[0];
+        console.log("Inside the handlelogOut")
         if (response.data.length > 0) {
           axios.put(`http://localhost:4000/Register/${logOutDetails.id}`, {
             fullName: logOutDetails.fullName,
@@ -51,10 +55,12 @@ const CustomNavbar = () => {
             isLogged: false,
             password: logOutDetails.password,
           }).then(() => {
-            alert("Logged Out Successfully!");
+            toast.success("Logged Out Successfully!");
+            console.log(response.data)
+
           }).then(() => {
             setTimeout(() => {
-              window.location.href = "/Theater";
+              window.location.href = "/";
             }, 0);
           })
         } else {
@@ -70,7 +76,7 @@ const CustomNavbar = () => {
                 alert("Logged Out Successfully!");
               }).then(() => {
                 setTimeout(() => {
-                  window.location.href = "/Theater";
+                  window.location.href = "/";
                 }, 0);
               })
             })
@@ -156,6 +162,7 @@ const CustomNavbar = () => {
           </Link>
         )}
       </BootstrapNavbar.Collapse>
+      <ToastContainer/>
     </BootstrapNavbar>
   );
 };
