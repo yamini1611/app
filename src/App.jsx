@@ -14,6 +14,7 @@ import ChooseTickets from "./Components/SeatRoom/ChooseTickets";
 import Movie from "./Components/Homepage/Movie";
 import Next from "./Components/Payment/Next";
 import Footer from "./Components/Footer/Footer";
+import Paypal from './Components/Payment/Paypal';
 import Ticket from "./Components/Payment/Ticket";
 import { TORegister } from "./Components/TheaterOwner/TORegister";
 import Trailer from "./Components/Homepage/Trailer";
@@ -39,12 +40,12 @@ import MyTheatre from "./Components/TheaterOwner/MyTheatre";
 function App() {
 
   return (
+
     <div className="App">
+
       <BrowserRouter>
         <CustomNavbar />
-
         <Routes>
-
           <Route path="/" element={<MovieList />} />
           <Route path="/schedule" element={<ContactUs />} />
           <Route path="/TORegister" element={<TORegister />} />
@@ -73,8 +74,8 @@ function App() {
           <Route path="/Next" element={<Next />} />
           <Route path="/Ticket" element={<Ticket />} />
           <Route path="/Admin" element={<AdminPage />} />
-          <Route path="/MyTheatre" element={<MyTheatre />}/>
-          
+          <Route path="/MyTheatre" element={<MyTheatre />} />
+
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
         <Footer />

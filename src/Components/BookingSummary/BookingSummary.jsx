@@ -86,7 +86,7 @@ useEffect(()=>{
 		</tr>
 		<tr>
 			<td class="bigger">{tickDetails.seatCategory}</td>
-			<td class="bigger">{tickDetails.seatings.join(",")}</td>
+			{/* <td class="bigger">{tickDetails.seatings.join(",")}</td> */}
 		</tr>
 	</table>
 	<table>
