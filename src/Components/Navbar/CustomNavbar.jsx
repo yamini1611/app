@@ -73,9 +73,10 @@ const CustomNavbar = () => {
                 isLogged: false,
                 image: logOutDetails.image,
               }).then(() => {
-                alert("Logged Out Successfully!");
+                toast.success("Logged Out Successfully!");
               }).then(() => {
                 setTimeout(() => {
+                  setInterval(2000);
                   window.location.href = "/";
                 }, 0);
               })
@@ -102,37 +103,29 @@ const CustomNavbar = () => {
       <BootstrapNavbar.Collapse id="navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link className="custom-nav-link" >
-          <Link to="/" id='nlink'>Home</Link>  
+            <Link to="/" id='nlink'>Home</Link>
           </Nav.Link>
           <Nav.Link className="custom-nav-link">
-          <Link to="/movies" id='nlink'> Movies</Link>
+            <Link to="/movies" id='nlink'> Movies</Link>
           </Nav.Link>
           <Nav.Link className="custom-nav-link" >
-          <Link to="/ThetreList" id='nlink'>Theaters</Link>
+            <Link to="/ThetreList" id='nlink'>Theaters</Link>
           </Nav.Link>
           <Nav.Link className="custom-nav-link">
-          <Link to="/schedule" id='nlink'>  Contact US </Link>
+            <Link to="/schedule" id='nlink'>  Contact US </Link>
           </Nav.Link>
-          <Nav.Link className="custom-nav-link" >
-          <Link to="/ChooseTickets" id='nlink'>  SeatRoom </Link>
-          </Nav.Link>
-          {/* Payment Link */}
-          <Nav.Link className="custom-nav-link" >
-          <Link to="/Next" id='nlink'>  Payment </Link>
-          </Nav.Link>
-          <Nav.Link className="custom-nav-link" href="/BookingSummary">
-            Ticket
-          </Nav.Link>
+
+          
 
           {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("TO") && (
             <Nav.Link className="custom-nav-link" >
-               <Link to="/MyTheatre" id='nlink'> Theater Owner </Link> 
+              <Link to="/MyTheatre" id='nlink'> Theater Owner </Link>
             </Nav.Link>
           )}
           {/* Admin Link */}
           {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("ad") && (
             <Nav.Link className="custom-nav-link" >
-               <Link to="/Admin" id='nlink'>  Admin</Link>
+              <Link to="/Admin" id='nlink'>  Admin</Link>
             </Nav.Link>
           )}
         </Nav>
@@ -162,7 +155,7 @@ const CustomNavbar = () => {
           </Link>
         )}
       </BootstrapNavbar.Collapse>
-      <ToastContainer/>
+      <ToastContainer />
     </BootstrapNavbar>
   );
 };

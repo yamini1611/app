@@ -20,9 +20,11 @@ const Movie = () => {
     const [Tamil, setTamil] = useState([]);
     const [Telugu, setTelugu] = useState([]);
     const [Malayalam, setMalayalam] = useState([]);
+    const [chooseMovie, setChooseMovie] = useState([""]);
     const [selectedLocation, setSelectedLocation] = useState("");
     const [selectedLanguage, setSelectedLanguage] = useState("");
     const [reviews, setReviews] = useState([]);
+    var count;
 
 
     useEffect(() => {
@@ -46,6 +48,8 @@ const Movie = () => {
             "http://localhost:4000/MalayalamMovies"
         );
         setMalayalam(response4.data);
+
+
     };
 
     const filteredMovies = (language, location) => {
@@ -65,7 +69,10 @@ const Movie = () => {
                 filteredByLocation = Malayalam;
                 break;
             default:
-                filteredByLocation = [...Tamil, ...hindi, ...Telugu, ...Malayalam];
+
+                count = 1
+                filteredByLocation = [...chooseMovie];
+
                 break;
         }
 
@@ -105,11 +112,12 @@ const Movie = () => {
 
     const renderMovieCards = (movies) => {
         const filteredMoviesByLanguage = selectedLanguage
-            ? movies.filter(movie => movie.language === selectedLanguage)
-            : movies;
+        ? movies.filter((movie) => movie.language === selectedLanguage)
+        : movies;
+
 
         return filteredMoviesByLanguage.map((movie) => (
-            <div key={movie.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
+            <div key={movie.id} className="col-sm-6 col-md-4 col-lg-3 mb-2 p-3">
                 <Link
                     to={getMovieLink(movie.language, selectedLocation, movie.id)}
                     className="card-link"
@@ -123,8 +131,13 @@ const Movie = () => {
                         return true;
                     }}
                 >
+                    {count === 1 && (
+                        <h1 className="p-5" style={{ fontFamily: "Work Sans, sans-serif ", width: 800 }}>Choose location first</h1>
+                    )}
                     <Card className="movie-card mb-2">
+
                         <CardImg src={movie.image} id="movie-card"></CardImg>
+
                     </Card>
                     <strong>
                         <h5 id="name">{movie.Name}</h5>
@@ -137,13 +150,15 @@ const Movie = () => {
 
 
     const filteredMovieCards = filteredMovies(selectedLanguage, selectedLocation);
+    console.log("Displayed Movies:", filteredMovieCards);
 
 
     return (
         <div className="container">
             <div>
                 <div className="row">
-                    <div className="col-2 mt-2   ">
+
+                    <div className="col-4 mt-2   ">
                         <button id='span' data-bs-toggle="modal" className='btn btn-outline-dark justify-content-end ' data-bs-target="#location" >Choose  Location </button>
                         <div class="modal fade" id="location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg " style={{ fontFamily: "Work Sans, sans-serif" }}>
@@ -206,8 +221,23 @@ const Movie = () => {
                                             </button>
                                         </div>
                                     </div>
-
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-5 ms-5 mt-2">
+                        <div className="row d-flex ">
+                            <div className="col-10">
+                                <input
+                                    className="form-control text-dark ms-3"
+                                    type="text"
+                                    name="search"
+                                    placeholder="Enter Movie Name here"
+                                />
+
+                            </div>
+                            <div className="col-2 ">
+                                <button type="button" className="btn btn-danger" style={{ borderRadius: 25 }}><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </div>
                     </div>
@@ -217,6 +247,7 @@ const Movie = () => {
             </div>
 
             {/* Render filtered movie cards */}
+
             <strong>
                 <h2 id="title" className="mt-2">
                     {selectedLanguage} Movies
@@ -398,7 +429,7 @@ export const Tamildisplay = () => {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-2">
+                                    <div className="col-5">
                                         <h2 style={{ fontSize: 15 }}>{Tamil.Quality}</h2>
 
                                     </div>
@@ -423,7 +454,7 @@ export const Tamildisplay = () => {
                                         </button>
                                     </div>
                                     <div className="col-5">
-                                    <Link to={`/TamilTrailer/${Tamil.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
+                                        <Link to={`/TamilTrailer/${Tamil.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
 
                                     </div>
                                     {isModalOpen && (
@@ -692,7 +723,7 @@ export const Malayalamdisplay = () => {
                                         </button>
                                     </div>
                                     <div className="col-5">
-                                    <Link to={`/MalayalamTrailer/${Malayalam.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
+                                        <Link to={`/MalayalamTrailer/${Malayalam.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
                                     </div>
                                     {isModalOpen && (
                                         <div className="modal fade show" id="bookingModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ display: "block" }}>
@@ -1090,11 +1121,11 @@ export const Hindidisplay = () => {
 
     useEffect(() => {
         if (selectedDate) {
-           
+
             window.location.href = `/Choosenmovie/${display.id}?date=${selectedDate.toISOString()}`;
         }
     }, [selectedDate]);
-    
+
     const getRating = async () => {
         await axios
             .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
@@ -1162,7 +1193,7 @@ export const Hindidisplay = () => {
 
     const divStyle = {
         width: "100%",
-        height: "600px", 
+        height: "600px",
         backgroundSize: "100%",
         padding: "50px",
         backgroundPosition: "fixed",
