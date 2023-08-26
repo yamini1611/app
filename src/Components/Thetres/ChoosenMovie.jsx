@@ -74,7 +74,6 @@ return(
                <p>
                  <strong>Show Timings:</strong>
                </p>
-               {/* {/ <Link to="/ChooseTickets" className="text-decoration-none"> /} */}
               
                  <ul className="show-list no-underline">
                    <li onClick={()=>{handleShow(Tamil.id)}}>{theater.show1}</li>
@@ -92,10 +91,7 @@ return(
      </div>
      </div>
   ):(<ChooseTickets movieId={Tamil.id}/>)}
-   
-
-
-    </>
+  </>
 )
 }
 
@@ -108,11 +104,14 @@ export const ChooseHindiMovie =() =>
     const { id } = useParams();
     const [theaterData, setTheaterData] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState("");
+    const [showChooseTickets, setShowChooseTickets] = useState(true);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         fetch(`http://localhost:4000/HindiMovies/${id}`)
             .then((response) => response.json())
             .then((data) => setHindi(data))
+            .then(()=>dispatch(setMovieCategory("HindiMovies")))
             .catch((error) => console.error("Error fetching data:", error));
     }, [])
 
@@ -135,9 +134,14 @@ export const ChooseHindiMovie =() =>
         );
       });
       
+      const handleShow=(id)=>{
+        setShowChooseTickets(false)
+        
+      }
 
       
 return(
+  <>{showChooseTickets ? (
     <div id='iddiv'>
    <div id="theatre-list" className="theatre-list-container">
       <h1 className="heading">{Hindi.Name}</h1>
@@ -162,11 +166,11 @@ return(
               <Link to="/ChooseTickets" className="text-decoration-none">
              
                 <ul className="show-list no-underline">
-                  <li>{theater.show1}</li>
-                  <li>{theater.show2}</li>
-                  <li>{theater.show3}</li>
-                  <li>{theater.show4}</li>
-                  <li>{theater.show5}</li>
+                  <li  onClick={()=>{handleShow(Hindi.id)}}>{theater.show1}</li>
+                  <li  onClick={()=>{handleShow()}}>{theater.show2}</li>
+                  <li  onClick={()=>{handleShow()}}>{theater.show3}</li>
+                  <li  onClick={()=>{handleShow()}}>{theater.show4}</li>
+                  <li  onClick={()=>{handleShow()}}>{theater.show5}</li>
                 </ul>
               </Link>
             </div>
@@ -176,6 +180,8 @@ return(
     )}
     </div>
     </div>
+     ):(<ChooseTickets movieId={Hindi.id}/>)}
+     </>
 )
 
 }
@@ -187,11 +193,14 @@ export const ChooseTelugumovie =() =>
     const { id } = useParams();
     const [theaterData, setTheaterData] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState("");
-
+    const [showChooseTickets, setShowChooseTickets] = useState(true);
+    const dispatch = useDispatch();
     useEffect(() => {
         fetch(`http://localhost:4000/TeluguMovies/${id}`)
             .then((response) => response.json())
             .then((data) => setTelugu(data))
+            .then(()=>dispatch(setMovieCategory("TeluguMovies")))
+
             .catch((error) => console.error("Error fetching data:", error));
     }, [])
 
@@ -214,8 +223,14 @@ export const ChooseTelugumovie =() =>
       });
       
 
-      
-return(
+      const handleShow=(id)=>{
+        setShowChooseTickets(false)
+        
+      }
+
+return (
+  <>{showChooseTickets ? (
+
     <div id='iddiv'>
    <div id="theatre-list" className="theatre-list-container">
       <h1 className="heading">{Telugu.Name}</h1>
@@ -240,11 +255,11 @@ return(
               <Link to="/ChooseTickets" className="text-decoration-none">
              
                 <ul className="show-list no-underline">
-                  <li>{theater.show1}</li>
-                  <li>{theater.show2}</li>
-                  <li>{theater.show3}</li>
-                  <li>{theater.show4}</li>
-                  <li>{theater.show5}</li>
+                  <li  onClick={()=>{handleShow(Telugu.id)}}>{theater.show1}</li>
+                  <li  onClick={()=>{handleShow()}}> {theater.show2}</li>
+                  <li  onClick={()=>{handleShow()}}>{theater.show3}</li>
+                  <li  onClick={()=>{handleShow()}}>{theater.show4}</li>
+                  <li  onClick={()=>{handleShow()}}>{theater.show5}</li>
                 </ul>
               </Link>
             </div>
@@ -254,6 +269,8 @@ return(
     )}
     </div>
     </div>
+    ):(<ChooseTickets movieId={Telugu.id}/>)}
+    </>
 )
 }
 
@@ -264,6 +281,7 @@ export const ChooseMalayalmmovie =() =>
     const { id } = useParams();
     const [theaterData, setTheaterData] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState("");
+    const [showChooseTickets, setShowChooseTickets] = useState(true);
 
     useEffect(() => {
         fetch(`http://localhost:4000/MalayalamMovies/${id}`)
@@ -290,9 +308,15 @@ export const ChooseMalayalmmovie =() =>
         );
       });
       
+      const handleShow=(id)=>{
+        setShowChooseTickets(false)
+        
+      }
 
       
 return(
+  <>{showChooseTickets ? (
+
     <div id='iddiv' >
    <div id="theatre-list" className="theatre-list-container">
       <h1 className="heading">{Malayalam.Name}</h1>
@@ -316,11 +340,11 @@ return(
               <Link to="/ChooseTickets" className="text-decoration-none">
              
                 <ul className="show-list no-underline">
-                  <li>{theater.show1}</li>
-                  <li>{theater.show2}</li>
-                  <li>{theater.show3}</li>
-                  <li>{theater.show4}</li>
-                  <li>{theater.show5}</li>
+                  <li  onClick={()=>{handleShow(Malayalam.id)}}>{theater.show1}</li>
+                  <li  onClick={()=>{handleShow()}}>{theater.show2}</li>
+                  <li  onClick={()=>{handleShow()}}>{theater.show3}</li>
+                  <li  onClick={()=>{handleShow()}}>{theater.show4}</li>
+                  <li  onClick={()=>{handleShow()}}> {theater.show5}</li>
                 </ul>
               </Link>
             </div>
@@ -330,5 +354,7 @@ return(
     )}
     </div>
     </div>
+    ):(<ChooseTickets movieId={Malayalam.id}/>)}
+    </>
 )
 }

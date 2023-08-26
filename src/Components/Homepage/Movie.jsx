@@ -36,7 +36,7 @@ const Movie = () => {
 
         const response2 = await axios.get("http://localhost:4000/TamilMovies");
         setTamil(response2.data);
-     
+
         console.log(response2.data)
 
         const response3 = await axios.get("http://localhost:4000/TeluguMovies");
@@ -107,7 +107,7 @@ const Movie = () => {
         const filteredMoviesByLanguage = selectedLanguage
             ? movies.filter(movie => movie.language === selectedLanguage)
             : movies;
-    
+
         return filteredMoviesByLanguage.map((movie) => (
             <div key={movie.id} className="col-sm-6 col-md-4 col-lg-3 mb-2">
                 <Link
@@ -117,7 +117,7 @@ const Movie = () => {
                     onClick={() => {
                         if (!selectedLocation) {
                             toast.error("Please choose a location first!");
-                           
+
                             return false;
                         }
                         return true;
@@ -133,8 +133,8 @@ const Movie = () => {
             </div>
         ));
     };
-    
-    
+
+
 
     const filteredMovieCards = filteredMovies(selectedLanguage, selectedLocation);
 
@@ -144,7 +144,7 @@ const Movie = () => {
             <div>
                 <div className="row">
                     <div className="col-2 mt-2   ">
-                        <button id='span' data-bs-toggle="modal" className='btn btn-outline-dark justify-content-end '  data-bs-target="#location" >Choose  Location </button>
+                        <button id='span' data-bs-toggle="modal" className='btn btn-outline-dark justify-content-end ' data-bs-target="#location" >Choose  Location </button>
                         <div class="modal fade" id="location" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg " style={{ fontFamily: "Work Sans, sans-serif" }}>
                                 <div class="modal-content">
@@ -156,7 +156,7 @@ const Movie = () => {
                                         <div className="col-12 mt-2" style={{ fontFamily: "Work Sans, sans-serif" }}>
                                             {/* Location filter buttons */}
                                             <button
-            
+
                                                 style={{ borderRadius: 0 }}
                                                 className={`btn ${selectedLocation === "Chennai"
                                                     ? "btn-info"
@@ -176,7 +176,7 @@ const Movie = () => {
                                                     }`}
                                                 onClick={() => handleLocationClick("Mumbai")}
                                                 data-bs-dismiss="modal"
-                                            >  <img src={mumbai}  alt="" ></img>
+                                            >  <img src={mumbai} alt="" ></img>
 
                                                 Mumbai
                                             </button>
@@ -190,7 +190,7 @@ const Movie = () => {
                                                 onClick={() => handleLocationClick("Hyderabad")}
                                                 data-bs-dismiss="modal"
                                             >
-                                                <img src={Hydrabad}  alt=''  ></img> Hyderabad
+                                                <img src={Hydrabad} alt=''  ></img> Hyderabad
                                             </button>
                                             <button
 
@@ -199,10 +199,10 @@ const Movie = () => {
                                                     ? "btn-info"
                                                     : "btn-outline-dark"
                                                     }`}
-                                                    data-bs-dismiss="modal"
+                                                data-bs-dismiss="modal"
                                                 onClick={() => handleLocationClick("Cochin",)}
                                             >
-                                                <img src={Cochin}  alt=""></img>Cochin
+                                                <img src={Cochin} alt=""></img>Cochin
                                             </button>
                                         </div>
                                     </div>
@@ -236,7 +236,8 @@ export default Movie;
 
 export const Tamildisplay = () => {
     const [Tamil, settamil] = useState([]);
-
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(null);
     const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([]);
     const { id } = useParams();
@@ -244,6 +245,20 @@ export const Tamildisplay = () => {
     const handleRatingClick = (value) => {
         setRating(value);
     };
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleDateSelect = (date) => {
+        setSelectedDate(date);
+        closeModal();
+    };
+
     useEffect(() => {
         fetch(`http://localhost:4000/TamilMovies/${id}`)
             .then((response) => response.json())
@@ -252,7 +267,7 @@ export const Tamildisplay = () => {
     }, [])
 
     useEffect(() => {
-        
+
         getrating();
 
     }, [])
@@ -261,7 +276,7 @@ export const Tamildisplay = () => {
         setInterval(2000);
         await axios
             .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
-            
+
             .then((response) => {
                 setReviews(response.data);
             })
@@ -279,19 +294,27 @@ export const Tamildisplay = () => {
             rating: rating,
             review: review
         };
-         
+
         await axios.post("http://localhost:4000/ratingreviews", data)
-        
+
             .then((response) => {
                 toast.success("Review submitted:", response.data);
             })
             .catch((error) => {
                 console.error("Error submitting review:", error);
             });
-       
+
         document.querySelector(".input-form").value = "";
         setRating(0);
     };
+
+    useEffect(() => {
+        if (selectedDate) {
+
+            window.location.href = `/Choosenmovie/${Tamil.id}?date=${selectedDate.toISOString()}`;
+        }
+    }, [selectedDate]);
+
     const renderRatingStars = (value) => {
         const starArray = [];
         for (let i = 1; i <= 5; i++) {
@@ -394,9 +417,34 @@ export const Tamildisplay = () => {
                                     <div className="col-2">
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Tamil.Certificate}</h2>
                                     </div>
-                                    <div className="col-6 mt-2 " >
-                                        <Link to={`/Choosenmovie/${Tamil.id}`} >   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
+                                    <div className="col-6 mt-2">
+                                        <button className="btn btn" style={{ backgroundColor: "red", color: "white" }} onClick={openModal}>
+                                            BOOK NOW
+                                        </button>
                                     </div>
+                                    {isModalOpen && (
+                                        <div className="modal fade show" id="bookingModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ display: "block" }}>
+                                            <div className="modal-dialog  modal-lg modal-dialog-centered">
+                                                <div className="modal-content">
+                                                    <div className="modal-header">
+                                                        <h5 className="modal-title" id="exampleModalLabel" style={{ color: "black" }}>Select a Date</h5>
+                                                        <button type="button" className="btn-close" onClick={closeModal} aria-label="Close"></button>
+                                                    </div>
+                                                    <div className="modal-body d-flex justify-content-center">
+                                                        {[0, 1, 2, 3, 4].map((day) => (
+                                                            <div key={day}>
+                                                                <button className="btn btn-light m-1" onClick={() => handleDateSelect(new Date(new Date().getTime() + day * 24 * 60 * 60 * 1000))}>
+                                                                    {new Date(new Date().getTime() + day * 24 * 60 * 60 * 1000).toLocaleDateString()}
+                                                                </button>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+
                                     <Link to={`/TamilTrailer/${Tamil.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
 
                                 </div>
@@ -469,6 +517,8 @@ export const Malayalamdisplay = () => {
     const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([]);
     const { id } = useParams();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(null);
 
     const handleRatingClick = (value) => {
         setRating(value);
@@ -533,6 +583,25 @@ export const Malayalamdisplay = () => {
         }
         return starArray;
     };
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleDateSelect = (date) => {
+        setSelectedDate(date);
+        closeModal();
+    };
+    useEffect(() => {
+        if (selectedDate) {
+            window.location.href = `/ChoosenMalayalammovie/${Malayalam.id}?date=${selectedDate.toISOString()}`;
+        }
+    }, [selectedDate]);
+
     return (
         <div>
             <div className=" pt-2" id='bg' style={divStyle}>
@@ -614,9 +683,34 @@ export const Malayalamdisplay = () => {
                                     <div className="col-2">
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Malayalam.Certificate}</h2>
                                     </div>
-                                    <div className="col-6 mt-2 " >
-                                        <Link to={`/ChoosenMalayalammovie/${Malayalam.id}`}><button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
+                                    <div className="col-6 mt-2">
+                                        <button className="btn btn" style={{ backgroundColor: "red", color: "white" }} onClick={openModal}>
+                                            BOOK NOW
+                                        </button>
                                     </div>
+                                    {isModalOpen && (
+                                        <div className="modal fade show" id="bookingModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ display: "block" }}>
+                                            <div className="modal-dialog modal-lg modal-dialog-centered">
+                                                <div className="modal-content">
+                                                    <div className="modal-header">
+                                                        <h5 className="modal-title" id="exampleModalLabel" style={{ color: "black" }}>Select a Date</h5>
+                                                        <button type="button" className="btn-close" onClick={closeModal} aria-label="Close"></button>
+                                                    </div>
+                                                    <div className="modal-body d-flex justify-content-center">
+                                                        {[0, 1, 2, 3, 4].map((day) => (
+                                                            <div key={day}>
+                                                                <button className="btn btn-light m-1" onClick={() => handleDateSelect(new Date(new Date().getTime() + day * 24 * 60 * 60 * 1000))}>
+                                                                    {new Date(new Date().getTime() + day * 24 * 60 * 60 * 1000).toLocaleDateString()}
+                                                                </button>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+
                                     <Link to={`/MalayalamTrailer/${Malayalam.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
 
 
@@ -689,6 +783,8 @@ export const Telugudisplay = () => {
     const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([]);
     const { id } = useParams();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(null);
 
     const handleRatingClick = (value) => {
         setRating(value);
@@ -699,6 +795,18 @@ export const Telugudisplay = () => {
             .then((data) => setTelugu(data))
             .catch((error) => console.error("Error fetching data:", error));
     }, [])
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleDateSelect = (date) => {
+        setSelectedDate(date);
+        closeModal();
+    };
 
     useEffect(() => {
         getrating();
@@ -752,6 +860,14 @@ export const Telugudisplay = () => {
         }
         return starArray;
     };
+
+    useEffect(() => {
+        if (selectedDate) {
+
+            window.location.href = `/ChoosenTelugumovie/${Telugu.id}?date=${selectedDate.toISOString()}`;
+        }
+    }, [selectedDate]);
+
     return (
         <div>
             <div className=" pt-2" id='bg' style={divStyle} >
@@ -833,9 +949,33 @@ export const Telugudisplay = () => {
                                     <div className="col-2">
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Telugu.Certificate}</h2>
                                     </div>
-                                    <div className="col-6 mt-2 " >
-                                        <Link to={`/ChoosenTelugumovie/${Telugu.id}`}>   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
+                                    <div className="col-6 mt-2">
+                                        <button className="btn btn" style={{ backgroundColor: "red", color: "white" }} onClick={openModal}>
+                                            BOOK NOW
+                                        </button>
                                     </div>
+                                    {isModalOpen && (
+                                        <div className="modal fade show" id="bookingModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ display: "block" }}>
+                                            <div className="modal-dialog modal-lg modal-dialog-centered">
+                                                <div className="modal-content">
+                                                    <div className="modal-header">
+                                                        <h5 className="modal-title" id="exampleModalLabel" style={{ color: "black" }}>Select a Date</h5>
+                                                        <button type="button" className="btn-close" onClick={closeModal} aria-label="Close"></button>
+                                                    </div>
+                                                    <div className="modal-body d-flex justify-content-center">
+                                                        {[0, 1, 2, 3, 4].map((day) => (
+                                                            <div key={day}>
+                                                                <button className="btn btn-light m-1" onClick={() => handleDateSelect(new Date(new Date().getTime() + day * 24 * 60 * 60 * 1000))}>
+                                                                    {new Date(new Date().getTime() + day * 24 * 60 * 60 * 1000).toLocaleDateString()}
+                                                                </button>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
                                     <div className="col-5">
                                         <Link to={`/TeluguTrailer/${Telugu.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
                                     </div>
@@ -911,6 +1051,8 @@ export const Hindidisplay = () => {
     const [reviews, setReviews] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [theatreList, setTheatreList] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(null);
 
     const handleRatingClick = (value) => {
         setRating(value);
@@ -928,6 +1070,26 @@ export const Hindidisplay = () => {
         fetchTheatreList();
     }, []);
 
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleDateSelect = (date) => {
+        setSelectedDate(date);
+        closeModal();
+    };
+
+    useEffect(() => {
+        if (selectedDate) {
+           
+            window.location.href = `/Choosenmovie/${display.id}?date=${selectedDate.toISOString()}`;
+        }
+    }, [selectedDate]);
+    
     const getRating = async () => {
         await axios
             .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
@@ -1075,9 +1237,33 @@ export const Hindidisplay = () => {
                                 <div className="col-2">
                                     <h2 className="mt-3" style={{ fontSize: 20 }}>{display.Certificate}</h2>
                                 </div>
-                                <div className="col-6 mt-2 ">
-                                <Link to={`/ChoosenHindimovie/${display.id}`} >   <button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>BOOK NOW</button></Link>
+                                <div className="col-6 mt-2">
+                                    <button className="btn btn" style={{ backgroundColor: "red", color: "white" }} onClick={openModal}>
+                                        BOOK NOW
+                                    </button>
                                 </div>
+                                {isModalOpen && (
+                                    <div className="modal fade show" id="bookingModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ display: "block" }}>
+                                        <div className="modal-dialog modal-lg modal-dialog-centered">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h5 className="modal-title" id="exampleModalLabel" style={{ color: "black" }}>Select a Date</h5>
+                                                    <button type="button" className="btn-close" onClick={closeModal} aria-label="Close"></button>
+                                                </div>
+                                                <div className="modal-body d-flex justify-content-center">
+                                                    {[0, 1, 2, 3, 4].map((day) => (
+                                                        <div key={day}>
+                                                            <button className="btn btn-light m-1" onClick={() => handleDateSelect(new Date(new Date().getTime() + day * 24 * 60 * 60 * 1000))}>
+                                                                {new Date(new Date().getTime() + day * 24 * 60 * 60 * 1000).toLocaleDateString()}
+                                                            </button>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
                                 <div className="col-6  ">
                                     <Link to={`/Trailer/${display.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
                                 </div>
@@ -1148,7 +1334,7 @@ export const Hindidisplay = () => {
                     </div>
                 </div>
             </div>
-          
+
             <ToastContainer position="top-right" autoClose={3000} />
         </div>
     )

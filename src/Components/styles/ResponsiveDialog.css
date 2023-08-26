@@ -1,0 +1,37 @@
+.responsive-card-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .dialog-card {
+    max-width: 65rem;
+    margin: 5px;
+    padding: 20px;
+    box-shadow: none;
+  }
+  
+  .dialog-title {
+    text-align: center;
+  }
+  
+  .dialog-button-container {
+    text-align: center;
+    padding: 5px;
+  }
+  
+  .selected-seat-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .selected-seat-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .selected-seat-label {
+    margin-top: 10px;
+  }
+  
+  

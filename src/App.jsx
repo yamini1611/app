@@ -73,6 +73,8 @@ function App() {
           <Route path="/Next" element={<Next />} />
           <Route path="/Ticket" element={<Ticket />} />
           <Route path="/Admin" element={<AdminPage />} />
+          <Route path="/MyTheatre" element={<MyTheatre />}/>
+          
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
         <Footer />

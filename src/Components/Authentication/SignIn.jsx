@@ -35,7 +35,7 @@ const SignIn = () => {
                     alert(`Welcome Back ${userData.email}`);
         
                     setTimeout(() => {
-                      history(`/MyTheatre`);
+                      history(`/`);
                     }, 200);
                   });
                 } else {
