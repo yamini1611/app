@@ -170,8 +170,8 @@ console.log(seatings);
     return (
         <>
             <Link to="/Ticket">Qr-reader</Link>
-            <div class="container p-0 mb-5">
-                <div className="" style={{}}>
+            <div class="container p-0 mb-5" style={{fontFamily: "Work Sans , sansserif"}}>
+                <div className="" >
                     <p className="btn bg-black text-white mt-5" onClick={handleClick}>Back</p>
                 </div>
                 <div class="card paymentdetails px-4 ps-5 me-5">

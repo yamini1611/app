@@ -61,13 +61,13 @@ export default function ResponsiveDialog(props) {
   };
 
   return (
-    <div>
+    <div >
       <div className="responsive-card-container">
         {proceedClicked ? null : (
           <Card className="md:w-25rem shadow-none m-5">
-            <h1 className="text-center">Kindly declare your seating preference</h1>
+            <h1 className="text-center" style={{fontFamily: "Work Sans , sansserif"}}>Kindly declare your seating preference</h1>
             <p className="mx-auto container text-center p-5">{renderButton()}</p>
-            <button className="mx-auto container" onClick={handleProceedClick}>
+            <button className=" btn btn-dark mx-auto container" onClick={handleProceedClick} style={{fontFamily: "Work Sans , sansserif"}}>
               Press
             </button>
           </Card>

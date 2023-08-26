@@ -350,7 +350,7 @@ export const Tamildisplay = () => {
 
                         </div>
 
-                        <div className="col-sm-6 col-md-4 col-lg-5 mb-2">
+                        <div className="col-sm-6 col-md-4 col-lg-6 mb-2">
                             <strong><h2 className="mt-5">{Tamil.Name}</h2></strong>
                             <div className="row">
                                 <div className="col-1">
@@ -398,11 +398,11 @@ export const Tamildisplay = () => {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-9">
+                                    <div className="col-2">
                                         <h2 style={{ fontSize: 15 }}>{Tamil.Quality}</h2>
 
                                     </div>
-                                    <div className="col-5">
+                                    <div className="col-7">
                                         <h5>Language : {Tamil.language}</h5>
                                     </div>
                                 </div>
@@ -411,16 +411,20 @@ export const Tamildisplay = () => {
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Tamil.duration}</h2>
 
                                     </div>
-                                    <div className="col-8">
+                                    <div className="col-5">
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Tamil.genre}</h2>
                                     </div>
                                     <div className="col-2">
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Tamil.Certificate}</h2>
                                     </div>
-                                    <div className="col-6 mt-2">
+                                    <div className="col-6 mt-4">
                                         <button className="btn btn" style={{ backgroundColor: "red", color: "white" }} onClick={openModal}>
                                             BOOK NOW
                                         </button>
+                                    </div>
+                                    <div className="col-5">
+                                    <Link to={`/TamilTrailer/${Tamil.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
+
                                     </div>
                                     {isModalOpen && (
                                         <div className="modal fade show" id="bookingModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ display: "block" }}>
@@ -445,7 +449,6 @@ export const Tamildisplay = () => {
                                     )}
 
 
-                                    <Link to={`/TamilTrailer/${Tamil.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
 
                                 </div>
                             </div>
@@ -664,29 +667,32 @@ export const Malayalamdisplay = () => {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-9">
+                                    <div className="col-4">
                                         <h2 style={{ fontSize: 15 }}>{Malayalam.Quality}</h2>
 
                                     </div>
-                                    <div className="col-6">
+                                    <div className="col-4">
                                         <h5>Language : {Malayalam.language}</h5>
                                     </div>
                                 </div>
                                 <div className="row ">
-                                    <div className="col-4">
+                                    <div className="col-2">
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Malayalam.duration}</h2>
 
                                     </div>
-                                    <div className="col-8">
+                                    <div className="col-5">
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Malayalam.genre}</h2>
                                     </div>
                                     <div className="col-2">
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Malayalam.Certificate}</h2>
                                     </div>
-                                    <div className="col-6 mt-2">
+                                    <div className="col-4 mt-4">
                                         <button className="btn btn" style={{ backgroundColor: "red", color: "white" }} onClick={openModal}>
                                             BOOK NOW
                                         </button>
+                                    </div>
+                                    <div className="col-5">
+                                    <Link to={`/MalayalamTrailer/${Malayalam.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
                                     </div>
                                     {isModalOpen && (
                                         <div className="modal fade show" id="bookingModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ display: "block" }}>
@@ -711,7 +717,6 @@ export const Malayalamdisplay = () => {
                                     )}
 
 
-                                    <Link to={`/MalayalamTrailer/${Malayalam.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
 
 
                                 </div>
@@ -882,7 +887,7 @@ export const Telugudisplay = () => {
 
                         </div>
 
-                        <div className="col-sm-6 col-md-4 col-lg-5 mb-2">
+                        <div className="col-sm-6 col-md-4 col-lg-8 mb-2">
                             <strong><h2 className="mt-5">{Telugu.Name}</h2></strong>
                             <div className="row">
                                 <div className="col-1">
@@ -930,26 +935,26 @@ export const Telugudisplay = () => {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-9">
+                                    <div className="col-2">
                                         <h2 style={{ fontSize: 15 }}>{Telugu.Quality}</h2>
 
                                     </div>
-                                    <div className="col-5">
+                                    <div className="col-7">
                                         <h5>Language : {Telugu.language}</h5>
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-4">
+                                    <div className="col-2">
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Telugu.duration}</h2>
 
                                     </div>
-                                    <div className="col-8">
+                                    <div className="col-4">
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Telugu.genre}</h2>
                                     </div>
                                     <div className="col-2">
                                         <h2 className="mt-3" style={{ fontSize: 20 }}>{Telugu.Certificate}</h2>
                                     </div>
-                                    <div className="col-6 mt-2">
+                                    <div className="col-5 mt-4">
                                         <button className="btn btn" style={{ backgroundColor: "red", color: "white" }} onClick={openModal}>
                                             BOOK NOW
                                         </button>
@@ -976,7 +981,7 @@ export const Telugudisplay = () => {
                                         </div>
                                     )}
 
-                                    <div className="col-5">
+                                    <div className="col-3">
                                         <Link to={`/TeluguTrailer/${Telugu.id}`}  ><button className="btn btn mt-4" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
                                     </div>
                                 </div>

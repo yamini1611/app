@@ -33,24 +33,27 @@ const MovieList = () => {
         <div className="carousel-inner">
           <div className="carousel-item active" data-bs-interval="1000">
             <img
+            id='he'
               src="https://assetscdn1.paytm.com/images/catalog/view_item/1888844/1691145171657.jpg?format=webp"
-              height={250}
+           
               className="d-block w-100"
               alt="..."
             ></img>
           </div>
           <div className="carousel-item" data-bs-interval="1000">
             <img
+               id='he'
               src="https://assetscdn1.paytm.com/images/catalog/view_item/1848846/1690370823227.jpg?format=webp"
-              height={250}
+           
               className="d-block w-100"
               alt="..."
             ></img>
           </div>
           <div className="carousel-item" data-bs-interval="1000">
             <img
+               id='he'
               src="https://tse3.mm.bing.net/th?id=OIP.oSsrIfvPchC5q9ICjbIWSwHaCu&pid=Api&P=0&h=180"
-              height={250}
+          
               className="d-block w-100"
               alt="..."
             ></img>

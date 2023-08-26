@@ -31,6 +31,7 @@ const Moviedisplay = () => {
     }, []);
 
     const getRating = async () => {
+        setInterval(2000);
         await axios
             .get(`http://localhost:4000/ratingreviews?movieId=${id}`)
             .then((response) => {
