@@ -97,6 +97,10 @@ const MovieList = () => {
         to Excitement!
       </h2>
 
+      <div className="d-flex justify-content-center align-items-center py-n5 pb-4 ">
+        <Link to='/commingsoon' className="btn btn-danger">Coming Soon</Link>
+      </div>
+
       <div className="row">
         <div className="col">
           <Card className="movie-card mb-2">

@@ -34,6 +34,7 @@ import { ChooseMalayalmmovie } from "./Components/Thetres/ChoosenMovie";
 import BookingSummary from "./Components/BookingSummary/BookingSummary";
 import AdminPage from "./Components/Admin/AdminPage";
 import MyTheatre from "./Components/TheaterOwner/MyTheatre";
+import CommingSoon from "./Components/Homepage/CommingSoon";
 
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
           <Route path="/Ticket" element={<Ticket />} />
           <Route path="/Admin" element={<AdminPage />} />
           <Route path="/MyTheatre" element={<MyTheatre />}/>
+          <Route path='/commingsoon' element={<CommingSoon />}/>
           
         </Routes>
         <ToastContainer position="top-right" autoClose={3000} />
