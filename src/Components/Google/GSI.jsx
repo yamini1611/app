@@ -1,8 +1,8 @@
-
-
 import React, { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const GSI = (props) => {
     const [user, setUser] = useState({});
@@ -35,11 +35,11 @@ console.log(user)
             isLogged: false,
           })
           .then(() => {
-            alert("Account Created Successfully!");
+            toast.success("Account Created Successfully!");
           })
           .then(() => {
             setTimeout(() => {
-              window.location.href = "/SeatLayout";
+              window.location.href = "/";
             }, 0);
           })
           .catch((error) => {
@@ -69,11 +69,11 @@ console.log(user)
               })
           })
         .then(() => {
-          alert("Account logged in Successfully!");
+          toast.success("Account logged in Successfully!");
         })
         .then(() => {
           setTimeout(() => {
-            window.location.href = "/SeatLayout";
+            window.location.href = "/";
           }, 0);
         })
         .catch((error) => {
@@ -108,7 +108,7 @@ useEffect(() => {
   return (
     <div>
       <div id="signInDiv"></div>
-      
+      <ToastContainer/>
     </div>
   );
 };

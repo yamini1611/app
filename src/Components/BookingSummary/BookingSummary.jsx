@@ -63,7 +63,7 @@ useEffect(()=>{
 <>
 		{tickDetails && (
 		
-		<div className='tick'>
+		<div className='tick' style={{fontFamily: "Work Sans , sansserif"}}>
 <div class="ticket">
 	<div class="holes-top"></div>
 	<div class="title">

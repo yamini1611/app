@@ -40,6 +40,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CustomNavbar = () => {
   var logOutDetails;
@@ -63,12 +65,14 @@ const CustomNavbar = () => {
               if (response.data.length > 0) {
                 setLoggedInUser(response.data[0]);
                 setIsLoggedIn(true);
+
               } else {
                 setIsLoggedIn(false);
               }
             });
         }
       })
+      
       .catch((error) => {
         console.log(error);
       });
@@ -79,6 +83,7 @@ const CustomNavbar = () => {
     axios.get(`http://localhost:4000/Register/?isLogged=true`)
       .then((response) => {
         logOutDetails = response.data[0];
+        console.log("Inside the handlelogOut")
         if (response.data.length > 0) {
           axios.put(`http://localhost:4000/Register/${logOutDetails.id}`, {
             fullName: logOutDetails.fullName,
@@ -86,10 +91,12 @@ const CustomNavbar = () => {
             isLogged: false,
             password: logOutDetails.password,
           }).then(() => {
-            alert("Logged Out Successfully!");
+            toast.success("Logged Out Successfully!");
+            console.log(response.data)
+
           }).then(() => {
             setTimeout(() => {
-              window.location.href = "/Theater";
+              window.location.href = "/";
             }, 0);
           })
         } else {
@@ -102,10 +109,11 @@ const CustomNavbar = () => {
                 isLogged: false,
                 image: logOutDetails.image,
               }).then(() => {
-                alert("Logged Out Successfully!");
+                toast.success("Logged Out Successfully!");
               }).then(() => {
                 setTimeout(() => {
-                  window.location.href = "/Theater";
+                  setInterval(2000);
+                  window.location.href = "/";
                 }, 0);
               })
             })
@@ -200,13 +208,14 @@ const CustomNavbar = () => {
 
         {/* Logout Link */}
         {isLoggedIn && (
-          <Link to="/signin" onClick={handleLogOut} className="custom-register text-decoration-none" id="logout-btn">
+          <Link to="/" onClick={handleLogOut} className="custom-register text-decoration-none" id="logout-btn">
             Logout  <i className="fa-solid fa-right-from-bracket"></i>
           </Link>
         )}
 
 
       </BootstrapNavbar.Collapse>
+      <ToastContainer />
     </BootstrapNavbar>
   );
 };
