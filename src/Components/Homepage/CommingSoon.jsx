@@ -21,7 +21,10 @@ const CommingSoon = () => {
 
   return (
     <div className="container">
-      <div className="row">
+        <div className="row mt-5">
+            <h2 className="fw-bold">Comming Soon</h2>
+        </div>
+      <div className="row mt-5">
         {movies.map((movie) => (
           <div key={movie.id} className="col-md-3">
             <div className="card mb-3 w-75 movie-card">

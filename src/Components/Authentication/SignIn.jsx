@@ -87,9 +87,9 @@ const SignIn = () => {
         <button className="signin-button" onClick={handleSignIn}>
           Login
         </button>
-        <p>Don't have an account? <Link to="/register">Register</Link></p>
+        <p>Don't have an account? <Link to="/register" className='text-decoration-none'>Register</Link></p>
         <p>
-          <Link to="/forgot-password">Forgot Password?</Link>
+          <Link to="/forgot-password" className='text-decoration-none'>Forgot Password?</Link>
         </p>
       </div>
       <ToastContainer />
