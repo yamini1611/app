@@ -151,7 +151,7 @@ const CustomNavbar = () => {
 
         {/* Logout Link */}
         {isLoggedIn && (
-          <Link to="/signin" onClick={handleLogOut} className="custom-register text-decoration-none" id="logout-btn">
+          <Link to="/" onClick={handleLogOut} className="custom-register text-decoration-none" id="logout-btn">
             Logout  <i className="fa-solid fa-right-from-bracket"></i>
           </Link>
         )}
