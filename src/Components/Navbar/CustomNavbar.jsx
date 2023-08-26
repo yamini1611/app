@@ -114,6 +114,9 @@ const CustomNavbar = () => {
           <Nav.Link className="custom-nav-link" href="/Next">
             Payment
           </Nav.Link>
+          <Nav.Link className="custom-nav-link" href="/BookingSummary">
+            Ticket
+          </Nav.Link>
 
           {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("TO") && (
             <Nav.Link className="custom-nav-link" href="/MyTheatre">

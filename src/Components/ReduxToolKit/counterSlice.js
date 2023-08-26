@@ -45,9 +45,12 @@ const counterSlice = createSlice({
 
 
 export const counterSlice2 = (state = {}, action) => {
-    switch (action.type){
-            case "alldetails":
-                return action.payload
+    switch (action.type) {
+        
+        case "category":
+            return action.payload
+        case "alldetails":
+            return action.payload
         default:
             return state;
     }

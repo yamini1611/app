@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import axios from 'axios';
 import Paypal from './Paypal';
+import { arrayReducer } from '../ReduxToolKit/counterSlice';
+import { array } from 'yup';
 
 
 const Next = () => {
@@ -20,6 +22,10 @@ const Next = () => {
     const [errors, setErrors] = useState({});
     const movieId = useSelector((state) => state.counter);
     const [movieDetails, setMovieDetails] = useState();
+    const seatings = useSelector((state)=>state.array);
+    const [email,setEmail]= useState();
+    const history = useNavigate();
+    const [contact,SetContact]=useState('');
 
 
 
@@ -31,7 +37,7 @@ const Next = () => {
 
             })
     }
-
+console.log(seatings);
     const handleClick = () => {
         Navigate("/Choosenmovie");
     }
@@ -48,6 +54,11 @@ const Next = () => {
         const nameRegex = /^[A-Za-z]{1,30}$/;
         return nameRegex.test(name);
     };
+    const isValidContact = (contact) => {
+        const numberRegex = /^\d{10}$/;
+        return numberRegex.test(contact);
+    };
+
 
     const isValidCardNumber = (cardnumber) => {
         const codeRegex = /^\d{16}$/;
@@ -59,7 +70,25 @@ const Next = () => {
         return codeRegex.test(cvv);
     };
     const handleregister = () => {
-
+        const seatName = () => {
+            if (seatings[0][0] === "E") {
+                // setTicketCost(190);
+                return ("Elite")
+            } else {
+                // setTicketCost(60);
+                return ("Budget");
+            }
+    
+        }
+        const ticketCost = () => {
+            if (seatings[0][0] === "E") {
+                // setTicketCost(190);
+                return (190*seatings.length)
+            } else {
+                // setTicketCost(60);
+                return (60);
+            }
+        }
         setErrors({});
         const validationErrors = {};
 
@@ -67,6 +96,11 @@ const Next = () => {
             validationErrors.name = "Required";
         } else if (!isValidName(name)) {
             validationErrors.name = "Set a valid name";
+        }
+        if (contact.trim() === "") {
+            validationErrors.contact = "Required";
+        } else if (!isValidContact(contact)) {
+            validationErrors.contact = "Set a valid contact number";
         }
 
         if (cardnumber.trim() === "") {
@@ -88,7 +122,16 @@ const Next = () => {
                 name,
                 cardnumber,
                 expiry,
-                cvv
+                cvv,
+                contact,
+                "movieName":movieDetails.Name,
+                "language":movieDetails.language,
+                "location":movieDetails.location,
+                "image":movieDetails.cover,
+                "seatings":seatings,
+                "seatCategory":seatName(),
+                "cost":ticketCost(),
+                email
             };
 
             fetch("http://localhost:4000/Payment", {
@@ -106,6 +149,8 @@ const Next = () => {
                         SetCvv("");
 
                     }
+                }).then(()=>{
+                    setTimeout(history("/BookingSummary"),800);
                 })
 
                 .catch((error) => {
@@ -117,6 +162,11 @@ const Next = () => {
         }
 
     }
+
+
+
+    useEffect(()=>{
+    },[])
     return (
         <>
             <Link to="/Ticket">Qr-reader</Link>
@@ -135,8 +185,15 @@ const Next = () => {
                         <div class="col-12">
                             <div class="d-flex flex-column">
                                 <p class="text mb-1">Person Name</p>
-                                <input class="form-control cc mb-3 text-black" type="text" placeholder="Barry Allen" value={name} onChange={(e) => SetName(e.target.value)} />
+                                <input class="form-control cc mb-3 text-black" type="text" placeholder="Name" value={name} onChange={(e) => SetName(e.target.value)} />
                                 {errors.name && <span className="error">{errors.name}</span>}
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex flex-column">
+                                <p class="text mb-1">Contact</p>
+                                <input class="form-control cc mb-3 text-black" type="text" placeholder="Contact" value={contact} onChange={(e) => SetContact(e.target.value)} />
+                                {errors.contact && <span className="error">{errors.contact}</span>}
                             </div>
                         </div>
                         <div class="col-12">
