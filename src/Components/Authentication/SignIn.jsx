@@ -1,10 +1,11 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/SignIn.css';
 import { Divider } from '@mui/material';
 import GSI from '../Google/GSI';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -32,7 +33,7 @@ const SignIn = () => {
                     isLogged: true,
                     password: userData.password,
                   }).then(() => {
-                    alert(`Welcome Back ${userData.email}`);
+                    toast.success(`Welcome Back ${userData.email}`);
         
                     setTimeout(() => {
                       history(`/`);
@@ -91,6 +92,7 @@ const SignIn = () => {
           <Link to="/forgot-password">Forgot Password?</Link>
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 };

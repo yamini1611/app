@@ -116,7 +116,7 @@ const Moviedisplay = () => {
                             </Card>
                         </div>
                         <div className="col-12 col-md-6 col-lg-8 mb-2">
-                            <strong><h2 className="mt-5">{display.Name}</h2></strong>
+                            <strong><h2 className="mt-5" id="sname">{display.Name}</h2></strong>
                             <div className="row">
                                 <div className="col-1">
                                     <strong><img src='https://img.icons8.com/?size=512&id=qdQpy48X3Rjv&format=png' width={25} height={25} alt="" /></strong>
@@ -124,7 +124,7 @@ const Moviedisplay = () => {
                                 <div className="col">
                                     <h2 style={{ fontSize: 25 }}>{display.Rating}</h2>
                                 </div>
-                                <h2 style={{ fontSize: 21 }}>Add your rating & review  <button className="btn btn-light mt-2" data-bs-toggle="modal" data-bs-target="#rating">Rate Now</button></h2>
+                                <h2 style={{ fontSize: 21 }}>Add your rating & review  <button id="rate-now" className="btn btn-light mt-2" data-bs-toggle="modal" data-bs-target="#rating"><p>Rate Now</p></button></h2>
                                 <div className="modal fade" id="rating" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div className="modal-dialog modal-dialog-centered">
                                         <div className="modal-content">
@@ -135,7 +135,7 @@ const Moviedisplay = () => {
                                             <div className="modal-body">
                                                 <div>
 
-                                                    <h5 style={{ color: "black" }}>Select your rating:</h5>
+                                                    <h5  style={{ color: "black" }}>Select your rating:</h5>
                                                     <span className="rating-stars">
                                                         <i className={`fas fa-star ${rating >= 1 ? 'gold' : 'gray'}`} onClick={() => handleRatingClick(1)}></i>
                                                         <i className={`fas fa-star ${rating >= 2 ? 'gold' : 'gray'}`} onClick={() => handleRatingClick(2)}></i>
@@ -160,30 +160,30 @@ const Moviedisplay = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row">
+                            <div className="row" id="qual-lang">
                                 <div className="col-9">
-                                    <h2 style={{ fontSize: 15 }}>{display.Quality}</h2>
+                                    <h2 id="quality" style={{ fontSize: 15 }}>{display.Quality}</h2>
                                 </div>
                                 <div className="col-5">
-                                    <h5>Language : {display.language}</h5>
+                                    <h2 id="lang">Language : {display.language}</h2>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-2">
-                                    <h2 className="mt-3" style={{ fontSize: 20 }}>{display.duration}</h2>
+                                    <h2 id="duration" className="mt-3" style={{ fontSize: 20 }}>{display.duration}</h2>
                                 </div>
                                 <div className="col-3">
-                                    <h2 className="mt-3" style={{ fontSize: 20 }}>{display.genre}</h2>
+                                    <h2 id="gen" className="mt-3" style={{ fontSize: 20 }}>{display.genre}</h2>
                                 </div>
                                 <div className="col-3">
-                                    <h2 className="mt-3" style={{ fontSize: 20 }}>{display.Certificate}</h2>
+                                    <h2 id="cert" className="mt-3" style={{ fontSize: 20 }}>{display.Certificate}</h2>
                                 </div></div>
                             <div className="row mt-4">
                                 <div className="col-3">
-                                    <button className="btn btn" style={{ backgroundColor: "red", color: "white" }} onClick={handleBookNowClick}>Show Theatres</button>
+                                    <button id="bk-now" className="btn btn" style={{ backgroundColor: "red", color: "white" }} onClick={handleBookNowClick}>Show Theatres</button>
                                 </div>
                                 <div className="col-3">
-                                    <Link to={`/Trailer/${display.id}`}  ><button className="btn btn" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
+                                    <Link to={`/Trailer/${display.id}`}  ><button id="wth-trailer" className="btn btn" style={{ backgroundColor: "red", color: "white" }}>watch trailer</button></Link>
                                 </div>
 
                             </div>

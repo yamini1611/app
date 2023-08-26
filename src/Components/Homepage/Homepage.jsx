@@ -92,30 +92,26 @@ const MovieList = () => {
         </button>
       </div>
 
-      <h2 id="bh" className="p-5">
+      <h2 id="bh" className="p-0 p-md-5 my-2">
         Unlock Your Cinema Adventure: Where Every Click Becomes a Front-Row Seat
         to Excitement!
       </h2>
 
-      <div className="d-flex justify-content-center align-items-center py-n5 pb-4 ">
-        <Link to='/commingsoon' className="btn btn-danger">Coming Soon</Link>
-      </div>
-
-      <div className="row">
-        <div className="col">
-          <Card className="movie-card mb-2">
+      < div className="row justify-content-evenly">
+        <div className="col-5 col-lg-4 text-center">
+          <Card className="movie-card">
             <CardImg src={card1}></CardImg>
           </Card>
         </div>
 
-        <div className="col">
-          <Card className="movie-card mb-2">
+        <div className="col-5 col-lg-4">
+          <Card className="movie-card">
             <CardImg src={card2}></CardImg>
           </Card>
         </div>
 
-        <div className="col">
-          <Card className="movie-card mb-2">
+        <div className="col-5 col-lg-4 mt-4 mt-lg-0">
+          <Card className="movie-card">
             <CardImg src={card3}></CardImg>
           </Card>
         </div>
