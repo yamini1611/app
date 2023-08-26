@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Card, CardImg } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../styles/Homepage.css";
-import card1 from "../Assets/Images/card1.png";
-import card2 from "../Assets/Images/card2.png";
-import card3 from "../Assets/Images/card3.png";
+import card1 from "../Assets/Images/card1.gif";
+import card2 from "../Assets/Images/card2.gif";
+import card3 from "../Assets/Images/card3.gif";
 import leo from "../Assets/Images/leo .jpeg";
 
 const MovieList = () => {

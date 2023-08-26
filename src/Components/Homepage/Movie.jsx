@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { setBookings } from "../ReduxToolKit/counterSlice";
 import { useSelector } from "react-redux";
 import { selectBookings } from "../ReduxToolKit/counterSlice";
+import { useLocationLanguageContext } from "../Context/Context";
 
 const Movie = () => {
     const [hindi, setHindi] = useState([]);
@@ -21,11 +22,14 @@ const Movie = () => {
     const [Telugu, setTelugu] = useState([]);
     const [Malayalam, setMalayalam] = useState([]);
     const [chooseMovie, setChooseMovie] = useState([""]);
-    const [selectedLocation, setSelectedLocation] = useState("");
-    const [selectedLanguage, setSelectedLanguage] = useState("");
     const [reviews, setReviews] = useState([]);
     var count;
-
+    const {
+        selectedLocation,
+        setSelectedLocation,
+        selectedLanguage,
+        setSelectedLanguage,
+      } = useLocationLanguageContext();
 
     useEffect(() => {
         fetchDetails();

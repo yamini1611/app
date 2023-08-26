@@ -114,10 +114,7 @@ const CustomNavbar = () => {
           <Nav.Link className="custom-nav-link">
             <Link to="/schedule" id='nlink'>  Contact US </Link>
           </Nav.Link>
-
-          
-
-          {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("TO") && (
+         {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("TO") && (
             <Nav.Link className="custom-nav-link" >
               <Link to="/MyTheatre" id='nlink'> Theater Owner </Link>
             </Nav.Link>
