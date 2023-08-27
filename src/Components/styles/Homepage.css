@@ -1,99 +1,109 @@
-#name{
-    text-align: center;
-    font-weight: 700;
-    font-size:16px;
-    font-family: 'Work Sans', sans-serif;
-}
-#title{
-    font-size: large;
-    font-weight: 700;
-    font-family: 'Work Sans', sans-serif;
+#name {
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: 'Work Sans', sans-serif;
 }
 
-#movie-card:hover{
-    transform: scale(1.03);
+#title {
+  font-size: large;
+  font-weight: 700;
+  font-family: 'Work Sans', sans-serif;
 }
 
-#con{
-    font-weight: 900;
-    font-family: 'Work Sans', sans-serif;
-    color: rgb(255, 255, 255);
-   
+#movie-card:hover {
+  transform: scale(1.03);
 }
 
-#vc{
+#con {
+  font-weight: 900;
+  font-family: 'Work Sans', sans-serif;
+  color: rgb(255, 255, 255);
+
+}
+
+#vc {
   background-color: rgba(0, 0, 0, 0.493);
   padding: 10px;
   border-radius: 15px;
 }
-#body{
 
-    font-family: 'Work Sans', sans-serif;
+#body {
+
+  font-family: 'Work Sans', sans-serif;
 }
 
 .avatar-container {
-    display: flex;
-  }
-  
-  .avatar {
-    margin-right: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .avatar img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%; 
-  }
-  
-  .avatar span {
-    margin-top: 8px;
-  }
+  display: flex;
+}
+
+.avatar {
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatar span {
+  margin-top: 8px;
+}
 
 .gold {
-    color: gold;
-  }
-  
-  .gray {
-    color: gray;
-  }
-  
-  
-  
-  #span{
-    font-weight: 700;
-    font-size:16px;
-    text-align: center;
-    
-    font-family: 'Work Sans', sans-serif;
+  color: gold;
+}
+
+.gray {
+  color: gray;
+}
+
+
+
+#span {
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+
+  font-family: 'Work Sans', sans-serif;
+}
+
+#bg {
+  background-repeat: no-repeat;
+}
+
+#bh {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  padding: 15px;
+}
+
+@media screen and (max-width: 500px) {
+  #movie-card {
+    height: 300px !important;
+    width: 300px !important;
   }
 
-  #bg{
-    background-repeat: no-repeat;
+  #vc h2 {
+    font-size: 19px;
   }
 
-  #bh{
-    font-family: 'Work Sans', sans-serif;
-   font-size: 20px;
-   text-align: center;
-   padding: 15px;
+  #rate-now p{
+    font-size: 12px!important;
+    background-color: black!important;
+  }
+  #qual-lang h2{
+    font-size: 19px !important;
   }
 
-  @media screen and (max-width: 500px) {
-   .movie-card{
-    height: 100px!important;
-    width: 100px!important;
-   }
-   #vc{
-    font-size: 2px!important;
-   }
-  }
+}
 
-  #he{
-    height: 200px;
-  }
-
- 
+#he {
+  height: 200px;
+}

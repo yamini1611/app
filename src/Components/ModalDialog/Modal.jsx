@@ -32,8 +32,8 @@ export default function ResponsiveDialog(props) {
     10: bus,
   };
 
-  const handleSelect = (seats) => {
-    setSelectedSeat(seats);
+  const handleSelect = (seatNumber) => {
+    setSelectedSeat(seatNumber);
   };
 
   const handleProceedClick = () => {
@@ -61,29 +61,32 @@ export default function ResponsiveDialog(props) {
   };
 
   return (
-    <div >
+    <div>
       <div className="responsive-card-container">
-        {proceedClicked ? null : (
-          <Card className="md:w-25rem shadow-none m-5">
-            <h1 className="text-center" style={{fontFamily: "Work Sans , sansserif"}}>Kindly declare your seating preference</h1>
-            <p className="mx-auto container text-center p-5">{renderButton()}</p>
-            <button className=" btn btn-dark mx-auto container" onClick={handleProceedClick} style={{fontFamily: "Work Sans , sansserif"}}>
-              Press
-            </button>
-          </Card>
-        )}
+        <Card className="md:w-25rem shadow-none m-5">
+          <h1 className="text-center" style={{ fontFamily: "Work Sans , sans-serif" }}>
+            Kindly declare your seating preference
+          </h1>
+          <p className="mx-auto container text-center p-5">{renderButton()}</p>
+          {selectedSeat !== null && !proceedClicked && (
+            <div className="selected-seat-container">
+              <img
+                src={seatImageMap[selectedSeat]}
+                alt={`Seat ${selectedSeat}`}
+                className="selected-seat-image"
+              />
+              <p className="selected-seat-label">Selected Seat: {selectedSeat}</p>
+              <button
+                className="btn btn-dark mx-auto container"
+                onClick={handleProceedClick}
+                style={{ fontFamily: "Work Sans , sans-serif" }}
+              >
+                Proceed
+              </button>
+            </div>
+          )}
+        </Card>
       </div>
-
-      {proceedClicked && selectedSeat !== null && (
-        <div className="selected-seat-container">
-          <img
-            src={seatImageMap[selectedSeat]}
-            alt={`Seat ${selectedSeat}`}
-            className="selected-seat-image"
-          />
-          <p className="selected-seat-label">Selected Seat: {selectedSeat}</p>
-        </div>
-      )}
 
       <Dialog
         header="Header"
