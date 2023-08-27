@@ -91,7 +91,11 @@ const MovieList = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-     
+     <Link to='/WorldHome'> <img
+        src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-120:q-80/icc-cwc-banner-collection-202308220156.png"
+        alt="Banner"
+        className="d-block w-100 mt-3"
+      /></Link>
 
       <h2 id="bh" className="p-0 p-md-5 my-2">
         Unlock Your Cinema Adventure: Where Every Click Becomes a Front-Row Seat
