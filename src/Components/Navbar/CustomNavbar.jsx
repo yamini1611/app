@@ -9,6 +9,9 @@ import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import { deepOrange } from "@mui/material/colors";
 import { styled } from '@mui/material/styles';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 //added
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -40,8 +43,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const CustomNavbar = () => {
   var logOutDetails;

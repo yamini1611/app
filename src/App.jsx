@@ -79,6 +79,7 @@ function App() {
             <Route path="/Ticket" element={<Ticket />} />
             <Route path="/Admin" element={<AdminPage />} />
             <Route path="/MyTheatre" element={<MyTheatre />} />
+            <Route path="/WorldHome" element={<WorldHome/>}/>
 
           </Routes>
         </Context>
