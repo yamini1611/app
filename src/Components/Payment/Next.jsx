@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../Payment/Next.css';
 import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,8 @@ import { array } from 'yup';
 
 const Next = () => {
     const Navigate = useNavigate();
-    const [checkout, setCheckOut] = useState(true);
+    const [checked, SetChecked] = useState(true);
+    const [count, Setcount] = useState(1);
     const [Payment, SetPayment] = useState("");
     const [name, SetName] = useState('');
     const [cardnumber, SetCardnumber] = useState('');
@@ -22,11 +23,10 @@ const Next = () => {
     const [errors, setErrors] = useState({});
     const movieId = useSelector((state) => state.counter);
     const [movieDetails, setMovieDetails] = useState();
-    const seatings = useSelector((state)=>state.array);
-    const [email,setEmail]= useState();
+    const seatings = useSelector((state) => state.array);
+    const [email, setEmail] = useState();
     const history = useNavigate();
-    const [contact,SetContact]=useState('');
-
+    const [contact, SetContact] = useState('');
 
 
 
@@ -34,10 +34,10 @@ const Next = () => {
         axios.get(`http://localhost:4000/${movieId.movieCategory}/${movieId.bookings}`)
             .then((response) => {
                 setMovieDetails(response.data);
-
             })
     }
-console.log(seatings);
+
+    console.log(movieDetails);
     const handleClick = () => {
         Navigate("/Choosenmovie");
     }
@@ -69,6 +69,7 @@ console.log(seatings);
         const codeRegex = /^\d{3}$/;
         return codeRegex.test(cvv);
     };
+
     const handleregister = () => {
         const seatName = () => {
             if (seatings[0][0] === "E") {
@@ -78,12 +79,11 @@ console.log(seatings);
                 // setTicketCost(60);
                 return ("Budget");
             }
-    
         }
         const ticketCost = () => {
             if (seatings[0][0] === "E") {
                 // setTicketCost(190);
-                return (190*seatings.length)
+                return (190 * seatings.length)
             } else {
                 // setTicketCost(60);
                 return (60);
@@ -124,13 +124,13 @@ console.log(seatings);
                 expiry,
                 cvv,
                 contact,
-                "movieName":movieDetails.Name,
-                "language":movieDetails.language,
-                "location":movieDetails.location,
-                "image":movieDetails.cover,
-                "seatings":seatings,
-                "seatCategory":seatName(),
-                "cost":ticketCost(),
+                "movieName": movieDetails.Name,
+                "language": movieDetails.language,
+                "location": movieDetails.location,
+                "image": movieDetails.cover,
+                "seatings": seatings,
+                "seatCategory": seatName(),
+                "cost": ticketCost(),
                 email
             };
 
@@ -149,8 +149,8 @@ console.log(seatings);
                         SetCvv("");
 
                     }
-                }).then(()=>{
-                    setTimeout(history("/BookingSummary"),800);
+                }).then(() => {
+                    setTimeout(history("/BookingSummary"), 800);
                 })
 
                 .catch((error) => {
@@ -160,128 +160,184 @@ console.log(seatings);
         else {
             setErrors(validationErrors);
         }
-
     }
 
 
 
-    useEffect(()=>{
-    },[])
+    const sendPaymentDetails = () => {
+        // movieDetailsfetch();
+        console.log("entered into sendpaymentdetails")
+        const seatNames = () => {
+            if (seatings[0][0] === "E") {
+                // setTicketCost(190);
+                return ("Elite")
+            } else {
+                // setTicketCost(60);
+                return ("Budget");
+            }
+        }
+        const ticketCosts = () => {
+            if (seatings[0][0] === "E") {
+                // setTicketCost(190);
+                return (190 * seatings.length)
+            } else {
+                // setTicketCost(60);
+                return (60);
+            }
+        }
+
+        if (Object.keys != 0) {
+            console.log(movieDetails)
+            const PaymentData1 = {
+                "movieName": movieDetails.Name,
+                "language": movieDetails.language,
+                "location": movieDetails.location,
+                "image": movieDetails.cover,
+                "seatings": seatings,
+                "seatCategory": seatNames(),
+                "cost": ticketCosts(),
+                email
+            };
+            fetch("http://localhost:4000/Payment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(PaymentData1),
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        console.log("Payment details sent successfully");
+                    }
+                })
+                .then(() => {
+                    setTimeout(() => history("/BookingSummary"), 800);
+                })
+                .catch((error) => {
+                    console.error("Error sending payment details:", error);
+                });
+        } else {
+            console.error("movieDetails is undefined");
+        }
+    };
+
     return (
         <>
-            <Link to="/Ticket">Qr-reader</Link>
-            <div class="container p-0 mb-5" style={{fontFamily: "Work Sans , sansserif"}}>
-                <div className="" >
-                    <p className="btn bg-black text-white mt-5" onClick={handleClick}>Back</p>
-                </div>
-                <div class="card paymentdetails px-4 ps-5 me-5">
-                    <p class="h8 py-3">Payment Details</p>
-                    <p className="fs-6 d-flex flex-row" style={{ fontWeight: 'bold' }}>
-                        {movieDetails && (
-                            <Summary md={movieDetails} />
-                        )}
-                    </p>
-                    <div class="row gx-3">
-                        <div class="col-12">
-                            <div class="d-flex flex-column">
-                                <p class="text mb-1">Person Name</p>
-                                <input class="form-control cc mb-3 text-black" type="text" placeholder="Name" value={name} onChange={(e) => SetName(e.target.value)} />
-                                {errors.name && <span className="error">{errors.name}</span>}
-                            </div>
+            {movieDetails && (
+                <div>
+                    <Link to="/Ticket">Qr-reader</Link>
+                    <div class="container p-0 mb-5" style={{ fontFamily: "Work Sans , sansserif" }}>
+                        <div className="" >
+                            <p className="btn bg-black text-white mt-5" onClick={() => handleClick()}>Back</p>
                         </div>
-                        <div class="col-12">
-                            <div class="d-flex flex-column">
-                                <p class="text mb-1">Contact</p>
-                                <input class="form-control cc mb-3 text-black" type="text" placeholder="Contact" value={contact} onChange={(e) => SetContact(e.target.value)} />
-                                {errors.contact && <span className="error">{errors.contact}</span>}
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="d-flex flex-column">
-                                <p class="text mb-1">Card Number</p>
-                                <input class="form-control cc mb-3 text-black" type="text" placeholder="1234 5678 4356 9078" value={cardnumber} onChange={(e) => SetCardnumber(e.target.value)} />
-                                {errors.cardnumber && <span className="error">{errors.cardnumber}</span>}
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="d-flex flex-column">
-                                <p class="text mb-1">Expiry</p>
-                                <input class="form-control cc mb-3  text-black" type="text" placeholder="MM/YYYY" value={expiry} onChange={(e) => SetExpiry(e.target.value)} />
-                                {errors.expiry && <span className="error">{errors.expiry}</span>}
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="d-flex flex-column">
-                                <p class="text mb-1">CVV/CVC</p>
-                                <input class="form-control cc mb-3 pt-2 text-black" type="password" placeholder="***" value={cvv} onChange={(e) => SetCvv(e.target.value)} />
-                                {errors.cvv && <span className="error">{errors.cvv}</span>}
-                            </div>
-                        </div>
-                        <button onClick={handleregister} className='btn btn-primary'>Pay Now</button>
+                        <div class="card paymentdetails px-4 ps-5 me-5">
+                            <p class="h8 py-3">Payment Details</p>
+                            <p className="fs-6 d-flex flex-row" style={{ fontWeight: 'bold' }}>
 
-                        <div className="mt-3 d-flex justify-content-center">
-                            {/* Gpay option */}
-                            <GooglePayButton className='gpay'
-                                environment="TEST"
-                                paymentRequest={{
-                                    apiVersion: 2,
-                                    apiVersionMinor: 0,
-                                    allowedPaymentMethods: [
-                                        {
-                                            type: 'CARD',
-                                            parameters: {
-                                                allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-                                                allowedCardNetworks: ['MASTERCARD', 'VISA'],
-                                            },
-                                            tokenizationSpecification: {
-                                                type: 'PAYMENT_GATEWAY',
-                                                parameters: {
-                                                    gateway: 'example',//name
-                                                    gatewayMerchantId: 'exampleGatewayMerchantId',//pass id 
+                                <Summary md={movieDetails} />
+
+                            </p>
+                            <div class="row gx-3">
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Person Name</p>
+                                        <input class="form-control cc mb-3 text-black" type="text" placeholder="Name" value={name} onChange={(e) => SetName(e.target.value)} />
+                                        {errors.name && <span className="error">{errors.name}</span>}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Contact</p>
+                                        <input class="form-control cc mb-3 text-black" type="text" placeholder="Contact" value={contact} onChange={(e) => SetContact(e.target.value)} />
+                                        {errors.contact && <span className="error">{errors.contact}</span>}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Card Number</p>
+                                        <input class="form-control cc mb-3 text-black" type="text" placeholder="1234 5678 4356 9078" value={cardnumber} onChange={(e) => SetCardnumber(e.target.value)} />
+                                        {errors.cardnumber && <span className="error">{errors.cardnumber}</span>}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">Expiry</p>
+                                        <input class="form-control cc mb-3  text-black" type="text" placeholder="MM/YYYY" value={expiry} onChange={(e) => SetExpiry(e.target.value)} />
+                                        {errors.expiry && <span className="error">{errors.expiry}</span>}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-flex flex-column">
+                                        <p class="text mb-1">CVV/CVC</p>
+                                        <input class="form-control cc mb-3 pt-2 text-black" type="password" placeholder="***" value={cvv} onChange={(e) => SetCvv(e.target.value)} />
+                                        {errors.cvv && <span className="error">{errors.cvv}</span>}
+                                    </div>
+                                </div>
+                                <button onClick={handleregister} className='btn btn-primary'>Pay Now</button>
+
+
+                                <div className="mt-3 d-flex justify-content-center">
+
+                                    <>
+                                        {/* Gpay option */}
+                                        <GooglePayButton className='gpay'
+                                            onClick={() => sendPaymentDetails()}
+                                            environment="TEST"
+                                            paymentRequest={{
+                                                apiVersion: 2,
+                                                apiVersionMinor: 0,
+                                                allowedPaymentMethods: [
+                                                    {
+                                                        type: 'CARD',
+                                                        parameters: {
+                                                            allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+                                                            allowedCardNetworks: ['MASTERCARD', 'VISA'],
+                                                        },
+                                                        tokenizationSpecification: {
+                                                            type: 'PAYMENT_GATEWAY',
+                                                            parameters: {
+                                                                gateway: 'example',//name
+                                                                gatewayMerchantId: 'exampleGatewayMerchantId',//pass id 
+                                                            },
+                                                        },
+                                                    },
+                                                ],
+                                                merchantInfo: {
+                                                    merchantId: '12345678901234567890',
+                                                    merchantName: 'Demo Merchant',
                                                 },
-                                            },
-                                        },
-                                    ],
-                                    merchantInfo: {
-                                        merchantId: '12345678901234567890',
-                                        merchantName: 'Demo Merchant',
-                                    },
-                                    transactionInfo: {
-                                        totalPriceStatus: 'FINAL',
-                                        totalPriceLabel: 'Total',
-                                        totalPrice: '100',
-                                        currencyCode: 'INR',
-                                        countryCode: 'IN',
+                                                transactionInfo: {
+                                                    totalPriceStatus: 'FINAL',
+                                                    totalPriceLabel: 'Total',
+                                                    totalPrice: '100',
+                                                    currencyCode: 'INR',
+                                                    countryCode: 'IN',
 
-                                    },
-                                }}
-                                onLoadPaymentData={paymentRequest => {
-                                    console.log('Success', paymentRequest);
-                                }}
-                                onPaymentAuthoriz={paymentData => {
-                                    console.log('Payment Authorizedzed Success', paymentData)
-                                    return { transactionState: 'Success' }
-                                }}
-                                existingPaymentMethodRequired='false'
-                                buttonColor="white"
-                                buttonType="Pay"
-                            />
-                            OR
-                            {checkout ? (
-                                <Paypal />
-                            ) : (
-                                <button
-                                    onClick={() => {
-                                        setCheckOut(true);
-                                    }}
-                                >
-                                    Checkout
-                                </button>
-                            )}
+                                                },
+                                            }}
+                                            onLoadPaymentData={paymentRequest => {
+                                                console.log('Success', paymentRequest);
+                                            }}
+                                            onPaymentAuthoriz={paymentData => {
+                                                console.log('Payment Authorizedzed Success', paymentData)
+                                                return { transactionState: 'Success' }
+                                            }}
+                                            existingPaymentMethodRequired='false'
+                                            buttonColor="white"
+                                            buttonType="Pay"
+                                        />
+                                    </>
+                                </div>
+                                <>
+                                    <div className="-flex justify-content-center" style={{ maxWidth: '300px' }}>
+                                        <Paypal onClick={sendPaymentDetails} />
+                                    </div>
+                                </>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </>
     )
 }
@@ -304,18 +360,18 @@ const Summary = (props) => {
     const ticketCost = () => {
         if (array[0][0] === "E") {
             // setTicketCost(190);
-            return (190*array.length)
+            return (190 * array.length)
         } else {
             // setTicketCost(60);
             return (60);
         }
     }
-const date = new Date();
+    const date = new Date();
 
-let day = date.getDate();
-let month = date.getMonth() + 1;
-let year = date.getFullYear();
-let currentDate = `${day}-${month}-${year}`;
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let currentDate = `${day}-${month}-${year}`;
     return (
         <>
             {props && (
@@ -385,6 +441,7 @@ let currentDate = `${day}-${month}-${year}`;
         </>
     )
 }
+
 
 
 export default Next;

@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Card, CardContent, Grid, TextField, Button } from "@mui/material";
+import { Container, Card, CardContent, Grid, Button } from "@mui/material";
 import QRCode from 'qrcode';
 import { QrReader } from 'react-qr-reader';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import { toast } from 'react-toastify';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-// import { Link } from 'react-router-dom';
 
 const Ticket = () => {
-    const [text, setText] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [scannedQrCode, setScannedQrCode] = useState(null);
-    const [scannedDetails, setScannedDetails] = useState('');
-    const [personName, setPersonName] = useState('');
+    const [scannedDetails, setScannedDetails] = useState(null);
     const [scannerDialogOpen, setScannerDialogOpen] = useState(false);
 
     const handleScannerButtonClick = () => {
         setScannerDialogOpen(true);
         setScannedQrCode(true);
-        setScannedDetails('');
+        setScannedDetails(null);
     };
 
     const handleScannerDialogClose = () => {
@@ -28,50 +25,24 @@ const Ticket = () => {
 
     const generateQrCode = async () => {
         try {
-            if (personName == "") {
-                toast('Plese Enter your name :)')
-            }
-            else if (personName) {
-                setText(personName);
-                const response = await QRCode.toDataURL(text);
-                setImageUrl(response);
-            } else {
-                console.log("Person's name is empty");
-            }
+            const response = await QRCode.toDataURL(JSON.stringify(paymentDetails));
+            setImageUrl(response);
         } catch (error) {
             console.log("Not working");
         }
     }
 
-
     useEffect(() => {
-        console.log((scannedQrCode))
         if (scannedQrCode) {
-            fetch(`http://localhost:4000/Payment/?name=${personName}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Assuming your Payment JSON structure has an array of objects
-                    const foundPerson = data.find(person => person.name === personName);
-                    if (foundPerson) {
-                        setScannedDetails(foundPerson);
-                    } else {
-                        setScannedDetails('Person not found');
-                    }
-                    console.log(foundPerson)
-                })
-                .catch(error => {
-                    console.log(error);
-                    setScannedDetails('An error occurred');
-                });
+            // Assuming paymentDetails is the array of objects containing payment details
+            const foundPerson = paymentDetails.find(person => person.name === scannedDetails);
+            if (foundPerson) {
+                setScannedDetails(foundPerson);
+            } else {
+                setScannedDetails('Person not found');
+            }
         }
     }, [scannedQrCode]);
-
-    const handleScan = qrCodeData => {
-        if (qrCodeData) {
-            setScannedQrCode(qrCodeData);
-            console.log(qrCodeData)
-        }
-    };
 
     return (
         <Container>
@@ -81,43 +52,32 @@ const Ticket = () => {
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
-                            <TextField label="Enter Person's Name" onChange={(e) => setPersonName(e.target.value)} />
-                            <br />
                             <Button variant="contained" className='mt-5' color="success" onClick={generateQrCode}>Generate</Button>
                             <br />
                             <Button variant="contained" className='mt-5' color="primary" onClick={handleScannerButtonClick}>Open Scanner</Button>
                             <Dialog open={scannerDialogOpen} onClose={handleScannerDialogClose}>
                                 <DialogContent>
-                                    {/* <QrReader
-                                        onScan={handleScan}
-                                        onError={error => console.log(error)}
-                                    /> */}
-                                    {scannedDetails && <p>
-                                        Customer Name: {scannedDetails.Name}
-                                        <br />
-                                        cardnumber: {scannedDetails.cardnumber}
-                                        <br />
-                                        Expiry Date: {scannedDetails.expiry}
-                                        <br />
-                                        Cvv: {scannedDetails.cvv}
-
-                                    </p>}
+                                    {scannedDetails && (
+                                        <p>
+                                            Customer Name: {scannedDetails.name}
+                                            <br />
+                                            cardnumber: {scannedDetails.cardnumber}
+                                            <br />
+                                            Expiry Date: {scannedDetails.expiry}
+                                            <br />
+                                            Cvv: {scannedDetails.cvv}
+                                        </p>
+                                    )}
                                 </DialogContent>
                             </Dialog>
-
                             <br />
                             <br />
                             <br />
-                            {imageUrl ? (
+                            {imageUrl && (
                                 <a href={imageUrl} download>
                                     <img src={imageUrl} alt="img" />
                                 </a>
-                            ) : null}
-                            <QrReader
-                                onScan={handleScan} // Use onScan instead of onResult
-                                onError={error => console.log(error)}
-                            />
-
+                            )}
                         </Grid>
                     </Grid>
                 </CardContent>
@@ -127,6 +87,18 @@ const Ticket = () => {
 }
 
 export default Ticket;
+
+// Assuming paymentDetails is an array of objects containing payment details
+const paymentDetails = [
+    {
+        name: 'John Doe',
+        cardnumber: '1234 5678 9012 3456',
+        expiry: '12/24',
+        cvv: '123'
+    },
+    // Add more objects here
+];
+
 
 
 const Qr = () => {
@@ -164,7 +136,7 @@ const Qr = () => {
             console.warn(err);
         }
     }, []);
-   
+
     return (
         <>
             <p>Qr code Scanning</p>

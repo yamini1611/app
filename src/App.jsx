@@ -14,9 +14,11 @@ import ChooseTickets from "./Components/SeatRoom/ChooseTickets";
 import Movie from "./Components/Homepage/Movie";
 import Next from "./Components/Payment/Next";
 import Footer from "./Components/Footer/Footer";
+import Paypal from './Components/Payment/Paypal';
 import Ticket from "./Components/Payment/Ticket";
 import { TORegister } from "./Components/TheaterOwner/TORegister";
 import Trailer from "./Components/Homepage/Trailer";
+import { Context } from "./Components/Context/Context";
 import {
   Tamildisplay,
   Malayalamdisplay,
@@ -41,46 +43,45 @@ import WorldHome from "./Components/WorldCup/WorldHome";
 function App() {
 
   return (
+
     <div className="App">
+
       <BrowserRouter>
         <CustomNavbar />
+        <Context>
+          <Routes>
+            <Route path="/" element={<MovieList />} />
+            <Route path="/schedule" element={<ContactUs />} />
+            <Route path="/TORegister" element={<TORegister />} />
+            <Route path="/movies" element={<Movie />} />
+            <Route path="/Trailer/:id" element={<Trailer />} />
+            <Route path="/TamilTrailer/:id" element={<TamilTrailer />} />
+            <Route path="/MalayalamTrailer/:id" element={<MalayalamTrailer />} />
+            <Route path="/TeluguTrailer/:id" element={<TeluguTrailer />} />
+            <Route path="/Tamilmovies/:id" element={<Tamildisplay />} />
+            <Route path="/MalayalamMovies/:id" element={<Malayalamdisplay />} />
+            <Route path="/TeluguMovies/:id" element={<Telugudisplay />} />
+            <Route path="/HindiMovies/:id" element={<Hindidisplay />} />
+            <Route path="/movie/:id" element={<Moviedisplay />} />
+            <Route path="/Choosenmovie/:id" element={<ChooseTamilmovie />} />
+            <Route path="/ChoosenHindimovie/:id" element={<ChooseHindiMovie />} />
+            <Route path="/ChoosenTelugumovie/:id" element={<ChooseTelugumovie />} />
+            <Route path="/ChoosenMalayalammovie/:id" element={<ChooseMalayalmmovie />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/ChooseTickets" element={< ChooseTickets />} />
+            <Route path="/Theater" element={<Theater />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/ThetreList" element={<ThetreList />} />
+            <Route path="/show" element={<SelectedTheaters />} />
+            <Route path="/forgot-password" element={<PasswordReset />} />
+            <Route path="/BookingSummary" element={<BookingSummary />} />
+            <Route path="/Next" element={<Next />} />
+            <Route path="/Ticket" element={<Ticket />} />
+            <Route path="/Admin" element={<AdminPage />} />
+            <Route path="/MyTheatre" element={<MyTheatre />} />
 
-        <Routes>
-
-          <Route path="/" element={<MovieList />} />
-          <Route path="/schedule" element={<ContactUs />} />
-          <Route path="/TORegister" element={<TORegister />} />
-          <Route path="/movies" element={<Movie />} />
-          <Route path="/Trailer/:id" element={<Trailer />} />
-          <Route path="/TamilTrailer/:id" element={<TamilTrailer />} />
-          <Route path="/MalayalamTrailer/:id" element={<MalayalamTrailer />} />
-          <Route path="/TeluguTrailer/:id" element={<TeluguTrailer />} />
-          <Route path="/Tamilmovies/:id" element={<Tamildisplay />} />
-          <Route path="/MalayalamMovies/:id" element={<Malayalamdisplay />} />
-          <Route path="/TeluguMovies/:id" element={<Telugudisplay />} />
-          <Route path="/HindiMovies/:id" element={<Hindidisplay />} />
-          <Route path="/movie/:id" element={<Moviedisplay />} />
-          <Route path="/Choosenmovie/:id" element={<ChooseTamilmovie />} />
-          <Route path="/ChoosenHindimovie/:id" element={<ChooseHindiMovie />} />
-          <Route path="/ChoosenTelugumovie/:id" element={<ChooseTelugumovie />} />
-          <Route path="/ChoosenMalayalammovie/:id" element={<ChooseMalayalmmovie />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/ChooseTickets" element={< ChooseTickets />} />
-          <Route path="/Theater" element={<Theater />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/ThetreList" element={<ThetreList />} />
-          <Route path="/show" element={<SelectedTheaters />} />
-          <Route path="/forgot-password" element={<PasswordReset />} />
-          <Route path="/BookingSummary" element={<BookingSummary />} />
-          <Route path="/Next" element={<Next />} />
-          <Route path="/Ticket" element={<Ticket />} />
-          <Route path="/Admin" element={<AdminPage />} />
-          <Route path="/MyTheatre" element={<MyTheatre />}/>
-          <Route path="/WorldHome" element={<WorldHome/>}/>
-          <Route path='/commingsoon' element={<CommingSoon />}/>
-         
-          
-        </Routes>
+          </Routes>
+        </Context>
         <ToastContainer position="top-right" autoClose={3000} />
         <Footer />
       </BrowserRouter>

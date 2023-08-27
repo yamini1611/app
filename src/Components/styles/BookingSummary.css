@@ -3,159 +3,336 @@
 
 	--width: 400px;
 	--circle-size: 50px;
-	
-  }
 
-  .tick{
+}
+
+.tickbackground {
+	background-color: #0a0734;
+
+}
+
+.tick {
 	background-color: cadetblue;
-  }
-  
-  body {
+}
+
+body {
 	background-color: var(--background-color);
 	font-family: 'Yanone Kaffeesatz', sans-serif;
 	font-weight: 600;
-  }
-  
-  img {
+}
+
+img {
 	max-width: 100%;
 	height: auto;
-  }
-  
-  .ticket {
+}
+
+.ticket {
 	width: var(--width);
-	height: 775px;
+	height: 600px;
 	background-color: white;
 	margin: 25px auto;
 	position: relative;
 	margin-bottom: 120px;
-  }
-  
-  .holes-top {
+}
+
+.holes-top {
 	height: var(--circle-size);
 	width: var(--circle-size);
-	background-color: var(--background-color);
+	background-color: #0a0734;
 	border-radius: 50%;
 	position: absolute;
 	left: 50%;
 	margin-left: calc(var(--circle-size) / -2);
 	top: calc(var(--circle-size) / -2);
-  }
-  
-  .holes-top:before,
-  .holes-top:after {
+	/* margin-top: 100px; */
+}
+
+.holes-top:before,
+.holes-top:after {
 	content: '';
 	height: var(--circle-size);
 	width: var(--circle-size);
-	background-color: var(--background-color);
+	background-color: #0a0734;
 	position: absolute;
 	border-radius: 50%;
-  }
-  
-  .holes-top:before {
+}
+
+.holes-top:before {
 	left: calc(var(--width) / -2);
-  }
-  
-  .holes-top:after {
+	background-color: #0a0734;
+
+}
+
+.holes-top:after {
 	left: calc(var(--width) / 2);
-  }
-  
-  .holes-lower {
+	background-color: #0a0734;
+
+}
+
+.holes-lower {
 	position: relative;
 	margin-left: 25px;
-	
+	background-color: #0a0734;
+
 
 	border: 1px dashed #aaa;
-  }
-  
-  .holes-lower:before,
-  .holes-lower:after {
+}
+
+.holes-lower:before,
+.holes-lower:after {
 	content: '';
 	height: var(--circle-size);
 	width: var(--circle-size);
-	background-color: var(--background-color);
+	background-color: #0a0734;
 	position: absolute;
 	border-radius: 50%;
-  }
-  
-  .holes-lower:before {
+}
+
+.holes-lower:before {
 	top: -25px;
 	left: calc(var(--circle-size) / -1);
-  }
-  
-  .holes-lower:after {
+	background-color: #0a0734;
+
+}
+
+.holes-lower:after {
 	top: -25px;
+	background-color: #0a0734;
+
 	left: calc(var(--width) - var(--circle-size));
-  }
-  
-  .title {
+}
+
+.title {
 	padding: 50px 25px 10px;
-  }
-  
-  .cinema {
+}
+
+.cinema {
 	color: #aaa;
 	font-size: 15px;
-  }
-  .fonte{
+}
+
+.fonte {
 	font-family: sans-serif;
-  }
-  
-  .movie-title {
+}
+
+.movie-title {
 	font-size: 20px;
-  }
-  
-  .info {
+}
+
+.info {
 	padding: 15px 25px;
-  }
-  
-  table {
+}
+
+table {
 	width: 100%;
 	font-size: 18px;
 	margin-bottom: 15px;
-  }
-  
-  table tr {
+}
+
+table tr {
 	margin-bottom: 10px;
-  }
-  
-  table th {
+}
+
+table th {
 	text-align: left;
-  }
-  
-  table th:nth-of-type(1) {
+}
+
+table th:nth-of-type(1) {
 	width: 38%;
-  }
-  
-  table th:nth-of-type(2) {
+}
+
+table th:nth-of-type(2) {
 	width: 40%;
-  }
-  
-  table th:nth-of-type(3) {
+}
+
+table th:nth-of-type(3) {
 	width: 15%;
-  }
-  
-  table td {
+}
+
+table td {
 	width: 33%;
 	font-size: 32px;
-  }
-  
-  .bigger {
+}
+
+.bigger {
 	font-size: 48px;
-  }
-  
-  
-  
-  table {
+}
+
+
+
+table {
 	border-collapse: collapse;
 	margin: 0 auto;
-  }
-  
-  table td {
+}
+
+table td {
 	width: 3px;
 	height: 50px;
-  }
-  
-  .numbers td {
+}
+
+.numbers td {
 	font-size: 16px;
 	text-align: center;
-  }
-  
+}
+
+/* Variables */
+:root {
+	--width: 400px;
+	--circle-size: 50px;
+}
+
+body {
+	background-color: var(--background-color);
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	font-weight: 600;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.ticket {
+	width: var(--width);
+	height: 603px;
+	background-color: white;
+	margin: 25px auto;
+	position: relative;
+}
+
+.holes-top {
+	height: var(--circle-size);
+	width: var(--circle-size);
+	background-color: #0a0734;
+	border-radius: 50%;
+	position: absolute;
+	/* left: 50%; */
+	margin-left: calc(var(--circle-size) / -2);
+	top: calc(var(--circle-size) / -2);
+}
+
+.holes-top:before,
+.holes-top:after {
+	content: '';
+	height: var(--circle-size);
+	width: var(--circle-size);
+	background-color: #0a0734;
+	position: absolute;
+	border-radius: 50%;
+}
+
+.holes-top:before {
+	left: calc(var(--width) / -2);
+	background-color: #0a0734;
+
+}
+
+.holes-top:after {
+	left: calc(var(--width) / 2);
+	background-color: #0a0734;
+
+}
+
+.holes-lower {
+	position: relative;
+	margin-top: -35px;
+	border: 1px dashed #aaa;
+	background-color: #0a0734;
+
+}
+
+.holes-lower:before,
+.holes-lower:after {
+	content: '';
+	height: var(--circle-size);
+	width: var(--circle-size);
+	background-color: #0a0734;
+	position: absolute;
+	border-radius: 50%;
+}
+
+.holes-lower:before {
+	/* top: -25px; */
+	left: calc(var(--circle-size) / -1);
+	background-color: #0a0734;
+
+}
+
+.holes-lower:after {
+	/* top: -25px; */
+	left: calc(var(--width) - var(--circle-size));
+	background-color: #0a0734;
+
+}
+
+.title {
+	padding: 50px 25px 10px;
+}
+
+.cinema {
+	color: #aaa;
+	font-size: 22px;
+}
+
+.movie-title {
+	font-size: 50px;
+}
+
+.info {
+	padding: 15px 25px;
+}
+
+table {
+	width: 100%;
+	font-size: 18px;
+	margin-bottom: 15px;
+}
+
+table tr {
+	margin-bottom: 10px;
+}
+
+table th {
+	text-align: left;
+}
+
+table th:nth-of-type(1) {
+	width: 38%;
+}
+
+table th:nth-of-type(2) {
+	width: 40%;
+}
+
+table th:nth-of-type(3) {
+	width: 15%;
+}
+
+table td {
+	
+	width: 33%;
+	font-size: 22px;
+}
+
+.bigger {
+	font-size: 48px;
+}
+
+.serial {
+	padding: 25px;
+}
+
+.serial table {
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+.serial td {
+	width: 3px;
+	height: 50px;
+}
+
+.numbers td {
+	font-size: 16px;
+	text-align: center;
+}
