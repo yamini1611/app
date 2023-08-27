@@ -128,10 +128,14 @@ console.log(seatings);
                 "language":movieDetails.language,
                 "location":movieDetails.location,
                 "image":movieDetails.cover,
-                "seatings":seatings,
+                seatings,
                 "seatCategory":seatName(),
                 "cost":ticketCost(),
-                email
+                email,
+                bookingId:"TC"+Math.floor(Math.random()*100000),
+
+                
+                
             };
 
             fetch("http://localhost:4000/Payment", {
@@ -150,6 +154,20 @@ console.log(seatings);
 
                     }
                 }).then(()=>{
+                    var oldBookedSeats=[];
+                    axios.get("http://localhost:4000/TheaterSeats")
+                    .then((response)=>{
+                        console.log(response)
+                        oldBookedSeats.push(response.data);
+                        oldBookedSeats.push(seatings)
+                    })
+                    axios.put("http://localhost:4000/TheaterSeats/1",{
+                        seatings:oldBookedSeats
+                    })
+            
+                })
+                
+                .then(()=>{
                     setTimeout(history("/BookingSummary"),800);
                 })
 

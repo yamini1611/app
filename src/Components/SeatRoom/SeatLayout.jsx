@@ -26,19 +26,27 @@ function Seater(props) {
   const addItem = (item) => ({ type: "add", payload: item });
   const popItem = (item) => ({ type: "pop", payload: item });
   const resetItem = (item) => ({ type: 'reset', payload: item });
+
   const movieName = useSelector(selectBookings);
+
   const dispatch = useDispatch();
-  const {id} = useParams();
-console.log(count)
+  const { id } = useParams();
 
 
-dispatch(setBookings(parseInt(id)))
 
+  dispatch(setBookings(parseInt(id)));
+
+
+  // useEffect(()=>{
+  //   checkBookedTickets();
+  //   checkBookedSeats();
+
+  // },[])
 
   return (
     <>
 
-      {count.count < props.noOfSeats || array.find((item)=>item===props.seatID)
+      {count.count < props.noOfSeats || array.find((item) => item === props.seatID)
         ?
         (<ToggleButton
           className={`m-1 p-1 seatcheckbox${props.coldivide % 7 === 0 ? " me-5" : ""
@@ -50,7 +58,7 @@ dispatch(setBookings(parseInt(id)))
           checked={checked}
           value="1"
           onClick={() => {
-         
+
             setChecked(!checked);
             if (count.count <= props.noOfSeats) {
 
@@ -59,10 +67,10 @@ dispatch(setBookings(parseInt(id)))
               // setChecked(!checked);
 
               if (!checked) {
-               
+
                 dispatch(increment());
                 dispatch((addItem(props.seatID)))
-              console.log(count.count);
+                console.log(count.count);
 
 
               } else {
@@ -71,10 +79,10 @@ dispatch(setBookings(parseInt(id)))
               }
 
 
-            }else{
-              console.log(count.count,props.noOfSeats)
+            } else {
+              console.log(count.count, props.noOfSeats)
             }
-            
+
           }}
         >
 
@@ -91,8 +99,8 @@ dispatch(setBookings(parseInt(id)))
         //   dispatch(resetItem(props.seatID))
         // }}
         >
-         
-       
+
+
           {props.num}
         </ToggleButton>)
       }
@@ -135,6 +143,38 @@ const SeatLayout = (props) => {
       </div>
     );
   }
+  var bookedTickets = [];
+  var bookedSeats = [];
+
+  const checkBookedTickets = () => {
+    axios.get("http://localhost:4000/Payment")
+      .then((response) => {
+
+        response.data.forEach(element => {
+
+          bookedTickets.push(element.seatings)
+        });
+
+      })
+
+    bookedTickets.forEach(element => {
+    
+      for(let i = 0; i<element.length;i++){
+       
+        if(bookedSeats.find((item)=>item!==element)){
+          bookedSeats.push(element[i]);
+        }else{
+          console.log("HRE")
+        }
+      }
+
+
+    });
+
+  }
+
+console.log(bookedSeats)
+
 
   return (
     <div className="mx-auto container">
@@ -143,7 +183,9 @@ const SeatLayout = (props) => {
         <Divider className="text-center mt-5 col-lg-5 mx-auto pb-5">
           Here's the screen
         </Divider>
+
       )}
+      <button onClick={() => { checkBookedTickets(); }}>Press</button>
     </div>
   );
 };
