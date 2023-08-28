@@ -4,6 +4,7 @@ import axios from "axios";
 
 const WorldHome = () => {
   const [teams, setTeams] = useState([]);
+  const [venues,setVenues] = useState([]);
 
   useEffect(() => {
     fetchDetails();
@@ -19,15 +20,29 @@ const WorldHome = () => {
     }
   };
 
+  useEffect(()=>{
+    fetchVenues();
+  },[])
+
+  const fetchVenues=async()=>{
+    try{
+    const response=await axios.get(' http://localhost:4000/venues')
+    setVenues(response.data)
+    }
+    catch(error){
+      console.log("An error Occured",error)
+    }
+  }
+
   return (
     <div className="world-container-fluid">
-      <div className="container">
+      <div className="container world-container">
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 	d-none d-sm-block">
             <img
               src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-120:q-80/cwc-icc-logo-web-collection-202308190313.png"
               alt="Banner"
-              className="img-fluid mt-3 curved-image"
+              className="img-fluid mt-3 curved-image "
             />
           </div>
         </div>
@@ -47,7 +62,7 @@ const WorldHome = () => {
         </div>
         <div className="row mt-5">
           {teams.map((team) => (
-            <div key={team.id} className="col-md-3 mb-4">
+            <div key={team.id} className="col-4 col-md-3 mb-4">
               <div className="flag-card">
                 <img 
                   src={team.Flag}
@@ -58,6 +73,32 @@ const WorldHome = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <p className="text-white">Find Mathches by Venue</p>
+          </div>
+        </div>
+        <div className="row mt-5">
+          {venues.map((venue)=>(
+            <div key={venue.id} className="col-4 col-md-3 mb-4">
+              <div className="venue-card">
+                <img
+                src={venue.image}
+                alt="venues"
+                className="vemue-img"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <img
+            src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-240:q-80/cwc-partners-web-collection-202308240228.png"
+            alt="sponsers"
+            />
+          </div>
         </div>
       </div>
     </div>
