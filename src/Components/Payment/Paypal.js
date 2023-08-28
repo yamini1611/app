@@ -3,7 +3,7 @@ import { CLIENT_ID } from '../Payment/Config'
 import React, { useState, useEffect } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { toast } from 'react-toastify';
-import axios from "axios";
+// import axios from "axios";
 
 
 
@@ -12,15 +12,14 @@ const Paypal = () => {
     const [success, setSuccess] = useState(false);
     const [ErrorMessage, setErrorMessage] = useState("");
     const [orderID, setOrderID] = useState(false);
-    const [register, setregister] = useState([]);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // const [register, setregister] = useState([]);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     // creates a paypal order
     const createOrder = (data, actions) => {
         return actions.order.create({
             purchase_units: [
                 {
-
                     description: "Purchase",
                     amount: {
                         currency_code: "USD",

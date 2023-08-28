@@ -328,16 +328,12 @@ const Next = () => {
                                         />
                                     </>
                                 </div>
-                                <>
-                                    <div className="-flex justify-content-center" style={{ maxWidth: '300px' }}>
-                                        <Paypal onClick={sendPaymentDetails} />
-                                    </div>
-                                </>
                             </div>
                         </div>
                     </div>
                 </div>
             )}
+            <Paypal />
         </>
     )
 }
