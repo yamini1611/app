@@ -38,6 +38,7 @@ import AdminPage from "./Components/Admin/AdminPage";
 import MyTheatre from "./Components/TheaterOwner/MyTheatre";
 import CommingSoon from "./Components/Homepage/CommingSoon";
 import WorldHome from "./Components/WorldCup/WorldHome";
+import Matches from "./Components/WorldCup/Matches";
 
 
 function App() {
@@ -80,6 +81,8 @@ function App() {
             <Route path="/Admin" element={<AdminPage />} />
             <Route path="/MyTheatre" element={<MyTheatre />} />
             <Route path="/WorldHome" element={<WorldHome/>}/>
+            <Route path="/commingsoon" element={<CommingSoon/>}/>
+            <Route path="/matches" element={<Matches />}/>
 
           </Routes>
         </Context>

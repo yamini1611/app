@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/WorldHome.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const WorldHome = () => {
   const [teams, setTeams] = useState([]);
@@ -39,11 +40,11 @@ const WorldHome = () => {
       <div className="container world-container">
         <div className="row">
           <div className="col-12 	d-none d-sm-block">
-            <img
+          <Link to='/matches'>  <img
               src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-120:q-80/cwc-icc-logo-web-collection-202308190313.png"
               alt="Banner"
               className="img-fluid mt-3 curved-image "
-            />
+            /></Link>
           </div>
         </div>
         <div className="row">
