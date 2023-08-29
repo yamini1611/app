@@ -40,20 +40,20 @@ const WorldHome = () => {
       <div className="container world-container">
         <div className="row">
           <div className="col-12 	d-none d-sm-block">
-          <Link to='/matches'>  <img
+           <img
               src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-120:q-80/cwc-icc-logo-web-collection-202308190313.png"
               alt="Banner"
               className="img-fluid mt-3 curved-image "
-            /></Link>
+            />
           </div>
         </div>
         <div className="row">
           <div className="col-12">
-            <img
+          <Link to='/matches'>  <img
               src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-1440,h-240:q-80/cwc-view-all-matches-web-collection-202308190127.png"
               alt="Banner"
               className="img-fluid curved-image2 mt-3"  
-            />
+            /></Link>
           </div>
         </div>
         <div className="row">
@@ -87,7 +87,7 @@ const WorldHome = () => {
                 <img
                 src={venue.image}
                 alt="venues"
-                className="vemue-img"
+                className="venue-img"
                 />
               </div>
             </div>

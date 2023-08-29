@@ -2,9 +2,6 @@
     background-color: #320073;
 }
 
-.card {
-    width: 18rem;
-    margin-bottom: 20px;
-  }
-  
-  
+.schedule-container{
+    width: 60%;
+}
