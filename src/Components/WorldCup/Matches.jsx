@@ -19,8 +19,9 @@ const Matches = () => {
 
   return (
     <div className="body">
-
-      <div className="container schedule-container">
+   
+      <div className="container ">
+      <h2 className="text-white fw-bold">ALL WORLD CUP MATCHES</h2>
         <div className="row">
           {matches.map((match) => (
             <div key={match.id} className="col-6 col-md-3 mb-4">
@@ -31,16 +32,24 @@ const Matches = () => {
                   className="card-img-top"
                 />
                 <div className="card-body">
-                  <h5 className="card-title">{match.match}</h5>
+                  <div className="row">
+                  <h5 className="card-title fs-6 fw-bold">{match.match}</h5>
                   <p className="card-subtitle mb-2 text-muted">{match.venue}</p>
-                  <p className="card-text">
-                    <span className="match-date">{match.Date}</span>
-                    <br />
-                    ₹ {match.price} onwards
-                  </p>
-                  <a href="#" className="btn btn-danger w-100">Book</a>
+                  <div className="row">
+                  <p className="card-text col-7  text-success ">
+                  
+                    ₹{match.price} onwards
+                    </p>
+                    <span className="match-date col-5  ">{match.Date}</span>
+                    </div>
+               
+                  </div>
+                  <div className="row text-center">
+                  <button className="btn btn-danger w-100 align-item-bottom">Book</button>
+                  </div>
                 </div>
               </div>
+           
             </div>
           ))}
         </div>
