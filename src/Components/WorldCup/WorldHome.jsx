@@ -80,9 +80,9 @@ const WorldHome = () => {
             <p className="text-white">Find Mathches by Venue</p>
           </div>
         </div>
-        <div className="row mt-5">
+        <div className="row mt-5" id="img-center">
           {venues.map((venue)=>(
-            <div key={venue.id} className="col-4 col-md-3 mb-4">
+            <div key={venue.id} className="col-4 col-md-3 mb-4  ">
               <div className="venue-card">
                 <img
                 src={venue.image}

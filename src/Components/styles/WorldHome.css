@@ -15,7 +15,7 @@
   color: white;
   padding-top: 40px;
   font-size: x-large;
-  text-align: center; 
+  text-align: center;
 }
 
 /* .flag-card {
@@ -33,16 +33,20 @@
   display: block; /* To center-align the image */
   max-width: 100%; /* Adjusted to 100% */
 }
-.world-container{
+.world-container {
   width: 55%;
 }
-
-@media(max-width:500px){
-  .curved-image{
+#img-center {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+@media (max-width: 500px) {
+  .curved-image {
     height: 80px;
     width: 500px;
   }
-  .world-container{
+  .world-container {
     width: 100%;
   }
 }
