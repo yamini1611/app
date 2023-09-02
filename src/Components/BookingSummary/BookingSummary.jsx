@@ -47,7 +47,7 @@ useEffect(()=>{
 <>
 		{tickDetails && (
 		
-	<div className='tickbackground col-lg-12'>
+	<div className='tickbackground col-lg-12' style={{fontFamily:"Work Sans, sans-serif"}}>
 		<h1 className='text-center display-5 text-white'>Pick Your ticket!</h1>
 		<div className='p-5'>
 <div class="ticket">
