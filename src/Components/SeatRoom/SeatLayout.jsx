@@ -185,7 +185,7 @@ console.log(bookedSeats)
         </Divider>
 
       )}
-      <button onClick={() => { checkBookedTickets(); }}>Press</button>
+      {/* <button onClick={() => { checkBookedTickets(); }}>Press</button> */}
     </div>
   );
 };

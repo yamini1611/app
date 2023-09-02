@@ -151,16 +151,16 @@ const CustomNavbar = () => {
           <Nav.Link className="custom-nav-link">
             <Link to="/schedule" id='nlink'>  Contact US </Link>
           </Nav.Link>
-          <Nav.Link className="custom-nav-link" >
+          {/* <Nav.Link className="custom-nav-link" >
             <Link to="/ChooseTickets" id='nlink'>  SeatRoom </Link>
-          </Nav.Link>
+          </Nav.Link> */}
           {/* Payment Link */}
-          <Nav.Link className="custom-nav-link" >
+          {/* <Nav.Link className="custom-nav-link" >
             <Link to="/Next" id='nlink'>  Payment </Link>
           </Nav.Link>
           <Nav.Link className="custom-nav-link" href="/BookingSummary">
             Ticket
-          </Nav.Link>
+          </Nav.Link> */}
 
           {isLoggedIn && loggedInUser.password && loggedInUser.password.startsWith("TO") && (
             <Nav.Link className="custom-nav-link" >
